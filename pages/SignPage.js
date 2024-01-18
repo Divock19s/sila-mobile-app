@@ -3,7 +3,7 @@ import Sign from '../components/Sign';
 
 const SignPage = () => {
   return (
-    <View style={[{flex: 1}, {backgroundColor: 'rgb(141,26,244)'}]}>
+    <View style={[{flex: 1}, {backgroundColor: '#000'}]}>
       <Sign />
     </View>
   )
