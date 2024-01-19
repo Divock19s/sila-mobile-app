@@ -45,18 +45,15 @@ const Dashboard = () => {
             </View>
             <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: '#000'}]}>Profile</Text>
           </Pressable>
-
-          <Pressable style={[{gap: 5}, {alignItems: 'center'}]}>
-            <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-              <AntDesign name="barschart" size={24} color="black" />
-            </View>
-            <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: '#000'}]}>AD accounts</Text>
-          </Pressable>
         </View>
       </View>
 
-      <View style={[{height: 300}, {overflow: 'hidden'}, {borderRadius: 50}, {marginTop: 20}]}>
-        <Image style={[{flex: 1}]} source={{uri: 'https://i.pinimg.com/originals/86/e4/35/86e43586d5a06c3c652f48167a9e849f.gif'}} />
+      <View style={[{marginTop: 50}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 20}]}>AD accounts:</Text>
+        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}]}>
+          <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 70}]}>40</Text>
+          <Image style={[{height: 80}, {width: 80}]} source={require('../assets/images&logos/pie-chart_2936690.png')} />
+        </View>
       </View>
     </View>
   )

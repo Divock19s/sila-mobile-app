@@ -6,6 +6,11 @@ import { useCallback } from 'react';
 import DashboardPage from './pages/DashboardPage';
 import { StatusBar } from 'expo-status-bar';
 import TopUpPage from './pages/TopUpPage';
+import ProfilePage from './pages/ProfilePage';
+import TransactionsPage from './pages/TransactionsPage';
+import PaymentsHistoryPage from './pages/PaymentsHistoryPage';
+import FacebookPage from './pages/FacebookPage';
+import CreateADPage from './pages/CreateADPage';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,7 +37,12 @@ export default function App() {
     <View style={[{flex: 1}]} onLayout={onLayoutRootView}>
       {/* <SignPage /> */}
       {/* <DashboardPage /> */}
-      <TopUpPage />
+      {/* <TopUpPage /> */}
+      {/* <ProfilePage /> */}
+      {/* <TransactionsPage /> */}
+      {/* <PaymentsHistoryPage /> */}
+      {/* <FacebookPage /> */}
+      <CreateADPage />
     </View>
   );
 };

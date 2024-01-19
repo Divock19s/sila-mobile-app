@@ -103,25 +103,25 @@ const Sign = () => {
                 <>
                     <View style={[{gap: 10}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Username:</Text>
-                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: '#000'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a name for your account...' />
+                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a name for your account...' />
                     </View>
 
                     <View style={[{gap: 10}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Phone Number:</Text>
-                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: '#000'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your phone number...' />
+                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your phone number...' />
                     </View>
 
                     <View style={[{gap: 10}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Email:</Text>
-                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: '#000'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
+                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
                     </View>
 
                     <View style={[{gap: 10}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Password:</Text>
-                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: '#000'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
+                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
                     </View>
 
-                    <Pressable style={[{backgroundColor: '#000'}, {height: height / 15}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable style={[{backgroundColor: 'rgb(136,58,209)'}, {height: height / 15}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         <Text style={[{color: '#fff'}, {fontSize: 20}, {fontFamily: 'Ubuntu-Bold'}]}>Sign Up</Text>
                     </Pressable>
                 </>
@@ -133,15 +133,15 @@ const Sign = () => {
                 <>
                     <View style={[{gap: 10}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Email:</Text>
-                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: '#000'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
+                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
                     </View>
 
                     <View style={[{gap: 10}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Password:</Text>
-                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: '#000'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
+                        <TextInput style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
                     </View>
 
-                    <Pressable style={[{backgroundColor: '#000'}, {height: height / 15}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable style={[{backgroundColor: 'rgb(136,58,209)'}, {height: height / 15}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         <Text style={[{color: '#fff'}, {fontSize: 20}, {fontFamily: 'Ubuntu-Bold'}]}>Sign In</Text>
                     </Pressable>
                 </>

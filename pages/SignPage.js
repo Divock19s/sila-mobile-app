@@ -1,11 +1,11 @@
-import { View, Text } from 'react-native';
+import { View, Text, ImageBackground } from 'react-native';
 import Sign from '../components/Sign';
 
 const SignPage = () => {
   return (
-    <View style={[{flex: 1}, {backgroundColor: '#000'}]}>
+    <ImageBackground source={require('../assets/images&logos/background-gradient-lights.jpg')} style={[{flex: 1}]}>
       <Sign />
-    </View>
+    </ImageBackground>
   )
 }
 
