@@ -36,13 +36,13 @@ export default function App() {
   return (
     <View style={[{flex: 1}]} onLayout={onLayoutRootView}>
       {/* <SignPage /> */}
-      {/* <DashboardPage /> */}
+      <DashboardPage />
       {/* <TopUpPage /> */}
       {/* <ProfilePage /> */}
       {/* <TransactionsPage /> */}
       {/* <PaymentsHistoryPage /> */}
       {/* <FacebookPage /> */}
-      <CreateADPage />
+      {/* <CreateADPage /> */}
     </View>
   );
 };
