@@ -1,14 +1,19 @@
 import { View, Text, Pressable } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import data from '../Context';
+import { useContext } from 'react';
 
 const CreateADCounter = () => {
+
+    const {totalDepositOfADs, totalCost} = useContext(data);
+
   return (
     <View style={[{height: 250}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 30}, {borderTopRightRadius: 30}, {backgroundColor: 'rgb(136,58,209)'}, {padding: 30}, {justifyContent: 'space-between'}]}>
         <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total deposit of ADs:</Text>
             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>424</Text>
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalDepositOfADs}</Text>
             <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
             </View>
         </View>
@@ -16,7 +21,7 @@ const CreateADCounter = () => {
         <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total cost:</Text>
             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>630</Text>
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalCost}</Text>
             <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
             </View>
         </View>

@@ -1,17 +1,23 @@
-import { View, Text, Pressable, TextInput, ScrollView, Alert, Image } from 'react-native';
+import { View, Text, Pressable, TextInput, ScrollView, Alert, Image, Dimensions } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
 import CreateADCounter from '../components/CreateADCounter';
 import { CheckBox } from 'react-native-elements';
 import { Feather } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
 import { AntDesign } from '@expo/vector-icons';
+import data from '../Context';
 
 const createADPage = () => {
 
+  const { width, height } = Dimensions.get('screen');
+
+  const {setTotalDepositOfADs, setTotalCost} = useContext(data);
+
   const [licenseType, setLicenseType] = useState(null);
   const [oldLicense, setOldLicenseName] = useState(null);
+  const [newLicenseName, setNewLicenseName] = useState(null);
 
   const [pageNumber, setPageNumber] = useState(0);
   const [pageURLs, setPageURLs] = useState([]);
@@ -24,6 +30,14 @@ const createADPage = () => {
   const [domainName, setDomainName] = useState([]);
 
   const [shopifyShop, setShopifyShop] = useState('no');
+
+  const [adAccountsNumber, setAdAccountsNumber] = useState(0);
+  const [adAccountNames, setAdAccountNames] = useState([]);
+  const [adAccountDeposits, setAdAccountDeposits] = useState([]);
+
+  useEffect(() => {
+    setNewLicenseName(null);
+  }, [licenseType]);
 
   //rendering url inputs according to picker number
   const renderPageURLInputs = () => {
@@ -55,6 +69,10 @@ const createADPage = () => {
     }
   };
   //
+
+  useEffect(() => {
+    setPageURLs([]);
+  }, [pageNumber]);
 
   //copying admin to clipboard
   const copy = async () => {
@@ -113,9 +131,92 @@ const createADPage = () => {
   };
   //
 
+  useEffect(() => {
+    setDomainName([]);
+    setAPPIDs([]);
+  }, [domainNumber]);
+
+  //rendering AD account sections according to picker number
+  const renderADAccountSections = () => {
+    const ADAccountSection = [];
+    for (let i = 0; i < adAccountsNumber; i++) {
+      ADAccountSection.push(
+        <View style={[{borderWidth: 3}, {marginTop: 20}, {borderRadius: 20}, {borderColor: 'rgb(136,58,209)'}, {paddingHorizontal: 10}]}>
+          <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: 50}]} placeholder='AD account name...' />
+          <RNPickerSelect
+            onValueChange={(value) => storeADaccountDeposit(i, value)}
+            items={[
+              { label: '100', value: 100 },
+              { label: '150', value: 150 },
+              { label: '200', value: 200 },
+              { label: '250', value: 250 },
+              { label: '300', value: 300 },
+              { label: '450', value: 450 },
+              { label: '500', value: 500 },
+              { label: '850', value: 850 },
+              { label: '1000', value: 1000 }
+            ]}
+          />
+        </View>
+      );
+    }
+    return ADAccountSection;
+  };
+  //
+
+  //getting the AD account input values and storing them in ADaccountNames state, which is an array
+  const storeADaccountName = (i, text) => {
+    setAdAccountNames((prev) => {
+      const newValue = [...prev];
+      newValue[i] = text;
+      return newValue;
+    });
+  };
+  //
+
+
+  //getting the AD account deposit values and storing them in ADaccountDeposit state, which is an array
+  const storeADaccountDeposit = (i, text) => {
+    setAdAccountDeposits((prev) => {
+      const newValue = [...prev];
+      newValue[i] = text;
+      return newValue;
+    });
+  };
+  //
+
+  useEffect(() => {
+    //counting total deposit of ads
+    const sum = adAccountDeposits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+    const commision = sum * 6 / 100;
+    const totalDepositOfADs = sum + commision;
+    
+    setTotalDepositOfADs(totalDepositOfADs);
+    //
+
+
+    //counting total cost
+    if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
+      setTotalCost(totalDepositOfADs + 179);
+    } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
+      setTotalCost(totalDepositOfADs + 358);
+    } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
+      setTotalCost(totalDepositOfADs + 537);
+    } else {
+      setTotalCost(0);
+    }
+    //
+  }, [adAccountDeposits]);
+
+  useEffect(() => {
+    setTotalDepositOfADs(0);
+    setTotalCost(0);
+    setAdAccountDeposits([]);
+  }, [adAccountsNumber]);
+
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
-      <View style={[{height: 570}]}>
+      <View style={[{height: 450}]}>
         <ScrollView>
           <View>
           <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>License:</Text>
@@ -134,7 +235,7 @@ const createADPage = () => {
             <>
               {
                 licenseType === 'new' ? (
-                  <TextInput style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Choose a name for this license' />
+                  <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Choose a name for this license' />
                 ) : (
                   <RNPickerSelect
                     onValueChange={(value) => setOldLicenseName(value)}
@@ -175,7 +276,7 @@ const createADPage = () => {
             <Text>Please make sure you have already shared your page with this profile:</Text>
           </View>
 
-          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
+          <View style={[{alignItems: 'center'}]}>
             <Text style={[{backgroundColor: 'rgb(136,58,209)'}, {color: '#fff'}, {padding: 5}, {borderRadius: 10}]}>https://www.facebook.com/rina.magar.332/</Text>
             <Pressable onPress={copy}>
               <Feather name="copy" size={30} color="black" />
@@ -274,6 +375,25 @@ const createADPage = () => {
             </View>
           )
         }
+
+        <View style={[{marginTop: 30}]}>
+          <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>AD accounts number:</Text>
+          <RNPickerSelect
+            onValueChange={(value) => setAdAccountsNumber(value)}
+            items={[
+              { label: '1', value: 1 },
+              { label: '3', value: 3 },
+              { label: '5', value: 5 }
+            ]}
+          />
+
+          { renderADAccountSections() }
+        </View>
+
+        <View style={[{marginTop: 30}]}>
+          <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
+          <TextInput style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
+        </View>
         </ScrollView>
       </View>
 
