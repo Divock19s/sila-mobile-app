@@ -70,9 +70,12 @@ const createADPage = () => {
   };
   //
 
+
+  // deleting values from the array, after picker number changes
   useEffect(() => {
-    setPageURLs([]);
+    setPageURLs((prev) => prev.slice(0, pageNumber));
   }, [pageNumber]);
+  //
 
   //copying admin to clipboard
   const copy = async () => {
@@ -131,10 +134,13 @@ const createADPage = () => {
   };
   //
 
+
+  // deleting values from the array, after picker number changes
   useEffect(() => {
-    setDomainName([]);
-    setAPPIDs([]);
+    setAPPIDs((prev) => prev.slice(0, domainNumber));
+    setDomainName((prev) => prev.slice(0, domainNumber));
   }, [domainNumber]);
+  //
 
   //rendering AD account sections according to picker number
   const renderADAccountSections = () => {
@@ -208,11 +214,12 @@ const createADPage = () => {
     //
   }, [adAccountDeposits]);
 
+
+  // deleting values from the array, after picker number changes
   useEffect(() => {
-    setTotalDepositOfADs(0);
-    setTotalCost(0);
-    setAdAccountDeposits([]);
+    setAdAccountDeposits((prev) => prev.slice(0, adAccountsNumber));
   }, [adAccountsNumber]);
+  //
 
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
