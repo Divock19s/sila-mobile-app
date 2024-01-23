@@ -1,19 +1,19 @@
-import { View, Text, Pressable, TextInput, ScrollView, Alert, Image, Dimensions } from 'react-native';
+import { View, Text, Pressable, TextInput, ScrollView, Alert, Image, Dimensions, ActivityIndicator } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useEffect, useState, useContext } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import CreateADCounter from '../components/CreateADCounter';
-import { CheckBox } from 'react-native-elements';
+import { Button, CheckBox } from 'react-native-elements';
 import { Feather } from '@expo/vector-icons';
 import * as Clipboard from 'expo-clipboard';
 import { AntDesign } from '@expo/vector-icons';
 import data from '../Context';
+import * as DocumentPicker from 'expo-document-picker';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
 
 const createADPage = () => {
 
   const { width, height } = Dimensions.get('screen');
-
-  const {setTotalDepositOfADs, setTotalCost} = useContext(data);
 
   const [licenseType, setLicenseType] = useState(null);
   const [oldLicense, setOldLicenseName] = useState(null);
@@ -25,15 +25,23 @@ const createADPage = () => {
   const [checked, setChecked] = useState(false);
 
   const [domainNumber, setDomainNumber] = useState(0);
-  const [isAPP, setIsAPP] = useState('no');
+  const [isAPP, setIsAPP] = useState(false);
   const [appIDs, setAPPIDs] = useState([]);
   const [domainName, setDomainName] = useState([]);
 
-  const [shopifyShop, setShopifyShop] = useState('no');
+  const [shopifyShop, setShopifyShop] = useState(false);
+  const [shopifyScreenshot, setShopifyScreenshot] = useState(null);
 
   const [adAccountsNumber, setAdAccountsNumber] = useState(0);
   const [adAccountNames, setAdAccountNames] = useState([]);
   const [adAccountDeposits, setAdAccountDeposits] = useState([]);
+
+  const [remark, setRemark] = useState(null);
+
+  const [totalDepositOfADs, setTotalDepositOfADs] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
+
+  const [payLoading, setPayLoading] = useState(false);
 
   useEffect(() => {
     setNewLicenseName(null);
@@ -142,6 +150,31 @@ const createADPage = () => {
   }, [domainNumber]);
   //
 
+
+  //picking shopify screenshot proof:
+  const pickScreenshot = () => {
+    const pick = async () => {
+      try {
+        const response = await DocumentPicker.getDocumentAsync({
+          type: '*/*'
+        });
+  
+        if (response.canceled) {
+          Alert.alert('No screenshot was selected!');
+        } else {
+          setShopifyScreenshot(response.assets[0]);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    pick();
+  };
+  //
+
+
+
   //rendering AD account sections according to picker number
   const renderADAccountSections = () => {
     const ADAccountSection = [];
@@ -205,9 +238,9 @@ const createADPage = () => {
     if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
       setTotalCost(totalDepositOfADs + 179);
     } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 358);
+      setTotalCost(totalDepositOfADs + 299);
     } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 537);
+      setTotalCost(totalDepositOfADs + 499);
     } else {
       setTotalCost(0);
     }
@@ -221,9 +254,119 @@ const createADPage = () => {
   }, [adAccountsNumber]);
   //
 
+
+
+  //Post form api:
+  const postForm = () => {
+    setPayLoading(true);
+
+    const formData = new FormData();
+    if (newLicenseName !== null) {
+      formData.append('license', newLicenseName);
+    };
+    formData.append('pageNumber', pageNumber);
+    pageURLs.map((x) => {
+      formData.append('pageURL', x);
+    });
+    formData.append('domainNumber', domainNumber);
+    formData.append('isApp', isAPP);
+    domainName.map((x) => {
+      formData.append('domainName', x);
+    });
+    appIDs.map((x) => {
+      formData.append('appID', x);
+    });
+
+    formData.append('shopifyShop', shopifyShop);
+
+    if (shopifyScreenshot !== null) {
+      const file = {
+        uri: shopifyScreenshot.uri,
+        type: shopifyScreenshot.mimeType,
+        name: shopifyScreenshot.name
+      };
+
+      formData.append('shopifyScreenshot', file);
+    };
+
+    formData.append('adNumber', adAccountsNumber);
+
+    adAccountNames.map((x, i) => {
+      formData.append(`ads[${i}][adName]`, x);
+    });
+
+    adAccountDeposits.map((x, i) => {
+      formData.append(`ads[${i}][adDeposit]`, x);
+    });
+
+    if (remark !== null) {
+      formData.append('remark', remark);
+    };
+
+    formData.append('totalCost', totalCost);
+
+    const adApi = async () => {
+      try {
+        const response = await fetch('http://192.168.1.2:4000/ad', {
+          method: 'POST',
+          body: formData
+        });
+        const data = await response.json();
+        setPayLoading(false);
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (!checked) {
+      Alert.alert('Please make sure you have already shared page with this profile: "https://www.facebook.com/rina.magar.332/"');
+      setPayLoading(false);
+    } else if (licenseType === null) {
+      Alert.alert('Please choose a license type');
+      setPayLoading(false);
+    } else if (newLicenseName === null) {
+      Alert.alert('Please write a license name');
+      setPayLoading(false);
+    } else if (pageNumber === null || pageNumber === 0) {
+      Alert.alert('Please select Page number!');
+      setPayLoading(false);
+    } else if (pageURLs.length === 0) {
+      Alert.alert('Please provide at least one Page URL');
+      setPayLoading(false);
+    } else if (phpRedLine) {
+      Alert.alert('Please provide a valid Page URL!');
+      setPayLoading(false);
+    } else if (domainNumber === null || domainNumber === 0) {
+      Alert.alert('Please select Domain number!');
+      setPayLoading(false);
+    } else if (domainName.length === 0) {
+      Alert.alert('Please provide at least one Domain name');
+      setPayLoading(false);
+    } else if (isAPP && appIDs.length === 0) {
+      Alert.alert('Please provide App id(s)');
+      setPayLoading(false);
+    } else if (shopifyShop && shopifyScreenshot === null) {
+      Alert.alert('Please provide the Shopify screenshot proof!');
+      setPayLoading(false);
+    } else if (adAccountsNumber === null || adAccountsNumber === 0) {
+      Alert.alert('Please select Ad Account number!');
+      setPayLoading(false);
+    } else if (adAccountNames.length === 0) {
+      Alert.alert('Please fill-in Ad Account name(s)!');
+      setPayLoading(false);
+    } else if (adAccountDeposits.length === 0) {
+      Alert.alert('Please fill-in Ad Account deposit(s)!');
+      setPayLoading(false);
+    } else {
+      adApi();
+    }
+  };
+  //
+
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
-      <View style={[{height: 450}]}>
+      <View style={[{height: 450}, {marginBottom: 30}]}>
         <ScrollView>
           <View>
           <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>License:</Text>
@@ -307,10 +450,10 @@ const createADPage = () => {
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 20}]}>
             <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>is APP?</Text>
             <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}]}>
-              <Pressable onPress={() => setIsAPP('no')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+              <Pressable onPress={() => setIsAPP(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                 <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                   {
-                    isAPP === 'no' && (
+                    !isAPP && (
                       <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
                     )
                   }
@@ -318,10 +461,10 @@ const createADPage = () => {
                 <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>No</Text>
               </Pressable>
 
-              <Pressable onPress={() => setIsAPP('yes')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+              <Pressable onPress={() => setIsAPP(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                 <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                   {
-                    isAPP === 'yes' && (
+                    isAPP && (
                       <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
                     )
                   }
@@ -332,21 +475,21 @@ const createADPage = () => {
           </View>
 
           {
-            isAPP === 'yes' && renderAPPIDInput()
+            isAPP && renderAPPIDInput()
           }
 
           { renderDomainNameInput() }
         </View>
 
         {
-          isAPP === 'no' && (
+          !isAPP && (
             <View style={[{marginTop: 30}]}>
               <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Do you currently have a Shopify shop at the time of this application?</Text>
               <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}, {marginTop: 20}]}>
-                <Pressable onPress={() => setShopifyShop('no')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                <Pressable onPress={() => setShopifyShop(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                   <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                     {
-                      shopifyShop === 'no' && (
+                      !shopifyShop && (
                         <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
                       )
                     }
@@ -354,10 +497,10 @@ const createADPage = () => {
                   <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>No</Text>
                 </Pressable>
 
-                <Pressable onPress={() => setShopifyShop('yes')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                <Pressable onPress={() => setShopifyShop(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                   <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                     {
-                      shopifyShop === 'yes' && (
+                      shopifyShop && (
                         <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
                       )
                     }
@@ -367,10 +510,16 @@ const createADPage = () => {
               </View>
 
               {
-                shopifyShop === 'yes' && (
+                shopifyShop && (
                   <View style={[{marginTop: 20}, {flexDirection: 'row'}, {gap: 30}]}>
-                    <Pressable style={[{borderWidth: 3}, {height: 100}, {width: 100}, {borderRadius: 20}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                      <AntDesign name="plus" size={30} color="black" />
+                    <Pressable onPress={pickScreenshot} style={[{borderWidth: 1}, {height: 100}, {width: 100}, {borderRadius: 20}, {justifyContent: 'center'}, {alignItems: 'center'}, {overflow: 'hidden'}]}>
+                      {
+                        shopifyScreenshot !== null ? (
+                          <Image style={[{height: 100}, {width: 100}]} source={{uri: 'https://i.pinimg.com/originals/51/8c/fc/518cfc9e3de40195948e2a1f1108a0fe.gif'}} />
+                        ) : (
+                          <AntDesign name="plus" size={30} color="black" />
+                        )
+                      }
                     </Pressable>
 
                     <Pressable style={[{height: 100}, {width: 100}, {borderRadius: 20}, {overflow: 'hidden'}]}>
@@ -399,12 +548,57 @@ const createADPage = () => {
 
         <View style={[{marginTop: 30}]}>
           <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
-          <TextInput style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
+          <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
         </View>
         </ScrollView>
       </View>
 
-      <CreateADCounter />
+      {/* Counter */}
+
+      <View style={[{height: 250}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 30}, {borderTopRightRadius: 30}, {backgroundColor: 'rgb(136,58,209)'}, {padding: 30}, {justifyContent: 'space-between'}]}>
+        <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
+          <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total deposit of ADs:</Text>
+          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalDepositOfADs}</Text>
+            <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+          </View>
+        </View>
+
+        <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
+          <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total cost:</Text>
+          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalCost}</Text>
+            <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+          </View>
+        </View>
+
+        <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
+          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+            <Entypo name="wallet" size={24} color="#fff" />
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Wallet:</Text>
+          </View>
+          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>600</Text>
+            <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+          </View>
+        </View>
+
+        <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
+          <Pressable style={[{paddingVertical: 17}, {paddingHorizontal: 40}, {borderRadius: 50}, {borderWidth: 4}, {borderColor: '#fff'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: '#fff'}]}>Cancel</Text>
+          </Pressable>
+
+          <Pressable onPress={postForm} style={[{paddingVertical: 17}, {backgroundColor: '#fff'}, {paddingHorizontal: 40}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            {
+              payLoading ? (
+                <ActivityIndicator color={'rgb(136,58,209)'} size={'large'} />
+              ) : (
+                <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: 'rgb(136,58,209)'}]}>Pay</Text>
+              )
+            }
+          </Pressable>
+        </View>
+      </View>
     </View>
   )
 };
