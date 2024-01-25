@@ -2,8 +2,12 @@ import { View, Image, Dimensions, ImageBackground, Text, Pressable, Animated } f
 import { Foundation } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { useEffect } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 const Dashboard = () => {
+
+  const navigation = useNavigation();
 
   return (
     <View style={[{flex: 1}]}>
@@ -32,14 +36,14 @@ const Dashboard = () => {
         <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Quick actions</Text>
 
         <View style={[{flexDirection: 'row'}, {gap: 30}, {marginTop: 30}]}>
-          <Pressable style={[{gap: 5}, {alignItems: 'center'}]}>
+          <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}]}>
             <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
               <AntDesign name="plus" size={24} color="black" />
             </View>
             <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: '#000'}]}>Top up</Text>
           </Pressable>
 
-          <Pressable style={[{gap: 5}, {alignItems: 'center'}]}>
+          <Pressable onPress={() => navigation.navigate('Profile')} style={[{gap: 5}, {alignItems: 'center'}]}>
             <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
               <AntDesign name="user" size={24} color="black" />
             </View>

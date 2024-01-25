@@ -14,6 +14,14 @@ import FacebookPage from './pages/FacebookPage';
 import CreateADPage from './pages/CreateADPage';
 import DashboardPage from './pages/DashboardPage';
 import SignPage from './pages/SignPage';
+import StartUpPage from './pages/StartUpPage';
+import AccountsListPage from './pages/AccountsListPage';
+import NewAdAccountPage from './pages/NewAdAccountPage';
+import BMshareLogsPage from './pages/BMshareLogsPage';
+import AdsDepositRecordPage from './pages/AdsDepositRecordPage';
+import RefundRecordPage from './pages/RefundRecordPage';
+import AdsDepositPage from './pages/AdsDepositPage';
+import RefundPage from './pages/RefundPage';
 //
 
 
@@ -59,7 +67,7 @@ export default function App() {
     totalCost, setTotalCost }}>
       <View style={[{flex: 1}]} onLayout={onLayoutRootView}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName='Sign' screenOptions={{headerShown: false,
+          <Stack.Navigator initialRouteName='StartUp' screenOptions={{headerShown: false,
           contentStyle: {backgroundColor: '#fff'}}}>
             <Stack.Screen name='Sign' component={SignPage} />
             <Stack.Screen name='Dashboard' component={DashboardPage} />
@@ -69,6 +77,14 @@ export default function App() {
             <Stack.Screen name='PaymentHistory' component={PaymentsHistoryPage} />
             <Stack.Screen name='Meta' component={FacebookPage} />
             <Stack.Screen name='CreateAD' component={CreateADPage} />
+            <Stack.Screen name='StartUp' component={StartUpPage} />
+            <Stack.Screen name='AccountsList' component={AccountsListPage} />
+            <Stack.Screen name='NewAdAccount' component={NewAdAccountPage} />
+            <Stack.Screen name='BMLogs' component={BMshareLogsPage} />
+            <Stack.Screen name='AdsDepositRecord' component={AdsDepositRecordPage} />
+            <Stack.Screen name='RefundRecord' component={RefundRecordPage} />
+            <Stack.Screen name='AdsDeposit' component={AdsDepositPage} />
+            <Stack.Screen name='Refund' component={RefundPage} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

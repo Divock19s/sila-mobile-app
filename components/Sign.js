@@ -3,8 +3,12 @@ import { AntDesign } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import * as DocumentPicker from 'expo-document-picker';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 const Sign = () => {
+
+    const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('screen');
 
@@ -133,7 +137,21 @@ const Sign = () => {
                 });
                 const data = await response.json();
                 setSignUpLoading(false);
-                console.log(data);
+
+                const asyncStorage = async () => {
+                    try {
+                        await AsyncStorage.setItem('userInfo', JSON.stringify(data.user));
+                    } catch (err) {
+                        console.error(err);
+                    }
+                };
+
+                asyncStorage();
+
+                navigation.reset({
+                    index: 0,
+                    routes: [{ name: 'Dashboard' }]
+                });
             } catch (err) {
                 console.error(err);
             }
@@ -172,7 +190,25 @@ const Sign = () => {
 
                     const data = await response.json();
                     setSignInLoading(false);
-                    console.log(data);
+
+                    if (data.userInfo) {
+                        const asyncStorage = async () => {
+                            try {
+                                await AsyncStorage.setItem('userInfo', JSON.stringify(data.userInfo));
+                            } catch (err) {
+                                console.error(err);
+                            }
+                        };
+
+                        asyncStorage();
+
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Dashboard' }]
+                        });
+                    } else {
+                        Alert.alert('Oops, please re-check your credentials!');
+                    }
                 } catch (err) {
                     console.error(err);
                 }
