@@ -131,7 +131,7 @@ const Sign = () => {
 
         const createUserApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.2:4000/users', {
+                const response = await fetch('http://192.168.1.3:4000/users', {
                     method: 'POST',
                     body: formData
                 });
@@ -177,7 +177,7 @@ const Sign = () => {
         if (emailSignIn !== null && passwordSignIn !== null) {
             const signApi = async () => {
                 try {
-                    const response = await fetch('http://192.168.1.2:4000/users/login', {
+                    const response = await fetch('http://192.168.1.3:4000/users/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

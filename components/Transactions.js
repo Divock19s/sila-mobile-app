@@ -5,6 +5,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import { Feather } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const Transactions = () => {
 
@@ -27,7 +29,7 @@ const Transactions = () => {
     useEffect(() => {
         const transactionsApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.2:4000/transaction');
+                const response = await fetch('http://192.168.1.3:4000/transaction');
                 const data = await response.json();
                 setApiData(data.transactions);
             } catch (err) {
@@ -49,25 +51,25 @@ const Transactions = () => {
             <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                 if (item.userID === userID) {
                     return(
-                        <View style={[{borderRadius: 50}, {backgroundColor: 'yellow'}, {padding: 20}, {marginBottom: 30}, {gap: 30}]}>
+                        <View style={[{borderRadius: 50}, {backgroundColor: '#000'}, {padding: 20}, {marginBottom: 30}, {gap: 30}]}>
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
-                                <Ionicons name="receipt-outline" size={24} color="black" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Application ID: {item._id}</Text>
+                                <Ionicons name="receipt-outline" size={24} color="#fff" />
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Application ID: {item._id}</Text>
                             </View>
                             
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
-                                <MaterialCommunityIcons name="bank" size={24} color="black" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Transaction ID: {item.transactionID}</Text>
+                                <MaterialCommunityIcons name="bank" size={24} color="#fff" />
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Transaction ID: {item.transactionID}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
-                                <FontAwesome5 name="money-bill" size={24} color="black" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Payment Method: {item.paymentMethod}</Text>
+                                <FontAwesome5 name="money-bill" size={24} color="#fff" />
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Payment Method: {item.paymentMethod}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
-                                <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 30}]}>{item.chargeAmount}</Text>
-                                <MaterialCommunityIcons name="star-four-points" size={24} color="black" />
+                                <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 30}, {color: '#fff'}]}>{item.chargeAmount}</Text>
+                                <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
                             </View>
 
                             <View style={[{alignItems: 'center'}]}>
@@ -77,12 +79,30 @@ const Transactions = () => {
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Status:</Text>
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
                                 {
                                     item.status === 'Pending' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Pending</Text>
-                                            <Ionicons name="time-sharp" size={24} color="#000" />
+                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Pending</Text>
+                                            <Ionicons name="time-sharp" size={24} color="#fff" />
+                                        </View>
+                                    )
+                                }
+
+                                {
+                                    item.status === 'Accepted' && (
+                                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
+                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Accepted</Text>
+                                            <Feather name="check" size={24} color="#fff" />
+                                        </View>
+                                    )
+                                }
+
+                                {
+                                    item.status === 'Rejected' && (
+                                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
+                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Rejected</Text>
+                                            <AntDesign name="close" size={24} color="#fff" />
                                         </View>
                                     )
                                 }

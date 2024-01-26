@@ -11,7 +11,7 @@ import * as DocumentPicker from 'expo-document-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
-const createADPage = () => {
+const CreateADPage = () => {
 
   const { width, height } = Dimensions.get('screen');
 
@@ -307,7 +307,7 @@ const createADPage = () => {
 
     const adApi = async () => {
       try {
-        const response = await fetch('http://192.168.1.2:4000/ad', {
+        const response = await fetch('http://192.168.1.3:4000/ad', {
           method: 'POST',
           body: formData
         });
@@ -603,4 +603,4 @@ const createADPage = () => {
   )
 };
 
-export default createADPage;
+export default CreateADPage;

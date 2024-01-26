@@ -2,12 +2,45 @@ import { View, Image, Dimensions, ImageBackground, Text, Pressable, Animated } f
 import { Foundation } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Dashboard = () => {
 
   const navigation = useNavigation();
+
+  const [userID, setUserID] = useState(null);
+  const [userWallet, setUserWallet] = useState(null);
+
+  useEffect(() => {
+    const asyncStorage = async () => {
+      try {
+        const response = await AsyncStorage.getItem('userInfo');
+        setUserID(JSON.parse(response)._id);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    asyncStorage();
+  }, []);
+
+  useEffect(() => {
+    if (userID !== null) {
+      const usersApi = async () => {
+        try {
+          const response = await fetch(`http://192.168.1.3:4000/users/${userID}`);
+          const data = await response.json();
+          setUserWallet(data.user.wallet);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+  
+      usersApi();
+    }
+  }, [userID]);
 
   return (
     <View style={[{flex: 1}]}>
@@ -27,7 +60,11 @@ const Dashboard = () => {
         </View>  
 
         <View style={[{paddingLeft: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 50}]}>5000</Text>
+          {
+            userWallet !== null && (
+              <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 50}]}>{userWallet}</Text>
+            )
+          }
           <MaterialCommunityIcons name="star-four-points" size={35} color="black" />
         </View>
       </ImageBackground>

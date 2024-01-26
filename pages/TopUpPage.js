@@ -95,11 +95,12 @@ const TopUpPage = () => {
             formData.append('userID', userInfo._id);
             formData.append('email', userInfo.email);
             formData.append('phoneNumber', userInfo.phoneNumber);
+            formData.append('userName', userInfo.userName);
         }
 
         const transactionApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.2:4000/transaction', {
+                const response = await fetch('http://192.168.1.3:4000/transaction', {
                     method: 'POST',
                     body: formData
                 });
