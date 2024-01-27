@@ -10,8 +10,12 @@ import data from '../Context';
 import * as DocumentPicker from 'expo-document-picker';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CreateADPage = () => {
+
+  const navigation = useNavigation();
 
   const { width, height } = Dimensions.get('screen');
 
@@ -40,8 +44,39 @@ const CreateADPage = () => {
 
   const [totalDepositOfADs, setTotalDepositOfADs] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const [wallet, setWallet] = useState(null);
 
   const [payLoading, setPayLoading] = useState(false);
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  const [firstApiDone, setFirstApiDone] = useState(false);
+  const [secondApiDone, setSecondApiDone] = useState(false);
+  const [thirdApiDone, setThirdApiDone] = useState(false);
+
+  useEffect(() => {
+    const asyncStorage = async () => {
+      try {
+        const response = await AsyncStorage.getItem('userInfo');
+        setUserInfo(JSON.parse(response));
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    asyncStorage();
+  }, []);
+
+  useEffect(() => {
+    if (licenseType !== null) {
+      if (licenseType === 'old') {
+        navigation.reset({
+          index: 0,
+          routes: [{ name: 'OldLicense' }]
+        });
+      }
+    }
+  }, [licenseType]);
 
   useEffect(() => {
     setNewLicenseName(null);
@@ -256,6 +291,25 @@ const CreateADPage = () => {
 
 
 
+  //Getting user wallet:
+  useEffect(() => {
+    if (userInfo !== null) {
+      const usersApi = async () => {
+        try {
+          const response = await fetch(`http://192.168.1.3:4000/users/${userInfo._id}`);
+          const data = await response.json();
+          setWallet(data.user.wallet);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+
+      usersApi();
+    }
+  }, [userInfo]);
+  //
+
+
   //Post form api:
   const postForm = () => {
     setPayLoading(true);
@@ -305,6 +359,12 @@ const CreateADPage = () => {
 
     formData.append('totalCost', totalCost);
 
+    if (userInfo !== null) {
+      formData.append('userID', userInfo._id);
+      formData.append('email', userInfo.email);
+      formData.append('phoneNumber', userInfo.phoneNumber);
+    };
+
     const adApi = async () => {
       try {
         const response = await fetch('http://192.168.1.3:4000/ad', {
@@ -312,8 +372,7 @@ const CreateADPage = () => {
           body: formData
         });
         const data = await response.json();
-        setPayLoading(false);
-        console.log(data);
+        setFirstApiDone(true);
       } catch (err) {
         console.error(err);
       }
@@ -358,11 +417,71 @@ const CreateADPage = () => {
     } else if (adAccountDeposits.length === 0) {
       Alert.alert('Please fill-in Ad Account deposit(s)!');
       setPayLoading(false);
+    } else if (wallet !== null && wallet < totalCost) {
+      Alert.alert('Your balance is not sufficient!');
+      setPayLoading(false);
     } else {
       adApi();
+
+      if (userInfo !== null && wallet !== null) {
+        const patchWalletApi = async () => {
+          try {
+            const response = await fetch(`http://192.168.1.3:4000/users/wallet/${userInfo._id}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                wallet: wallet - totalCost
+              })
+            });
+
+            const data = await response.json();
+            setSecondApiDone(true);
+          } catch (err) {
+            console.error(err);
+          }
+        };
+
+        patchWalletApi();
+
+        const paymentHistoryApi = async () => {
+          try {
+            const response = await fetch('http://192.168.1.3:4000/paymentHistory', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                userID: userInfo._id,
+                type: 'Created a new license',
+                amount: `-${totalCost}`
+              })
+            });
+
+            const data = await response.json();
+            setThirdApiDone(true);
+          } catch (err) {
+            console.error(err);
+          }
+        };
+
+        paymentHistoryApi();
+      }
     }
   };
   //
+
+  useEffect(() => {
+    if (firstApiDone && secondApiDone && thirdApiDone) {
+      setPayLoading(false);
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: 'NewAdAccount' }]
+      });
+    }
+  }, [firstApiDone, secondApiDone, thirdApiDone]);
 
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
@@ -384,16 +503,8 @@ const CreateADPage = () => {
           licenseType !== null && (
             <>
               {
-                licenseType === 'new' ? (
+                licenseType === 'new' && (
                   <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Choose a name for this license' />
-                ) : (
-                  <RNPickerSelect
-                    onValueChange={(value) => setOldLicenseName(value)}
-                    items={[
-                      { label: 'License1', value: '1' },
-                      { label: 'License2', value: '2' }
-                    ]}
-                  />
                 )
               }
             </>
@@ -578,13 +689,17 @@ const CreateADPage = () => {
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Wallet:</Text>
           </View>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>600</Text>
+            {
+              wallet !== null && (
+                <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{wallet}</Text>
+              )
+            }
             <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
           </View>
         </View>
 
         <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-          <Pressable style={[{paddingVertical: 17}, {paddingHorizontal: 40}, {borderRadius: 50}, {borderWidth: 4}, {borderColor: '#fff'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <Pressable onPress={() => navigation.navigate('NewAdAccount')} style={[{paddingVertical: 17}, {paddingHorizontal: 40}, {borderRadius: 50}, {borderWidth: 4}, {borderColor: '#fff'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
             <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: '#fff'}]}>Cancel</Text>
           </Pressable>
 

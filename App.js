@@ -22,6 +22,7 @@ import AdsDepositRecordPage from './pages/AdsDepositRecordPage';
 import RefundRecordPage from './pages/RefundRecordPage';
 import AdsDepositPage from './pages/AdsDepositPage';
 import RefundPage from './pages/RefundPage';
+import OldLicensePage from './pages/OldLicensePage';
 //
 
 
@@ -85,6 +86,7 @@ export default function App() {
             <Stack.Screen name='RefundRecord' component={RefundRecordPage} />
             <Stack.Screen name='AdsDeposit' component={AdsDepositPage} />
             <Stack.Screen name='Refund' component={RefundPage} />
+            <Stack.Screen name='OldLicense' component={OldLicensePage} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
