@@ -19,8 +19,6 @@ const CreateADPage = () => {
 
   const { width, height } = Dimensions.get('screen');
 
-  const [licenseType, setLicenseType] = useState(null);
-  const [oldLicense, setOldLicenseName] = useState(null);
   const [newLicenseName, setNewLicenseName] = useState(null);
 
   const [pageNumber, setPageNumber] = useState(0);
@@ -39,6 +37,7 @@ const CreateADPage = () => {
   const [adAccountsNumber, setAdAccountsNumber] = useState(0);
   const [adAccountNames, setAdAccountNames] = useState([]);
   const [adAccountDeposits, setAdAccountDeposits] = useState([]);
+  const [adAccountIDs, setAdAccountIDs] = useState([]);
 
   const [remark, setRemark] = useState(null);
 
@@ -66,21 +65,6 @@ const CreateADPage = () => {
 
     asyncStorage();
   }, []);
-
-  useEffect(() => {
-    if (licenseType !== null) {
-      if (licenseType === 'old') {
-        navigation.reset({
-          index: 0,
-          routes: [{ name: 'OldLicense' }]
-        });
-      }
-    }
-  }, [licenseType]);
-
-  useEffect(() => {
-    setNewLicenseName(null);
-  }, [licenseType]);
 
   //rendering url inputs according to picker number
   const renderPageURLInputs = () => {
@@ -217,6 +201,7 @@ const CreateADPage = () => {
       ADAccountSection.push(
         <View style={[{borderWidth: 3}, {marginTop: 20}, {borderRadius: 20}, {borderColor: 'rgb(136,58,209)'}, {paddingHorizontal: 10}]}>
           <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: 50}]} placeholder='AD account name...' />
+          <TextInput onChangeText={(text) => storeADaccountIDs(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: 50}]} placeholder='AD account ID...' />
           <RNPickerSelect
             onValueChange={(value) => storeADaccountDeposit(i, value)}
             items={[
@@ -238,6 +223,8 @@ const CreateADPage = () => {
   };
   //
 
+
+
   //getting the AD account input values and storing them in ADaccountNames state, which is an array
   const storeADaccountName = (i, text) => {
     setAdAccountNames((prev) => {
@@ -257,6 +244,24 @@ const CreateADPage = () => {
       return newValue;
     });
   };
+  //
+
+  //getting the AD account IDs values and storing them in ADaccountIDs state, which is an array
+  const storeADaccountIDs = (i, text) => {
+    setAdAccountIDs((prev) => {
+      const newValue = [...prev];
+      newValue[i] = text;
+      return newValue;
+    });
+  };
+  //
+
+  // deleting values from the array, after picker number changes
+  useEffect(() => {
+    setAdAccountDeposits((prev) => prev.slice(0, adAccountsNumber));
+    setAdAccountNames((prev) => prev.slice(0, adAccountsNumber));
+    setAdAccountIDs((prev) => prev.slice(0, adAccountsNumber));
+  }, [adAccountsNumber]);
   //
 
   useEffect(() => {
@@ -281,13 +286,6 @@ const CreateADPage = () => {
     }
     //
   }, [adAccountDeposits]);
-
-
-  // deleting values from the array, after picker number changes
-  useEffect(() => {
-    setAdAccountDeposits((prev) => prev.slice(0, adAccountsNumber));
-  }, [adAccountsNumber]);
-  //
 
 
 
@@ -353,6 +351,10 @@ const CreateADPage = () => {
       formData.append(`ads[${i}][adDeposit]`, x);
     });
 
+    adAccountIDs.map((x, i) => {
+      formData.append(`ads[${i}][adID]`, x);
+    });
+
     if (remark !== null) {
       formData.append('remark', remark);
     };
@@ -380,9 +382,6 @@ const CreateADPage = () => {
 
     if (!checked) {
       Alert.alert('Please make sure you have already shared page with this profile: "https://www.facebook.com/rina.magar.332/"');
-      setPayLoading(false);
-    } else if (licenseType === null) {
-      Alert.alert('Please choose a license type');
       setPayLoading(false);
     } else if (newLicenseName === null) {
       Alert.alert('Please write a license name');
@@ -416,6 +415,9 @@ const CreateADPage = () => {
       setPayLoading(false);
     } else if (adAccountDeposits.length === 0) {
       Alert.alert('Please fill-in Ad Account deposit(s)!');
+      setPayLoading(false);
+    } else if (adAccountIDs.length === 0) {
+      Alert.alert('Please fill-in Ad Account ID(s)!');
       setPayLoading(false);
     } else if (wallet !== null && wallet < totalCost) {
       Alert.alert('Your balance is not sufficient!');
@@ -489,27 +491,8 @@ const CreateADPage = () => {
         <ScrollView>
           <View>
           <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>License:</Text>
-
-          <RNPickerSelect
-            onValueChange={(value) => setLicenseType(value)}
-            items={[
-                { label: 'New license', value: 'new' },
-                { label: 'Old license', value: 'old' }
-            ]}
-          />
+          <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
         </View>
-
-        {
-          licenseType !== null && (
-            <>
-              {
-                licenseType === 'new' && (
-                  <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Choose a name for this license' />
-                )
-              }
-            </>
-          )
-        }
 
         <View style={[{marginTop: 30}]}>
           <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>Page number:</Text>
