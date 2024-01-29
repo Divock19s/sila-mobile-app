@@ -343,9 +343,12 @@ const CreateADPage = () => {
 
     formData.append('adNumber', adAccountsNumber);
 
-    adAccountNames.map((x, i) => {
-      formData.append(`ads[${i}][adName]`, x);
-    });
+    if (newLicenseName !== null) {
+      adAccountNames.map((x, i) => {
+        formData.append(`ads[${i}][adName]`, x);
+        formData.append(`ads[${i}][licenseName]`, newLicenseName);
+      });
+    }
 
     adAccountDeposits.map((x, i) => {
       formData.append(`ads[${i}][adDeposit]`, x);
