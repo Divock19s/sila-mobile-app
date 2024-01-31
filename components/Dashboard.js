@@ -1,10 +1,11 @@
-import { View, Image, Dimensions, ImageBackground, Text, Pressable, Animated } from 'react-native';
+import { View, Image, Dimensions, ImageBackground, Text, Pressable, Animated, Alert } from 'react-native';
 import { Foundation } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Ionicons } from '@expo/vector-icons';
 
 const Dashboard = () => {
 
@@ -44,17 +45,10 @@ const Dashboard = () => {
 
   return (
     <View style={[{flex: 1}]}>
-      <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingRight: 20}]}>
-          <Pressable>
-            <Image style={[{height: 60}, {width: 60}]} source={require('../assets/images&logos/output-onlinepngtools.png')} />
-          </Pressable>
-          <AntDesign name="setting" size={30} color="#fff" />
-      </View>
-
-      <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: '100%'}, {height: 180}, {marginTop: 50}]} source={require('../assets/images&logos/triangles2.jpg')}>
+      <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: '100%'}, {height: 180}, {marginTop: 100}]} source={require('../assets/images&logos/triangles2.jpg')}>
         <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}, {padding: 30}]}>
           <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}]}>Account Balance:</Text>
-          <Pressable>
+          <Pressable onPress={() => Alert.alert('This is your wallet credit!')}>
             <Foundation name="info" size={35} color="black" />
           </Pressable>
         </View>  
@@ -96,6 +90,10 @@ const Dashboard = () => {
           <Image style={[{height: 80}, {width: 80}]} source={require('../assets/images&logos/pie-chart_2936690.png')} />
         </View>
       </View>
+
+      <Pressable onPress={() => navigation.navigate('UsersSupport')} style={[{backgroundColor: 'purple'}, {position: 'absolute'}, {right: 20}, {bottom: 150}, {padding: 20}, {borderRadius: 100 / 2}]}>
+        <Ionicons name="chatbubble-ellipses" size={30} color="#fff" />
+      </Pressable>
     </View>
   )
 };

@@ -102,24 +102,6 @@ const FacebookPage = () => {
           </Animated.View>
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('AdsDeposit')}>
-          <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: fourth}]}]}>
-            <ImageBackground source={require('../assets/images&logos/4.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
-              <Fontisto name="arrow-swap" size={24} color="black" />
-              <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>ADs deposit</Text>
-            </ImageBackground>
-          </Animated.View>
-        </Pressable>
-
-        <Pressable onPress={() => navigation.navigate('AdsDepositRecord')}>
-          <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: fifth}]}]}>
-            <ImageBackground source={require('../assets/images&logos/5.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
-              <Ionicons name="receipt-outline" size={24} color="black" />
-              <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>ADs deposit record</Text>
-            </ImageBackground>
-          </Animated.View>
-        </Pressable>
-
         <Pressable onPress={() => navigation.navigate('Refund')}>
           <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: sixth}]}]}>
             <ImageBackground source={require('../assets/images&logos/6.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>

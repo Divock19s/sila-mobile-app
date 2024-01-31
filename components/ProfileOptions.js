@@ -54,6 +54,12 @@ const ProfileOptions = () => {
         <EvilIcons name="chevron-right" size={30} color="black" />
       </Pressable>
 
+      <Pressable onPress={() => navigation.navigate('Support')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {elevation: 50}]}>
+        <AntDesign name="customerservice" size={24} color="black" />
+        <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Contact support</Text>
+        <EvilIcons name="chevron-right" size={30} color="black" />
+      </Pressable>
+
       <Pressable onPress={logout} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {elevation: 50}]}>
         <Feather name="log-out" size={24} color="black" />
         <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Logout</Text>
