@@ -20,8 +20,9 @@ import NewAdAccountPage from './pages/NewAdAccountPage';
 import BMshareLogsPage from './pages/BMshareLogsPage';
 import RefundRecordPage from './pages/RefundRecordPage';
 import RefundPage from './pages/RefundPage';
-import SupportChatPage from './pages/SupportChatPage';
-import UsersSupportPage from './pages/UsersSupportPage';
+import AccountSettingsPage from './pages/AccountSettingsPage';
+import ComingSoonPage from './pages/ComingSoonPage';
+import ServicesPage from './pages/ServicesPage';
 //
 
 
@@ -83,8 +84,9 @@ export default function App() {
             <Stack.Screen name='BMLogs' component={BMshareLogsPage} />
             <Stack.Screen name='RefundRecord' component={RefundRecordPage} />
             <Stack.Screen name='Refund' component={RefundPage} />
-            <Stack.Screen name='Support' component={SupportChatPage} />
-            <Stack.Screen name='UsersSupport' component={UsersSupportPage} />
+            <Stack.Screen name='Account' component={AccountSettingsPage} />
+            <Stack.Screen name='ComingSoon' component={ComingSoonPage} />
+            <Stack.Screen name='Services' component={ServicesPage} />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

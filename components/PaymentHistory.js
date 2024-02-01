@@ -69,7 +69,7 @@ const PaymentHistory = () => {
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
                                         <Ionicons name="time-sharp" size={24} color="#fff" />
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>On: {item.date}</Text>
+                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>On: {`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
                                     </View>
                                 </View>
                             )

@@ -5,7 +5,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Ionicons } from '@expo/vector-icons';
+import CircularProgress from 'react-native-circular-progress-indicator';
 
 const Dashboard = () => {
 
@@ -13,6 +13,8 @@ const Dashboard = () => {
 
   const [userID, setUserID] = useState(null);
   const [userWallet, setUserWallet] = useState(null);
+
+  const [adAccountsNumber, setAdAccountsNumber] = useState(0);
 
   useEffect(() => {
     const asyncStorage = async () => {
@@ -41,6 +43,31 @@ const Dashboard = () => {
   
       usersApi();
     }
+  }, [userID]);
+
+  useEffect(() => {
+    const adsApi = async () => {
+      try {
+        const response = await fetch('http://192.168.1.3:4000/ad');
+        const data = await response.json();
+
+        let sum = 0;
+
+        data.ADs.map((x) => {
+          if (userID !== null) {
+            if (x.userID === userID) {
+              sum += x.ads.length;
+            }
+          }
+        })
+
+        setAdAccountsNumber(sum);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    adsApi();
   }, [userID]);
 
   return (
@@ -83,17 +110,23 @@ const Dashboard = () => {
         </View>
       </View>
 
-      <View style={[{marginTop: 50}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+      <View style={[{marginTop: 30}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
         <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 20}]}>AD accounts:</Text>
-        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 70}]}>40</Text>
-          <Image style={[{height: 80}, {width: 80}]} source={require('../assets/images&logos/pie-chart_2936690.png')} />
-        </View>
+        <CircularProgress
+          value={adAccountsNumber}
+          radius={120}
+          duration={2000}
+          progressValueColor={'purple'}
+          activeStrokeColor={'purple'}
+          inActiveStrokeColor={'#fff'}
+          activeStrokeWidth={20}
+          inActiveStrokeWidth={5}
+          maxValue={200}
+          title={'Ad'}
+          titleColor={'purple'}
+          titleStyle={[{fontFamily: 'Ubuntu-Bold'}]}
+        />
       </View>
-
-      <Pressable onPress={() => navigation.navigate('UsersSupport')} style={[{backgroundColor: 'purple'}, {position: 'absolute'}, {right: 20}, {bottom: 150}, {padding: 20}, {borderRadius: 100 / 2}]}>
-        <Ionicons name="chatbubble-ellipses" size={30} color="#fff" />
-      </Pressable>
     </View>
   )
 };

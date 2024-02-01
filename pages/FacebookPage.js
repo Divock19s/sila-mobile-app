@@ -1,4 +1,4 @@
-import { View, Text, ImageBackground, Animated, Dimensions, Pressable } from 'react-native';
+import { View, Text, ImageBackground, Animated, Dimensions, Pressable, Image } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import BottomNav from '../components/BottomNav';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -70,8 +70,8 @@ const FacebookPage = () => {
   return (
     <View style={[{flex: 1}]}>
       <View style={[{height: 70}, {backgroundColor: 'rgb(136,58,209)'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
-        <FontAwesome name="facebook" size={30} color="#fff" />
-        <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Facebook marketing</Text>
+        <Image style={[{height: 20}, {width: 30}, {resizeMode: 'stretch'}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
+        <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Meta marketing</Text>
       </View>
 
       <View style={[{marginTop: 100}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {rowGap: 40}]}>

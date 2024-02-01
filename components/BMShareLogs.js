@@ -103,7 +103,7 @@ const BMShareLogs = () => {
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <AntDesign name="calendar" size={24} color="#fff" />
                                 <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Date:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item.date}</Text>
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
                             </View>
                         </View>
                     )

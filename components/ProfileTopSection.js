@@ -26,7 +26,7 @@ const ProfileTopSection = () => {
         <Ionicons name="time-sharp" size={24} color="#fff" />
         {
           userInfo !== null && (
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}]}>Joined in: {userInfo.date}</Text>
+            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}]}>Joined in: {`${userInfo.date.slice(0, 4)} . ${userInfo.date.slice(5, 7)} . ${userInfo.date.slice(8, 10)}`}</Text>
           )
         }
       </View>

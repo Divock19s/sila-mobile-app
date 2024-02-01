@@ -205,8 +205,6 @@ const CreateADPage = () => {
           <RNPickerSelect
             onValueChange={(value) => storeADaccountDeposit(i, value)}
             items={[
-              { label: '100', value: 100 },
-              { label: '150', value: 150 },
               { label: '200', value: 200 },
               { label: '250', value: 250 },
               { label: '300', value: 300 },
