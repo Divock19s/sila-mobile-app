@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, Dimensions, TextInput, Animated, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, Image, Pressable, Dimensions, TextInput, Animated, Alert, ActivityIndicator, ScrollView } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -10,11 +10,11 @@ const Sign = () => {
 
     const navigation = useNavigation();
 
-    const { width, height } = Dimensions.get('screen');
+    const { width, height } = Dimensions.get('window');
 
     const [signWindow, setSignWindow] = useState('signUp');
 
-    const underline = new Animated.Value(7);
+    const underline = new Animated.Value(0);
 
     const greeting = new Animated.Value(400);
 
@@ -131,7 +131,7 @@ const Sign = () => {
 
         const createUserApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.3:4000/users', {
+                const response = await fetch('https://sila-vbyf.onrender.com/users', {
                     method: 'POST',
                     body: formData
                 });
@@ -177,7 +177,7 @@ const Sign = () => {
         if (emailSignIn !== null && passwordSignIn !== null) {
             const signApi = async () => {
                 try {
-                    const response = await fetch('http://192.168.1.3:4000/users/login', {
+                    const response = await fetch('https://sila-vbyf.onrender.com/users/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -236,7 +236,7 @@ const Sign = () => {
                 <Text style={[{fontSize: 17}, {color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}]}>Sign Up</Text>
             </Pressable>
 
-            <Animated.View style={[{height: 4}, {width: width / 5}, {backgroundColor: '#fff'}, {position: 'absolute'}, {right: 7}, {bottom: 5}, {borderRadius: 40}, {transform: [{translateX: underline}]}]} />
+            <Animated.View style={[{height: height / 180}, {width: width / 5}, {backgroundColor: '#fff'}, {position: 'absolute'}, {right: 7}, {bottom: 5}, {borderRadius: 40}, {transform: [{translateX: underline}]}]} />
         </View>
       </View>
 
@@ -250,7 +250,7 @@ const Sign = () => {
                 </View>
             </Animated.View>
         ) : (
-            <Animated.View style={[{marginTop: 100}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}, {paddingLeft: 40}, {transform: [{translateY: greeting}]}]}>
+            <Animated.View style={[{marginTop: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}, {paddingLeft: 40}, {transform: [{translateY: greeting}]}]}>
                 <MaterialCommunityIcons name="google-assistant" size={45} color="#fff" />
                 <View style={[{gap: 10}]}>
                     <Text style={[{color: '#fff'}, {fontSize: 25}, {fontFamily: 'Ubuntu-Medium'}]}>Hello, again!</Text>
@@ -260,11 +260,11 @@ const Sign = () => {
         )
       }
 
-      <Animated.View style={[{backgroundColor: '#fff'}, {height: signWindow === 'signUp' ? height / 1.4 : height / 2}, {width: '100%'}, {position: 'absolute'}, {bottom: 0}, {borderTopLeftRadius: 50}, {borderTopRightRadius: 50}, {padding: 50}, {gap: 40}, {elevation: 50}, {transform: [{translateY: signAnimation}]}]}>
+      <Animated.View style={[{backgroundColor: '#fff'}, {height: height / 1.6}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 50}, {borderTopRightRadius: 50}, {padding: 50}, {elevation: 50}, {transform: [{translateY: signAnimation}]}]}>
         {
             signWindow === 'signUp' && (
-                <>
-                    <View style={[{gap: 10}]}>
+                <ScrollView>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Username:</Text>
@@ -272,14 +272,14 @@ const Sign = () => {
                         <TextInput onChangeText={(text) => setUserName(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a name for your account...' />
                     </View>
 
-                    <View style={[{gap: 10}]}>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Phone number:</Text>
                         </View>
                         <TextInput onChangeText={(text) => setPhoneNumber(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your phone number...' keyboardType='numeric' />
                     </View>
 
-                    <View style={[{gap: 10}]}>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Email:</Text>
@@ -287,22 +287,28 @@ const Sign = () => {
                         <TextInput onChangeText={(text) => setEmailSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
                     </View>
 
-                    <View style={[{gap: 10}]}>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Password:</Text>
                         </View>
-                        <TextInput onChangeText={(text) => setPasswordSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
+                        <TextInput secureTextEntry={true} onChangeText={(text) => setPasswordSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
                     </View>
 
-                    <View style={[{gap: 10}]}>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Profile photo:</Text>
                         <Pressable onPress={pickProfilePhoto} style={[{justifyContent: 'center'}, {alignItems: 'center'}]}>
-                            <AntDesign name="plus" size={40} color="black" />
+                            {
+                                profilePhoto !== null ? (
+                                    <AntDesign name="checkcircle" size={40} color="black" />
+                                ) : (
+                                    <AntDesign name="plus" size={40} color="black" />
+                                )
+                            }
                         </Pressable>
                     </View>
 
-                    <Pressable onPress={signUp} style={[{backgroundColor: 'rgb(136,58,209)'}, {height: height / 15}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable onPress={signUp} style={[{backgroundColor: 'purple'}, {height: height / 12}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             signUpLoading ? (
                                 <ActivityIndicator color={'#fff'} size={'large'} />
@@ -311,14 +317,14 @@ const Sign = () => {
                             )
                         }
                     </Pressable>
-                </>
+                </ScrollView>
             )
         }
 
         {
             signWindow === 'signIn' && (
                 <>
-                    <View style={[{gap: 10}]}>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Email:</Text>
@@ -326,15 +332,15 @@ const Sign = () => {
                         <TextInput onChangeText={(text) => setEmailSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
                     </View>
 
-                    <View style={[{gap: 10}]}>
+                    <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Password:</Text>
                         </View>
-                        <TextInput onChangeText={(text) => setPasswordSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
+                        <TextInput secureTextEntry={true} onChangeText={(text) => setPasswordSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
                     </View>
 
-                    <Pressable onPress={signIn} style={[{backgroundColor: 'rgb(136,58,209)'}, {height: height / 15}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable onPress={signIn} style={[{backgroundColor: 'purple'}, {height: height / 12}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             signInLoading ? (
                                 <ActivityIndicator color={'#fff'} size={'large'} />

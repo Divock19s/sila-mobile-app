@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Pressable, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Pressable, Alert, ActivityIndicator, Dimensions } from 'react-native';
 import { Foundation } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
@@ -9,6 +9,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const RefundPage = () => {
 
   const navigation = useNavigation();
+
+  const { width, height } = Dimensions.get('window');
 
   const [adAccount, setAdAccount] = useState(null);
   const [refundReason, setRefundReason] = useState(null);
@@ -43,7 +45,7 @@ const RefundPage = () => {
   useEffect(() => {
     const adsApi = async () => {
       try {
-        const response = await fetch('http://192.168.1.3:4000/ad');
+        const response = await fetch('https://sila-vbyf.onrender.com/ad');
         const data = await response.json();
         setApiData(data.ADs);
       } catch (err) {
@@ -59,20 +61,19 @@ const RefundPage = () => {
 
   //mapping ads into the picker:
   useEffect(() => {
-    if (userInfo !== null) {
+    if (userInfo !== null && apiData.length > 0) {
       const transformedData = apiData.map((x) => {
-        if (x.userID === userInfo._id) {
+        if (x.userID === userInfo._id && x.ads) {
           const mappedAds = x.ads.map((y) => ({
             label: y.adName,
             value: y
-          }))
-
+          }));
           return mappedAds;
         }
-      })
-
+        return []; // Return an empty array if the condition is not met
+      });
+  
       const flattenedData = transformedData.flat();
-
       setPickerItems(flattenedData);
     }
   }, [userInfo, apiData]);
@@ -89,7 +90,7 @@ const RefundPage = () => {
 
       const refundApi = async () => {
         try {
-          const response = await fetch('http://192.168.1.3:4000/refund', {
+          const response = await fetch('https://sila-vbyf.onrender.com/refund', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -124,7 +125,7 @@ const RefundPage = () => {
 
   return (
     <View style={[{flex: 1}, {padding: 30}]}>
-      <View style={[{height: 70}, {backgroundColor: 'rgb(136,58,209)'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
+      <View style={[{height: height / 12}, {backgroundColor: 'purple'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
         <Foundation name="dollar" size={24} color="#fff" />
         <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Refund</Text>
       </View>

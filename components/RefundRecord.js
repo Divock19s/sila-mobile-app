@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, ScrollView, FlatList, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
 const RefundRecord = () => {
+
+    const { width, height } = Dimensions.get('window');
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -28,7 +30,7 @@ const RefundRecord = () => {
     useEffect(() => {
         const refundApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.3:4000/refund');
+                const response = await fetch('https://sila-vbyf.onrender.com/refund');
                 const data = await response.json();
                 setApiData(data.refunds);
             } catch (err) {
@@ -40,7 +42,7 @@ const RefundRecord = () => {
     }, []);
 
   return (
-    <View style={[{marginTop: 80}, {height: 600}]}>
+    <View style={[{marginTop: 80}, {height: height / 1.4}]}>
         {
             userID !== null && (
                 <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
@@ -68,7 +70,7 @@ const RefundRecord = () => {
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                     <Entypo name="dots-three-horizontal" size={24} color="#fff" />
                                     <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Refund reason:</Text>
-                                    <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: 180}]}>{item.refundReason}</Text>
+                                    <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: width / 2.5}]}>{item.refundReason}</Text>
                                 </View>
 
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>

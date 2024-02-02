@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, ScrollView, FlatList, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -7,6 +7,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
 const BMShareLogs = () => {
+
+    const { width, height } = Dimensions.get('window');
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -27,7 +29,7 @@ const BMShareLogs = () => {
     useEffect(() => {
         const bmShareApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.3:4000/bmShare');
+                const response = await fetch('https://sila-vbyf.onrender.com/bmShare');
                 const data = await response.json();
                 setApiData(data.bmShares);
             } catch (err) {
@@ -39,7 +41,7 @@ const BMShareLogs = () => {
     }, []);
 
   return (
-    <View style={[{marginTop: 30}, {height: 600}]}>
+    <View style={[{marginTop: 30}, {height: height / 1.4}]}>
       {
         userID !== null && (
             <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {

@@ -12,12 +12,13 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Foundation } from '@expo/vector-icons';
 
 const CreateADPage = () => {
 
   const navigation = useNavigation();
 
-  const { width, height } = Dimensions.get('screen');
+  const { width, height } = Dimensions.get('window');
 
   const [newLicenseName, setNewLicenseName] = useState(null);
 
@@ -71,7 +72,7 @@ const CreateADPage = () => {
     const textInputs = [];
     for (let i = 0; i < pageNumber; i++) {
       textInputs.push(
-        <TextInput onChangeText={(text) => storeURLs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: phpRedLine ? 'red' : 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='URL...' />
+        <TextInput onChangeText={(text) => storeURLs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: phpRedLine ? 'red' : 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='URL...' />
       );
     }
     return textInputs;
@@ -121,7 +122,7 @@ const CreateADPage = () => {
     const appIDInput = [];
     for (let i = 0; i < domainNumber; i++) {
       appIDInput.push(
-        <TextInput onChangeText={(text) => storeAPPIDs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='APP ID...' />
+        <TextInput onChangeText={(text) => storeAPPIDs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='APP ID...' />
       );
     }
     return appIDInput;
@@ -144,7 +145,7 @@ const CreateADPage = () => {
     const DomainInput = [];
     for (let i = 0; i < domainNumber; i++) {
       DomainInput.push(
-        <TextInput onChangeText={(text) => storeDomainName(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Enter domain name...' />
+        <TextInput onChangeText={(text) => storeDomainName(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Enter domain name...' />
       );
     }
     return DomainInput;
@@ -199,9 +200,9 @@ const CreateADPage = () => {
     const ADAccountSection = [];
     for (let i = 0; i < adAccountsNumber; i++) {
       ADAccountSection.push(
-        <View style={[{borderWidth: 3}, {marginTop: 20}, {borderRadius: 20}, {borderColor: 'rgb(136,58,209)'}, {paddingHorizontal: 10}]}>
-          <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: 50}]} placeholder='AD account name...' />
-          <TextInput onChangeText={(text) => storeADaccountIDs(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: 50}]} placeholder='AD account ID...' />
+        <View style={[{borderWidth: 3}, {marginTop: 20}, {borderRadius: 20}, {borderColor: 'purple'}, {paddingHorizontal: 10}]}>
+          <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account name...' />
+          <TextInput onChangeText={(text) => storeADaccountIDs(i, text)} style={[{borderBottomWidth: 3}, {borderColor: 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account ID...' />
           <RNPickerSelect
             onValueChange={(value) => storeADaccountDeposit(i, value)}
             items={[
@@ -292,7 +293,7 @@ const CreateADPage = () => {
     if (userInfo !== null) {
       const usersApi = async () => {
         try {
-          const response = await fetch(`http://192.168.1.3:4000/users/${userInfo._id}`);
+          const response = await fetch(`https://sila-vbyf.onrender.com/users/${userInfo._id}`);
           const data = await response.json();
           setWallet(data.user.wallet);
         } catch (err) {
@@ -370,7 +371,7 @@ const CreateADPage = () => {
 
     const adApi = async () => {
       try {
-        const response = await fetch('http://192.168.1.3:4000/ad', {
+        const response = await fetch('https://sila-vbyf.onrender.com/ad', {
           method: 'POST',
           body: formData
         });
@@ -429,7 +430,7 @@ const CreateADPage = () => {
       if (userInfo !== null && wallet !== null) {
         const patchWalletApi = async () => {
           try {
-            const response = await fetch(`http://192.168.1.3:4000/users/wallet/${userInfo._id}`, {
+            const response = await fetch(`https://sila-vbyf.onrender.com/users/wallet/${userInfo._id}`, {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json'
@@ -450,7 +451,7 @@ const CreateADPage = () => {
 
         const paymentHistoryApi = async () => {
           try {
-            const response = await fetch('http://192.168.1.3:4000/paymentHistory', {
+            const response = await fetch('https://sila-vbyf.onrender.com/paymentHistory', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
@@ -488,11 +489,11 @@ const CreateADPage = () => {
 
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
-      <View style={[{height: 450}, {marginBottom: 30}]}>
+      <View style={[{height: height / 1.6}, {marginBottom: 30}]}>
         <ScrollView>
           <View>
           <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>License:</Text>
-          <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
+          <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
         </View>
 
         <View style={[{marginTop: 30}]}>
@@ -517,12 +518,12 @@ const CreateADPage = () => {
           }
 
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {marginTop: 20}]}>
-            <CheckBox checked={checked} onPress={() => setChecked(!checked)} checkedColor='rgb(136,58,209)' />
+            <CheckBox checked={checked} onPress={() => setChecked(!checked)} checkedColor='purple' />
             <Text>Please make sure you have already shared your page with this profile:</Text>
           </View>
 
           <View style={[{alignItems: 'center'}]}>
-            <Text style={[{backgroundColor: 'rgb(136,58,209)'}, {color: '#fff'}, {padding: 5}, {borderRadius: 10}]}>https://www.facebook.com/rina.magar.332/</Text>
+            <Text style={[{backgroundColor: 'purple'}, {color: '#fff'}, {padding: 5}, {borderRadius: 10}]}>https://www.facebook.com/rina.magar.332/</Text>
             <Pressable onPress={copy}>
               <Feather name="copy" size={30} color="black" />
             </Pressable>
@@ -546,7 +547,7 @@ const CreateADPage = () => {
             <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>is APP?</Text>
             <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}]}>
               <Pressable onPress={() => setIsAPP(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                   {
                     !isAPP && (
                       <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
@@ -557,7 +558,7 @@ const CreateADPage = () => {
               </Pressable>
 
               <Pressable onPress={() => setIsAPP(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                   {
                     isAPP && (
                       <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
@@ -582,7 +583,7 @@ const CreateADPage = () => {
               <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Do you currently have a Shopify shop at the time of this application?</Text>
               <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}, {marginTop: 20}]}>
                 <Pressable onPress={() => setShopifyShop(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                  <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                  <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                     {
                       !shopifyShop && (
                         <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
@@ -593,7 +594,7 @@ const CreateADPage = () => {
                 </Pressable>
 
                 <Pressable onPress={() => setShopifyShop(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                  <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'rgb(136,58,209)'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                  <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                     {
                       shopifyShop && (
                         <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
@@ -643,19 +644,19 @@ const CreateADPage = () => {
 
         <View style={[{marginTop: 30}]}>
           <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
-          <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
+          <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: 'purple'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
         </View>
         </ScrollView>
       </View>
 
       {/* Counter */}
 
-      <View style={[{height: 250}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 30}, {borderTopRightRadius: 30}, {backgroundColor: 'rgb(136,58,209)'}, {padding: 30}, {justifyContent: 'space-between'}]}>
+      <View style={[{height: height / 3.3}, {gap: 10}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 30}, {borderTopRightRadius: 30}, {backgroundColor: 'purple'}, {padding: 30}, {justifyContent: 'space-between'}]}>
         <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
           <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total deposit of ADs:</Text>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalDepositOfADs}</Text>
-            <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+            <Foundation name="dollar" size={30} color="#fff" />
           </View>
         </View>
 
@@ -663,7 +664,7 @@ const CreateADPage = () => {
           <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total cost:</Text>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalCost}</Text>
-            <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+            <Foundation name="dollar" size={30} color="#fff" />
           </View>
         </View>
 
@@ -678,7 +679,7 @@ const CreateADPage = () => {
                 <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{wallet}</Text>
               )
             }
-            <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+            <Foundation name="dollar" size={30} color="#fff" />
           </View>
         </View>
 
@@ -690,9 +691,9 @@ const CreateADPage = () => {
           <Pressable onPress={postForm} style={[{paddingVertical: 17}, {backgroundColor: '#fff'}, {paddingHorizontal: 40}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
             {
               payLoading ? (
-                <ActivityIndicator color={'rgb(136,58,209)'} size={'large'} />
+                <ActivityIndicator color={'purple'} size={'large'} />
               ) : (
-                <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: 'rgb(136,58,209)'}]}>Pay</Text>
+                <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: 'purple'}]}>Pay</Text>
               )
             }
           </Pressable>

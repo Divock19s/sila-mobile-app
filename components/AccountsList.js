@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Pressable, TextInput, FlatList, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, Pressable, TextInput, FlatList, Alert, ActivityIndicator, Dimensions } from 'react-native';
 import { Fontisto } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -9,6 +9,8 @@ import { useNavigation } from '@react-navigation/native';
 const AccountsList = () => {
 
     const navigation = useNavigation();
+
+    const { width, height } = Dimensions.get('window');
 
     const [openBMInput, setOpenBMInput] = useState(false);
     const [bmShareID, setBmShareID] = useState(null);
@@ -35,7 +37,7 @@ const AccountsList = () => {
     useEffect(() => {
         const adsApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.3:4000/ad');
+                const response = await fetch('https://sila-vbyf.onrender.com/ad');
                 const data = await response.json();
                 setApiData(data.ADs);
             } catch (err) {
@@ -56,7 +58,7 @@ const AccountsList = () => {
                         if (y._id === _id) {
                             const bmShareApi = async () => {
                                 try {
-                                    const response = await fetch('http://192.168.1.3:4000/bmShare', {
+                                    const response = await fetch('https://sila-vbyf.onrender.com/bmShare', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'
@@ -91,7 +93,7 @@ const AccountsList = () => {
     };
 
   return (
-    <View style={[{marginTop: 30}, {height: 600}]}>
+    <View style={[{marginTop: 30}, {height: height / 1.4}]}>
       {
         userInfo !== null && (
             <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {

@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Image, FlatList } from 'react-native';
+import { View, Text, ScrollView, Image, FlatList, Dimensions } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -7,8 +7,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { Foundation } from '@expo/vector-icons';
 
 const Transactions = () => {
+
+    const { width, height } = Dimensions.get('window');
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -29,7 +32,7 @@ const Transactions = () => {
     useEffect(() => {
         const transactionsApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.3:4000/transaction');
+                const response = await fetch('https://sila-vbyf.onrender.com/transaction');
                 const data = await response.json();
                 setApiData(data.transactions);
             } catch (err) {
@@ -42,24 +45,24 @@ const Transactions = () => {
 
   return (
     <View style={[{paddingHorizontal: 30}]}>
-        <View style={[{height: 70}, {backgroundColor: 'rgb(136,58,209)'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
+        <View style={[{height: height / 12}, {backgroundColor: 'purple'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Entypo name="wallet" size={30} color="#fff" />
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>My transactions</Text>
         </View>
 
-        <View style={[{marginTop: 100}, {height: 630}]}>
+        <View style={[{marginTop: 100}, {height: height / 1.4}]}>
             <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                 if (item.userID === userID) {
                     return(
                         <View style={[{borderRadius: 50}, {backgroundColor: '#000'}, {padding: 20}, {marginBottom: 30}, {gap: 30}]}>
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                                 <Ionicons name="receipt-outline" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Application ID: {item._id}</Text>
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: width / 2}]}>Application ID: {item._id}</Text>
                             </View>
                             
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                                 <MaterialCommunityIcons name="bank" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Transaction ID: {item.transactionID}</Text>
+                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: width / 2}]}>Transaction ID: {item.transactionID}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
@@ -69,11 +72,11 @@ const Transactions = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
                                 <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 30}, {color: '#fff'}]}>{item.chargeAmount}</Text>
-                                <MaterialCommunityIcons name="star-four-points" size={24} color="#fff" />
+                                <Foundation name="dollar" size={30} color="#fff" />
                             </View>
 
                             <View style={[{alignItems: 'center'}]}>
-                                <View style={[{height: 200}, {width: 150}, {borderRadius: 20}, {overflow: 'hidden'}]}>
+                                <View style={[{height: height / 4}, {width: width / 2.5}, {borderRadius: 20}, {overflow: 'hidden'}]}>
                                     <Image style={[{flex: 1}, {resizeMode: 'stretch'}]} source={{uri: item.photoProof}} />
                                 </View>
                             </View>

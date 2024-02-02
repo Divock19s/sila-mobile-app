@@ -1,9 +1,11 @@
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
 const ProfileTopSection = () => {
+
+  const { width, height } = Dimensions.get('window');
 
   const [userInfo, setUserInfo] = useState(null);
 
@@ -21,7 +23,7 @@ const ProfileTopSection = () => {
   }, []);
 
   return (
-    <View style={[{height: 200}, {borderRadius: 50}, {backgroundColor: 'rgb(136,58,209)'}, {gap: 25}, {padding: 20}, {elevation: 50}]}>
+    <View style={[{borderRadius: 50}, {backgroundColor: 'purple'}, {gap: 30}, {padding: 20}, {elevation: 50}]}>
       <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
         <Ionicons name="time-sharp" size={24} color="#fff" />
         {

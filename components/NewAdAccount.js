@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, FlatList } from 'react-native';
+import { View, Text, ScrollView, FlatList, Dimensions } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 
 const NewAdAccount = () => {
+
+    const { width, height } = Dimensions.get('window');
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -28,7 +30,7 @@ const NewAdAccount = () => {
     useEffect(() => {
         const licenseApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.3:4000/ad');
+                const response = await fetch('https://sila-vbyf.onrender.com/ad');
                 const data = await response.json();
                 setApiData(data.ADs);
             } catch (err) {
@@ -40,7 +42,7 @@ const NewAdAccount = () => {
     }, []);
 
   return (
-    <View style={[{marginTop: 30}, {height: 600}]}>
+    <View style={[{marginTop: 30}, {height: height / 1.4}]}>
       {
         userID !== null && (
             <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {

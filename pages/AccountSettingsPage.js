@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, TextInput, ScrollView, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, Image, Pressable, TextInput, ScrollView, Alert, ActivityIndicator, Dimensions } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import BottomNav from '../components/BottomNav';
@@ -12,6 +12,8 @@ import { useNavigation } from '@react-navigation/native';
 const AccountSettingsPage = () => {
 
     const navigation = useNavigation();
+
+    const { width, height } = Dimensions.get('window');
 
     const [changePhoneNumber, setChangePhoneNumber] = useState(false);
     const [changeUserName, setChangeUserName] = useState(false);
@@ -66,7 +68,7 @@ const AccountSettingsPage = () => {
 
                         const changePhotoApi = async () => {
                             try {
-                                const response = await fetch(`http://192.168.1.3:4000/users/changeProfilePhoto/${userInfo._id}`, {
+                                const response = await fetch(`https://sila-vbyf.onrender.com/users/changeProfilePhoto/${userInfo._id}`, {
                                     method: 'PATCH',
                                     body: formData
                                 });
@@ -105,7 +107,7 @@ const AccountSettingsPage = () => {
         if (userInfo !== null && phoneNumberInput !== null) {
             const changeNumberApi = async () => {
                 try {
-                    const response = await fetch(`http://192.168.1.3:4000/users/phone/${userInfo._id}`, {
+                    const response = await fetch(`https://sila-vbyf.onrender.com/users/phone/${userInfo._id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
@@ -147,7 +149,7 @@ const AccountSettingsPage = () => {
         if (userInfo !== null && userNameInput !== null) {
             const changeNameApi = async () => {
                 try {
-                    const response = await fetch(`http://192.168.1.3:4000/users/userName/${userInfo._id}`, {
+                    const response = await fetch(`https://sila-vbyf.onrender.com/users/userName/${userInfo._id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
@@ -190,7 +192,7 @@ const AccountSettingsPage = () => {
         newPasswordInput !== null) {
             const currentPasswordCheckApi = async () => {
                 try {
-                    const response = await fetch('http://192.168.1.3:4000/users/login', {
+                    const response = await fetch('https://sila-vbyf.onrender.com/users/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -206,7 +208,7 @@ const AccountSettingsPage = () => {
                     if (data.userInfo) {
                         const changePasswordApi = async () => {
                             try {
-                                const response = await fetch(`http://192.168.1.3:4000/users/changePassword/${userInfo._id}`, {
+                                const response = await fetch(`https://sila-vbyf.onrender.com/users/changePassword/${userInfo._id}`, {
                                     method: 'PATCH',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -258,7 +260,7 @@ const AccountSettingsPage = () => {
         if (userInfo !== null) {
             const deleteAccountApi = async () => {
                 try {
-                    const response = await fetch(`http://192.168.1.3:4000/users/${userInfo._id}`, {
+                    const response = await fetch(`https://sila-vbyf.onrender.com/users/${userInfo._id}`, {
                         method: 'DELETE'
                     });
 
@@ -291,7 +293,7 @@ const AccountSettingsPage = () => {
 
   return (
     <View style={[{flex: 1}]}>
-        <View style={[{height: 300}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}]}>
+        <View style={[{height: height / 3}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}]}>
             {
                 userInfo !== null && (
                     <Image style={[{height: 100}, {width: 100}, {borderRadius: 100 / 2}]} source={{uri: userInfo.profilePhoto}} />
@@ -303,7 +305,7 @@ const AccountSettingsPage = () => {
             </Pressable>
         </View>
 
-        <View style={[{padding: 30}, {gap: 40}, {height: 450}]}>
+        <View style={[{padding: 30}, {gap: 40}, {height: height / 2}]}>
             <ScrollView>
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
                     <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Email:</Text>
