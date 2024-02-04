@@ -29,7 +29,7 @@ const BMShareLogs = () => {
     useEffect(() => {
         const bmShareApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/bmShare');
+                const response = await fetch('https://sila-b.onrender.com/bmShare');
                 const data = await response.json();
                 setApiData(data.bmShares);
             } catch (err) {

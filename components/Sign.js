@@ -131,7 +131,7 @@ const Sign = () => {
 
         const createUserApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/users', {
+                const response = await fetch('https://sila-b.onrender.com/users', {
                     method: 'POST',
                     body: formData
                 });
@@ -177,7 +177,7 @@ const Sign = () => {
         if (emailSignIn !== null && passwordSignIn !== null) {
             const signApi = async () => {
                 try {
-                    const response = await fetch('https://sila-vbyf.onrender.com/users/login', {
+                    const response = await fetch('https://sila-b.onrender.com/users/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

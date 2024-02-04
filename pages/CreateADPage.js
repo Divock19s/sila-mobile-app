@@ -293,7 +293,7 @@ const CreateADPage = () => {
     if (userInfo !== null) {
       const usersApi = async () => {
         try {
-          const response = await fetch(`https://sila-vbyf.onrender.com/users/${userInfo._id}`);
+          const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
           const data = await response.json();
           setWallet(data.user.wallet);
         } catch (err) {
@@ -371,7 +371,7 @@ const CreateADPage = () => {
 
     const adApi = async () => {
       try {
-        const response = await fetch('https://sila-vbyf.onrender.com/ad', {
+        const response = await fetch('https://sila-b.onrender.com/ad', {
           method: 'POST',
           body: formData
         });
@@ -430,7 +430,7 @@ const CreateADPage = () => {
       if (userInfo !== null && wallet !== null) {
         const patchWalletApi = async () => {
           try {
-            const response = await fetch(`https://sila-vbyf.onrender.com/users/wallet/${userInfo._id}`, {
+            const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
               method: 'PATCH',
               headers: {
                 'Content-Type': 'application/json'
@@ -451,7 +451,7 @@ const CreateADPage = () => {
 
         const paymentHistoryApi = async () => {
           try {
-            const response = await fetch('https://sila-vbyf.onrender.com/paymentHistory', {
+            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'

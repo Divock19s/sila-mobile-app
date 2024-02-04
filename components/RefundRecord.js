@@ -30,7 +30,7 @@ const RefundRecord = () => {
     useEffect(() => {
         const refundApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/refund');
+                const response = await fetch('https://sila-b.onrender.com/refund');
                 const data = await response.json();
                 setApiData(data.refunds);
             } catch (err) {

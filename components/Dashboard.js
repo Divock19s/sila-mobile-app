@@ -35,7 +35,7 @@ const Dashboard = () => {
     if (userID !== null) {
       const usersApi = async () => {
         try {
-          const response = await fetch(`https://sila-vbyf.onrender.com/users/${userID}`);
+          const response = await fetch(`https://sila-b.onrender.com/users/${userID}`);
           const data = await response.json();
           setUserWallet(data.user.wallet);
         } catch (err) {
@@ -50,7 +50,7 @@ const Dashboard = () => {
   useEffect(() => {
     const adsApi = async () => {
       try {
-        const response = await fetch('https://sila-vbyf.onrender.com/ad');
+        const response = await fetch('https://sila-b.onrender.com/ad');
         const data = await response.json();
 
         let sum = 0;

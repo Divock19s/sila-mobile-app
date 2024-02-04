@@ -30,7 +30,7 @@ const NewAdAccount = () => {
     useEffect(() => {
         const licenseApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/ad');
+                const response = await fetch('https://sila-b.onrender.com/ad');
                 const data = await response.json();
                 setApiData(data.ADs);
             } catch (err) {

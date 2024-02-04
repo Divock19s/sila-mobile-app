@@ -32,7 +32,7 @@ const Transactions = () => {
     useEffect(() => {
         const transactionsApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/transaction');
+                const response = await fetch('https://sila-b.onrender.com/transaction');
                 const data = await response.json();
                 setApiData(data.transactions);
             } catch (err) {

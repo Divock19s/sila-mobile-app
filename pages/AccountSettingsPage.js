@@ -68,7 +68,7 @@ const AccountSettingsPage = () => {
 
                         const changePhotoApi = async () => {
                             try {
-                                const response = await fetch(`https://sila-vbyf.onrender.com/users/changeProfilePhoto/${userInfo._id}`, {
+                                const response = await fetch(`https://sila-b.onrender.com/users/changeProfilePhoto/${userInfo._id}`, {
                                     method: 'PATCH',
                                     body: formData
                                 });
@@ -107,7 +107,7 @@ const AccountSettingsPage = () => {
         if (userInfo !== null && phoneNumberInput !== null) {
             const changeNumberApi = async () => {
                 try {
-                    const response = await fetch(`https://sila-vbyf.onrender.com/users/phone/${userInfo._id}`, {
+                    const response = await fetch(`https://sila-b.onrender.com/users/phone/${userInfo._id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
@@ -149,7 +149,7 @@ const AccountSettingsPage = () => {
         if (userInfo !== null && userNameInput !== null) {
             const changeNameApi = async () => {
                 try {
-                    const response = await fetch(`https://sila-vbyf.onrender.com/users/userName/${userInfo._id}`, {
+                    const response = await fetch(`https://sila-b.onrender.com/users/userName/${userInfo._id}`, {
                         method: 'PATCH',
                         headers: {
                             'Content-Type': 'application/json'
@@ -192,7 +192,7 @@ const AccountSettingsPage = () => {
         newPasswordInput !== null) {
             const currentPasswordCheckApi = async () => {
                 try {
-                    const response = await fetch('https://sila-vbyf.onrender.com/users/login', {
+                    const response = await fetch('https://sila-b.onrender.com/users/login', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
@@ -208,7 +208,7 @@ const AccountSettingsPage = () => {
                     if (data.userInfo) {
                         const changePasswordApi = async () => {
                             try {
-                                const response = await fetch(`https://sila-vbyf.onrender.com/users/changePassword/${userInfo._id}`, {
+                                const response = await fetch(`https://sila-b.onrender.com/users/changePassword/${userInfo._id}`, {
                                     method: 'PATCH',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -260,7 +260,7 @@ const AccountSettingsPage = () => {
         if (userInfo !== null) {
             const deleteAccountApi = async () => {
                 try {
-                    const response = await fetch(`https://sila-vbyf.onrender.com/users/${userInfo._id}`, {
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`, {
                         method: 'DELETE'
                     });
 

@@ -37,7 +37,7 @@ const AccountsList = () => {
     useEffect(() => {
         const adsApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/ad');
+                const response = await fetch('https://sila-b.onrender.com/ad');
                 const data = await response.json();
                 setApiData(data.ADs);
             } catch (err) {
@@ -58,7 +58,7 @@ const AccountsList = () => {
                         if (y._id === _id) {
                             const bmShareApi = async () => {
                                 try {
-                                    const response = await fetch('https://sila-vbyf.onrender.com/bmShare', {
+                                    const response = await fetch('https://sila-b.onrender.com/bmShare', {
                                         method: 'POST',
                                         headers: {
                                             'Content-Type': 'application/json'

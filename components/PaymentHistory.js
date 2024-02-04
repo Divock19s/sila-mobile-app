@@ -30,7 +30,7 @@ const PaymentHistory = () => {
     useEffect(() => {
         const paymentHistoryApi = async () => {
             try {
-                const response = await fetch('https://sila-vbyf.onrender.com/paymentHistory');
+                const response = await fetch('https://sila-b.onrender.com/paymentHistory');
                 const data = await response.json();
                 setApiData(data.history);
             } catch (err) {

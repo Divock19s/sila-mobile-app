@@ -45,7 +45,7 @@ const RefundPage = () => {
   useEffect(() => {
     const adsApi = async () => {
       try {
-        const response = await fetch('https://sila-vbyf.onrender.com/ad');
+        const response = await fetch('https://sila-b.onrender.com/ad');
         const data = await response.json();
         setApiData(data.ADs);
       } catch (err) {
@@ -90,7 +90,7 @@ const RefundPage = () => {
 
       const refundApi = async () => {
         try {
-          const response = await fetch('https://sila-vbyf.onrender.com/refund', {
+          const response = await fetch('https://sila-b.onrender.com/refund', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
