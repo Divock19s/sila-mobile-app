@@ -23,7 +23,7 @@ const ProfileTopSection = () => {
   }, []);
 
   return (
-    <View style={[{borderRadius: 50}, {backgroundColor: 'purple'}, {gap: 30}, {padding: 20}, {elevation: 50}]}>
+    <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {gap: 30}, {padding: 20}, {elevation: 50}]}>
       <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
         <Ionicons name="time-sharp" size={24} color="#fff" />
         {

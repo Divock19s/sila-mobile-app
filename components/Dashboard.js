@@ -119,14 +119,14 @@ const Dashboard = () => {
             value={adAccountsNumber}
             radius={120}
             duration={2000}
-            progressValueColor={'purple'}
-            activeStrokeColor={'purple'}
+            progressValueColor={'#7538D4'}
+            activeStrokeColor={'#7538D4'}
             inActiveStrokeColor={'#fff'}
             activeStrokeWidth={20}
             inActiveStrokeWidth={5}
             maxValue={200}
             title={'Ad'}
-            titleColor={'purple'}
+            titleColor={'#7538D4'}
             titleStyle={[{fontFamily: 'Ubuntu-Bold'}]}
           />
         </View>

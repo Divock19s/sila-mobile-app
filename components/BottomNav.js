@@ -20,7 +20,7 @@ const BottomNav = () => {
             <AntDesign name="google" size={24} color="black" />
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{height: 80}, {width: 80}, {borderRadius: 100 / 2}, {marginTop: -50}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}, {borderWidth: 8}, {borderColor: '#fff'}]}>
+        <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{height: 80}, {width: 80}, {borderRadius: 100 / 2}, {marginTop: -50}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {borderWidth: 8}, {borderColor: '#fff'}]}>
             <AntDesign name="home" size={35} color="#fff" />
         </Pressable>
 

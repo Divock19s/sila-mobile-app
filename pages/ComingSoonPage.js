@@ -7,7 +7,7 @@ const ComingSoonPage = () => {
         <View style={[{height: 200}, {width: 200}, {borderRadius: 30}, {overflow: 'hidden'}]}>
           <Image style={[{height: '100%'}, {width: '100%'}]} source={require('../assets/images&logos/clock-gif.gif')} />
         </View>
-        <Text style={[{marginTop: 20}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: 'purple'}]}>Coming Soon!</Text>
+        <Text style={[{marginTop: 20}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: '#7538D4'}]}>Coming Soon!</Text>
       </ImageBackground>
     </View>
   )

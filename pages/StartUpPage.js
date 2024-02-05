@@ -54,13 +54,13 @@ const StartUpPage = () => {
 
   return (
     <View style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}]}>
-      <Animated.View style={[{height: 120}, {width: 120}, {backgroundColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}, {borderRadius: 100 / 2}, {opacity: value}]}>
+      <Animated.View style={[{height: 120}, {width: 120}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {borderRadius: 100 / 2}, {opacity: value}]}>
         <Image source={require('../assets/images&logos/5f2e4560-d176-43d4-a8b7-731bb145cb40-e1698547045253.webp')} />
       </Animated.View>
 
       {
         showLoading && (
-            <ActivityIndicator color={'purple'} size={'large'} />
+            <ActivityIndicator color={'#7538D4'} size={'large'} />
         )
       }
     </View>

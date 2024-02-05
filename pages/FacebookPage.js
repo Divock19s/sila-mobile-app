@@ -69,7 +69,7 @@ const FacebookPage = () => {
 
   return (
     <View style={[{flex: 1}]}>
-      <View style={[{height: height / 12}, {backgroundColor: 'purple'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
+      <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
         <Image style={[{height: 20}, {width: 30}, {resizeMode: 'stretch'}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
         <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Meta marketing</Text>
       </View>

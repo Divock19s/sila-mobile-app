@@ -43,7 +43,7 @@ const PaymentHistory = () => {
 
   return (
     <View style={[{paddingHorizontal: 30}]}>
-        <View style={[{height: height / 12}, {backgroundColor: 'purple'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
+        <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <MaterialIcons name="history-toggle-off" size={30} color="#fff" />
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Payments history</Text>
         </View>
@@ -54,7 +54,7 @@ const PaymentHistory = () => {
                     <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                         if (item.userID === userID) {
                             return(
-                                <View style={[{borderRadius: 50}, {backgroundColor: 'purple'}, {padding: 20}, {marginBottom: 30}, {gap: 10}]}>
+                                <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {padding: 20}, {marginBottom: 30}, {gap: 10}]}>
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                                         <AntDesign name="shoppingcart" size={24} color="#fff" />
                                         <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}]}>Type: {item.type}</Text>

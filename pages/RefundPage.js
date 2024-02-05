@@ -125,7 +125,7 @@ const RefundPage = () => {
 
   return (
     <View style={[{flex: 1}, {padding: 30}]}>
-      <View style={[{height: height / 12}, {backgroundColor: 'purple'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
+      <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
         <Foundation name="dollar" size={24} color="#fff" />
         <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Refund</Text>
       </View>
@@ -150,14 +150,14 @@ const RefundPage = () => {
           ]}
         />
 
-        <TextInput onChangeText={(text) => setRefundAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}, {borderColor: 'purple'}]} placeholder='Charge amount...' keyboardType='numeric' />
+        <TextInput onChangeText={(text) => setRefundAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}, {borderColor: '#7538D4'}]} placeholder='Charge amount...' keyboardType='numeric' />
 
         <View style={[{flexDirection: 'row'}, {gap: 20}, {marginTop: 30}, {justifyContent: 'flex-end'}]}>
-          <Pressable onPress={() => navigation.navigate('Meta')} style={[{borderWidth: 3}, {padding: 15}, {borderRadius: 30}, {paddingHorizontal: 25}, {borderColor: 'purple'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <Pressable onPress={() => navigation.navigate('Meta')} style={[{borderWidth: 3}, {padding: 15}, {borderRadius: 30}, {paddingHorizontal: 25}, {borderColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
             <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#000'}]}>Cancel</Text>
           </Pressable>
 
-          <Pressable onPress={sendRefund} style={[{backgroundColor: 'purple'}, {padding: 15}, {borderRadius: 30}, {paddingHorizontal: 40}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <Pressable onPress={sendRefund} style={[{backgroundColor: '#7538D4'}, {padding: 15}, {borderRadius: 30}, {paddingHorizontal: 40}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
             {
               refundLoading ? (
                 <ActivityIndicator color={'#fff'} />

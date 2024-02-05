@@ -137,14 +137,14 @@ const TopUpPage = () => {
 
   return (
     <View style={[{flex: 1}, {paddingHorizontal: 30}]}>
-        <View style={[{height: height / 12}, {backgroundColor: 'purple'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
+        <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Foundation name="dollar" size={50} color="#fff" />
             <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Top Up</Text>
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
             <ScrollView>
-                <Pressable onPress={() => setPaymentMethodPicker(!paymentMethodPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: 'purple'}]}>
+                <Pressable onPress={() => setPaymentMethodPicker(!paymentMethodPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}]}>
                     {
                         paymentMethod !== null ? (
                             <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {color: '#fff'}]}>{paymentMethod}</Text>
@@ -164,7 +164,7 @@ const TopUpPage = () => {
 
                 {
                     paymentMethodPicker && (
-                        <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: 'purple'}]}>
+                        <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
                             <Pressable onPress={() => setPaymentMethod('Baridi mob')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
                                 <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}]}>Baridi mob</Text>
                             </Pressable>
@@ -184,9 +184,9 @@ const TopUpPage = () => {
                     )
                 }
 
-                <TextInput onChangeText={(text) => setChargeAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}, {borderColor: 'purple'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
+                <TextInput onChangeText={(text) => setChargeAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
 
-                <TextInput onChangeText={(text) => setTransactionID(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}, {borderColor: 'purple'}]} placeholder='Transaction ID' />
+                <TextInput onChangeText={(text) => setTransactionID(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Transaction ID' />
 
                 <View style={[{marginTop: 30}]}>
                     <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Photo proof:</Text>
@@ -194,9 +194,9 @@ const TopUpPage = () => {
                     <Pressable onPress={pickProof} style={[{marginTop: 10}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             photoProof !== null ? (
-                                <AntDesign name="checkcircle" size={50} color="purple" />
+                                <AntDesign name="checkcircle" size={50} color="#7538D4" />
                             ) : (
-                                <AntDesign name="plus" size={50} color="purple" />
+                                <AntDesign name="plus" size={50} color="#7538D4" />
                             )
                         }
                     </Pressable>
@@ -270,11 +270,11 @@ const TopUpPage = () => {
                 }
 
                 <View style={[{flexDirection: 'row'}, {marginTop: 50}, {justifyContent: 'center'}, {gap: 20}]}>
-                    <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {borderWidth: 3}, {borderColor: 'purple'}]}>
+                    <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {borderWidth: 3}, {borderColor: '#7538D4'}]}>
                         <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Cancel</Text>
                     </Pressable>
 
-                    <Pressable onPress={sendTransaction} style={[{backgroundColor: 'purple'}, {paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable onPress={sendTransaction} style={[{backgroundColor: '#7538D4'}, {paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             confirmLoading ? (
                                 <ActivityIndicator color={'#fff'} size={'large'} />

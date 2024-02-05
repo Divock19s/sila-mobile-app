@@ -269,14 +269,14 @@ const Sign = () => {
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Username:</Text>
                         </View>
-                        <TextInput onChangeText={(text) => setUserName(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a name for your account...' />
+                        <TextInput onChangeText={(text) => setUserName(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a name for your account...' />
                     </View>
 
                     <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Phone number:</Text>
                         </View>
-                        <TextInput onChangeText={(text) => setPhoneNumber(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your phone number...' keyboardType='numeric' />
+                        <TextInput onChangeText={(text) => setPhoneNumber(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your phone number...' keyboardType='numeric' />
                     </View>
 
                     <View style={[{gap: 10}, {marginBottom: 30}]}>
@@ -284,7 +284,7 @@ const Sign = () => {
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Email:</Text>
                         </View>
-                        <TextInput onChangeText={(text) => setEmailSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
+                        <TextInput onChangeText={(text) => setEmailSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
                     </View>
 
                     <View style={[{gap: 10}, {marginBottom: 30}]}>
@@ -292,7 +292,7 @@ const Sign = () => {
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Password:</Text>
                         </View>
-                        <TextInput secureTextEntry={true} onChangeText={(text) => setPasswordSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
+                        <TextInput secureTextEntry={true} onChangeText={(text) => setPasswordSignUp(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
                     </View>
 
                     <View style={[{gap: 10}, {marginBottom: 30}]}>
@@ -308,7 +308,7 @@ const Sign = () => {
                         </Pressable>
                     </View>
 
-                    <Pressable onPress={signUp} style={[{backgroundColor: 'purple'}, {height: height / 12}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable onPress={signUp} style={[{backgroundColor: '#7538D4'}, {height: height / 12}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             signUpLoading ? (
                                 <ActivityIndicator color={'#fff'} size={'large'} />
@@ -329,7 +329,7 @@ const Sign = () => {
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Email:</Text>
                         </View>
-                        <TextInput onChangeText={(text) => setEmailSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
+                        <TextInput onChangeText={(text) => setEmailSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Type your email...' />
                     </View>
 
                     <View style={[{gap: 10}, {marginBottom: 30}]}>
@@ -337,10 +337,10 @@ const Sign = () => {
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>
                             <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Password:</Text>
                         </View>
-                        <TextInput secureTextEntry={true} onChangeText={(text) => setPasswordSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: 'rgb(136,58,209)'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
+                        <TextInput secureTextEntry={true} onChangeText={(text) => setPasswordSignIn(text)} style={[{borderBottomWidth: 1}, {borderBottomColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}]} placeholder='Choose a strong password...' />
                     </View>
 
-                    <Pressable onPress={signIn} style={[{backgroundColor: 'purple'}, {height: height / 12}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                    <Pressable onPress={signIn} style={[{backgroundColor: '#7538D4'}, {height: height / 12}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             signInLoading ? (
                                 <ActivityIndicator color={'#fff'} size={'large'} />
