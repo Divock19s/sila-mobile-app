@@ -19,8 +19,14 @@
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.silaagency.sila"
     },
-    "web": {}
+    "web": {},
+    "extra": {
+      "eas": {
+        "projectId": "c58fbaeb-9550-4507-a447-fc38e069368a"
+      }
+    }
   }
 }
