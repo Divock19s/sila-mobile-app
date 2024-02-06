@@ -45,7 +45,7 @@ const PaymentHistory = () => {
     <View style={[{paddingHorizontal: 30}]}>
         <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <MaterialIcons name="history-toggle-off" size={30} color="#fff" />
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Payments history</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 17}]}>Payments history</Text>
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
@@ -57,22 +57,22 @@ const PaymentHistory = () => {
                                 <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {padding: 20}, {marginBottom: 30}, {gap: 10}]}>
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                                         <AntDesign name="shoppingcart" size={24} color="#fff" />
-                                        <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}]}>Type: {item.type}</Text>
+                                        <Text style={[{color: '#fff'}]}>Type: {item.type}</Text>
                                     </View>
                                     
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                                         <Ionicons name="receipt-outline" size={24} color="#fff" />
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: width / 2}]}>Application ID: {item._id}</Text>
+                                        <Text style={[{color: '#fff'}, {width: width / 2}]}>Application ID: {item._id}</Text>
                                     </View>
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 50}, {color: '#fff'}]}>{item.amount}</Text>
+                                        <Text style={[{fontSize: 50}, {color: '#fff'}]}>{item.amount}</Text>
                                         <Foundation name="dollar" size={50} color="#fff" />
                                     </View>
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
                                         <Ionicons name="time-sharp" size={24} color="#fff" />
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>On: {`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
+                                        <Text style={[{color: '#fff'}]}>On: {`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
                                     </View>
                                 </View>
                             )

@@ -35,31 +35,31 @@ const ProfileOptions = () => {
       <ScrollView>
         <Pressable onPress={() => navigation.navigate('Transactions')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <Entypo name="wallet" size={24} color="black" />
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>My transactions</Text>
+          <Text style={[]}>My transactions</Text>
           <EvilIcons name="chevron-right" size={30} color="black" />
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('PaymentHistory')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <MaterialIcons name="history-toggle-off" size={24} color="black" />
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Payments history</Text>
+          <Text style={[]}>Payments history</Text>
           <EvilIcons name="chevron-right" size={30} color="black" />
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Services')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <MaterialIcons name="electrical-services" size={24} color="black" />
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Our services</Text>
+          <Text style={[]}>Our services</Text>
           <EvilIcons name="chevron-right" size={30} color="black" />
         </Pressable>
 
         <Pressable onPress={() => navigation.navigate('Account')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <AntDesign name="user" size={24} color="black" />
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Account settings</Text>
+          <Text style={[]}>Account settings</Text>
           <EvilIcons name="chevron-right" size={30} color="black" />
         </Pressable>
 
         <Pressable onPress={logout} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <Feather name="log-out" size={24} color="black" />
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Logout</Text>
+          <Text style={[]}>Logout</Text>
           <EvilIcons name="chevron-right" size={30} color="black" />
         </Pressable>
       </ScrollView>

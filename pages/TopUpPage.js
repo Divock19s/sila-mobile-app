@@ -139,7 +139,7 @@ const TopUpPage = () => {
     <View style={[{flex: 1}, {paddingHorizontal: 30}]}>
         <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Foundation name="dollar" size={50} color="#fff" />
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Top Up</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 17}]}>Top Up</Text>
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
@@ -147,9 +147,9 @@ const TopUpPage = () => {
                 <Pressable onPress={() => setPaymentMethodPicker(!paymentMethodPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}]}>
                     {
                         paymentMethod !== null ? (
-                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {color: '#fff'}]}>{paymentMethod}</Text>
+                            <Text style={[{fontSize: 17}, {color: '#fff'}]}>{paymentMethod}</Text>
                         ) : (
-                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {color: 'gray'}]}>Payment method</Text>
+                            <Text style={[{fontSize: 17}, {color: 'gray'}]}>Payment method</Text>
                         )
                     }
                     
@@ -166,30 +166,30 @@ const TopUpPage = () => {
                     paymentMethodPicker && (
                         <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
                             <Pressable onPress={() => setPaymentMethod('Baridi mob')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}]}>Baridi mob</Text>
+                                <Text style={[{fontSize: 17}]}>Baridi mob</Text>
                             </Pressable>
 
                             <Pressable onPress={() => setPaymentMethod('CCP')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}]}>CCP</Text>
+                                <Text style={[{fontSize: 17}]}>CCP</Text>
                             </Pressable>
 
                             <Pressable onPress={() => setPaymentMethod('Paysera')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}]}>Paysera</Text>
+                                <Text style={[{fontSize: 17}]}>Paysera</Text>
                             </Pressable>
 
                             <Pressable onPress={() => setPaymentMethod('USDT')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}]}>USDT</Text>
+                                <Text style={[{fontSize: 17}]}>USDT</Text>
                             </Pressable>
                         </View>
                     )
                 }
 
-                <TextInput onChangeText={(text) => setChargeAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
+                <TextInput onChangeText={(text) => setChargeAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
 
-                <TextInput onChangeText={(text) => setTransactionID(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Transaction ID' />
+                <TextInput onChangeText={(text) => setTransactionID(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Transaction ID' />
 
                 <View style={[{marginTop: 30}]}>
-                    <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Photo proof:</Text>
+                    <Text style={[{fontSize: 17}]}>Photo proof:</Text>
 
                     <Pressable onPress={pickProof} style={[{marginTop: 10}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
@@ -208,9 +208,9 @@ const TopUpPage = () => {
                             {
                                 paymentMethod === 'Baridi mob' && (
                                     <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Baridimob:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>RIP : 00799999004065438501</Text>
+                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
+                                        <Text style={[{color: 'gray'}]}>Baridimob:</Text>
+                                        <Text style={[{color: 'gray'}]}>RIP : 00799999004065438501</Text>
                                     </View>
                                 )
                             }
@@ -218,10 +218,10 @@ const TopUpPage = () => {
                             {
                                 paymentMethod === 'CCP' && (
                                     <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>CCP:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>40654385 cle 44</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>ABDALLAH MERMOURI</Text>
+                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
+                                        <Text style={[{color: 'gray'}]}>CCP:</Text>
+                                        <Text style={[{color: 'gray'}]}>40654385 cle 44</Text>
+                                        <Text style={[{color: 'gray'}]}>ABDALLAH MERMOURI</Text>
                                     </View>
                                 )
                             }
@@ -229,26 +229,26 @@ const TopUpPage = () => {
                             {
                                 paymentMethod === 'Paysera' && (
                                     <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Paysera bank :</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Email: adomerou@gmail.com</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Recipient</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Abdallah Mermouri</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Your IBAN</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>LT943500010003017272</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>SWIFT/BIC</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>EVIULT2VXXX</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Bank name</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Paysera LT, UAB</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Bank address</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Pilaitės pr. 16, Vilnius,</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>LT-04352, Lithuania</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Correspondent bank name</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>LIETUVOS BANKAS (BANK OF LITHUANIA)</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Correspondent bank address</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>GEDIMINO 6, VILNIUS, Lietuva</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Correspondent bank SWIFT code</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>LIABLT2XXXX</Text>
+                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
+                                        <Text style={[{color: 'gray'}]}>Paysera bank :</Text>
+                                        <Text style={[{color: 'gray'}]}>Email: adomerou@gmail.com</Text>
+                                        <Text style={[{color: 'gray'}]}>Recipient</Text>
+                                        <Text style={[{color: 'gray'}]}>Abdallah Mermouri</Text>
+                                        <Text style={[{color: 'gray'}]}>Your IBAN</Text>
+                                        <Text style={[{color: 'gray'}]}>LT943500010003017272</Text>
+                                        <Text style={[{color: 'gray'}]}>SWIFT/BIC</Text>
+                                        <Text style={[{color: 'gray'}]}>EVIULT2VXXX</Text>
+                                        <Text style={[{color: 'gray'}]}>Bank name</Text>
+                                        <Text style={[{color: 'gray'}]}>Paysera LT, UAB</Text>
+                                        <Text style={[{color: 'gray'}]}>Bank address</Text>
+                                        <Text style={[{color: 'gray'}]}>Pilaitės pr. 16, Vilnius,</Text>
+                                        <Text style={[{color: 'gray'}]}>LT-04352, Lithuania</Text>
+                                        <Text style={[{color: 'gray'}]}>Correspondent bank name</Text>
+                                        <Text style={[{color: 'gray'}]}>LIETUVOS BANKAS (BANK OF LITHUANIA)</Text>
+                                        <Text style={[{color: 'gray'}]}>Correspondent bank address</Text>
+                                        <Text style={[{color: 'gray'}]}>GEDIMINO 6, VILNIUS, Lietuva</Text>
+                                        <Text style={[{color: 'gray'}]}>Correspondent bank SWIFT code</Text>
+                                        <Text style={[{color: 'gray'}]}>LIABLT2XXXX</Text>
                                     </View>
                                 )
                             }
@@ -256,12 +256,12 @@ const TopUpPage = () => {
                             {
                                 paymentMethod === 'USDT' && (
                                     <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Binance :</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Id: 38893440</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Usdt adresse TRC20  : TMNDfXxomc9AqdkMvMDBrqKy4q8JPMBpY5</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Username: sila_marketing</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: 'gray'}]}>Email: adomerou@gmail.com</Text>
+                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
+                                        <Text style={[{color: 'gray'}]}>Binance :</Text>
+                                        <Text style={[{color: 'gray'}]}>Id: 38893440</Text>
+                                        <Text style={[{color: 'gray'}]}>Usdt adresse TRC20  : TMNDfXxomc9AqdkMvMDBrqKy4q8JPMBpY5</Text>
+                                        <Text style={[{color: 'gray'}]}>Username: sila_marketing</Text>
+                                        <Text style={[{color: 'gray'}]}>Email: adomerou@gmail.com</Text>
                                     </View>
                                 )
                             }
@@ -271,7 +271,7 @@ const TopUpPage = () => {
 
                 <View style={[{flexDirection: 'row'}, {marginTop: 50}, {justifyContent: 'center'}, {gap: 20}]}>
                     <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {borderWidth: 3}, {borderColor: '#7538D4'}]}>
-                        <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Regular'}]}>Cancel</Text>
+                        <Text style={[{fontSize: 17}]}>Cancel</Text>
                     </Pressable>
 
                     <Pressable onPress={sendTransaction} style={[{backgroundColor: '#7538D4'}, {paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
@@ -279,7 +279,7 @@ const TopUpPage = () => {
                             confirmLoading ? (
                                 <ActivityIndicator color={'#fff'} size={'large'} />
                             ) : (
-                                <Text style={[{fontSize: 17}, {fontFamily: 'Ubuntu-Medium'}, {color: '#fff'}]}>Confirm</Text>
+                                <Text style={[{fontSize: 17}, {color: '#fff'}]}>Confirm</Text>
                             )
                         }
                     </Pressable>

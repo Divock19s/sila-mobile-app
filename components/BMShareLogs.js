@@ -50,33 +50,33 @@ const BMShareLogs = () => {
                         <View style={[{backgroundColor: '#000'}, {borderRadius: 30}, {padding: 20}, {gap: 20}, {marginBottom: 20}]}>
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <FontAwesome name="id-card-o" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>ID:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item._id}</Text>
+                                <Text style={[{color: '#fff'}]}>ID:</Text>
+                                <Text style={[{color: '#fff'}]}>{item._id}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <FontAwesome name="id-card-o" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Ad ID:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item.adID}</Text>
+                                <Text style={[{color: '#fff'}]}>Ad ID:</Text>
+                                <Text style={[{color: '#fff'}]}>{item.adID}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <MaterialIcons name="drive-file-rename-outline" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Ad name:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item.adName}</Text>
+                                <Text style={[{color: '#fff'}]}>Ad name:</Text>
+                                <Text style={[{color: '#fff'}]}>{item.adName}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <FontAwesome name="id-card-o" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>BM ID:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item.bmID}</Text>
+                                <Text style={[{color: '#fff'}]}>BM ID:</Text>
+                                <Text style={[{color: '#fff'}]}>{item.bmID}</Text>
                             </View>
 
                             {
                                 item.status === 'Pending' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Pending</Text>
+                                        <Text style={[{color: '#fff'}]}>Status:</Text>
+                                        <Text style={[{color: '#fff'}]}>Pending</Text>
                                         <Ionicons name="time" size={24} color="#fff" />
                                     </View>
                                 )
@@ -85,8 +85,8 @@ const BMShareLogs = () => {
                             {
                                 item.status === 'Accepted' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Accepted</Text>
+                                        <Text style={[{color: '#fff'}]}>Status:</Text>
+                                        <Text style={[{color: '#fff'}]}>Accepted</Text>
                                         <Ionicons name="checkmark-done" size={24} color="#fff" />
                                     </View>
                                 )
@@ -95,8 +95,8 @@ const BMShareLogs = () => {
                             {
                                 item.status === 'Rejected' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Rejected</Text>
+                                        <Text style={[{color: '#fff'}]}>Status:</Text>
+                                        <Text style={[{color: '#fff'}]}>Rejected</Text>
                                         <AntDesign name="close" size={24} color="#fff" />
                                     </View>
                                 )
@@ -104,8 +104,8 @@ const BMShareLogs = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <AntDesign name="calendar" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Date:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
+                                <Text style={[{color: '#fff'}]}>Date:</Text>
+                                <Text style={[{color: '#fff'}]}>{`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
                             </View>
                         </View>
                     )

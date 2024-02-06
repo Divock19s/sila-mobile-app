@@ -71,7 +71,7 @@ const FacebookPage = () => {
     <View style={[{flex: 1}]}>
       <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
         <Image style={[{height: 20}, {width: 30}, {resizeMode: 'stretch'}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
-        <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Meta marketing</Text>
+        <Text style={[{color: '#fff'}, {fontSize: 17}]}>Meta marketing</Text>
       </View>
 
       <View style={[{height: height / 1.4}, {marginTop: 100}, {paddingHorizontal: 10}]}>
@@ -81,7 +81,7 @@ const FacebookPage = () => {
               <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: first}]}]}>
                 <ImageBackground source={require('../assets/images&logos/1.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                   <FontAwesome5 name="clipboard-list" size={24} color="black" />
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Accounts list</Text>
+                  <Text style={[]}>Accounts list</Text>
                 </ImageBackground>
               </Animated.View>
             </Pressable>
@@ -90,7 +90,7 @@ const FacebookPage = () => {
               <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: second}]}]}>
                 <ImageBackground source={require('../assets/images&logos/6.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                   <AntDesign name="plus" size={24} color="black" />
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>New AD account</Text>
+                  <Text style={[]}>New AD account</Text>
                 </ImageBackground>
               </Animated.View>
             </Pressable>
@@ -99,7 +99,7 @@ const FacebookPage = () => {
               <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: third}]}]}>
                 <ImageBackground source={require('../assets/images&logos/3.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                   <Ionicons name="layers" size={24} color="black" />
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>BM share logs</Text>
+                  <Text style={[]}>BM share logs</Text>
                 </ImageBackground>
               </Animated.View>
             </Pressable>
@@ -108,7 +108,7 @@ const FacebookPage = () => {
               <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: sixth}]}]}>
                 <ImageBackground source={require('../assets/images&logos/6.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                   <MaterialCommunityIcons name="cash-refund" size={24} color="black" />
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Refund</Text>
+                  <Text style={[]}>Refund</Text>
                 </ImageBackground>
               </Animated.View>
             </Pressable>
@@ -117,7 +117,7 @@ const FacebookPage = () => {
               <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: seventh}]}]}>
                 <ImageBackground source={require('../assets/images&logos/4.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                   <MaterialCommunityIcons name="cash-refund" size={24} color="black" />
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}]}>Refund record</Text>
+                  <Text style={[]}>Refund record</Text>
                 </ImageBackground>
               </Animated.View>
             </Pressable>

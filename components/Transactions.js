@@ -47,7 +47,7 @@ const Transactions = () => {
     <View style={[{paddingHorizontal: 30}]}>
         <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Entypo name="wallet" size={30} color="#fff" />
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>My transactions</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 17}]}>My transactions</Text>
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
@@ -57,21 +57,21 @@ const Transactions = () => {
                         <View style={[{borderRadius: 50}, {backgroundColor: '#000'}, {padding: 20}, {marginBottom: 30}, {gap: 30}]}>
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                                 <Ionicons name="receipt-outline" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: width / 2}]}>Application ID: {item._id}</Text>
+                                <Text style={[{color: '#fff'}, {width: width / 2}]}>Application ID: {item._id}</Text>
                             </View>
                             
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                                 <MaterialCommunityIcons name="bank" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}, {width: width / 2}]}>Transaction ID: {item.transactionID}</Text>
+                                <Text style={[{color: '#fff'}, {width: width / 2}]}>Transaction ID: {item.transactionID}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                                 <FontAwesome5 name="money-bill" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Payment Method: {item.paymentMethod}</Text>
+                                <Text style={[{color: '#fff'}]}>Payment Method: {item.paymentMethod}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
-                                <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 30}, {color: '#fff'}]}>{item.chargeAmount}</Text>
+                                <Text style={[{fontSize: 30}, {color: '#fff'}]}>{item.chargeAmount}</Text>
                                 <Foundation name="dollar" size={30} color="#fff" />
                             </View>
 
@@ -82,11 +82,11 @@ const Transactions = () => {
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
+                                <Text style={[{color: '#fff'}]}>Status:</Text>
                                 {
                                     item.status === 'Pending' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Pending</Text>
+                                            <Text style={[{color: '#fff'}]}>Pending</Text>
                                             <Ionicons name="time-sharp" size={24} color="#fff" />
                                         </View>
                                     )
@@ -95,7 +95,7 @@ const Transactions = () => {
                                 {
                                     item.status === 'Accepted' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Accepted</Text>
+                                            <Text style={[{color: '#fff'}]}>Accepted</Text>
                                             <Feather name="check" size={24} color="#fff" />
                                         </View>
                                     )
@@ -104,7 +104,7 @@ const Transactions = () => {
                                 {
                                     item.status === 'Rejected' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Rejected</Text>
+                                            <Text style={[{color: '#fff'}]}>Rejected</Text>
                                             <AntDesign name="close" size={24} color="#fff" />
                                         </View>
                                     )

@@ -51,27 +51,27 @@ const NewAdAccount = () => {
                         <View style={[{backgroundColor: '#000'}, {borderRadius: 30}, {padding: 20}, {gap: 20}, {marginBottom: 20}]}>
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <FontAwesome name="id-card-o" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>ID:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item._id}</Text>
+                                <Text style={[{color: '#fff'}]}>ID:</Text>
+                                <Text style={[{color: '#fff'}]}>{item._id}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <Fontisto name="database" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>License name:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item.license}</Text>
+                                <Text style={[{color: '#fff'}]}>License name:</Text>
+                                <Text style={[{color: '#fff'}]}>{item.license}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <MaterialIcons name="format-list-numbered" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Ads number:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{item.adNumber}</Text>
+                                <Text style={[{color: '#fff'}]}>Ads number:</Text>
+                                <Text style={[{color: '#fff'}]}>{item.adNumber}</Text>
                             </View>
 
                             {
                                 item.status === 'Pending' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Pending</Text>
+                                        <Text style={[{color: '#fff'}]}>Status:</Text>
+                                        <Text style={[{color: '#fff'}]}>Pending</Text>
                                         <Ionicons name="time" size={24} color="#fff" />
                                     </View>
                                 )
@@ -80,8 +80,8 @@ const NewAdAccount = () => {
                             {
                                 item.status === 'Accepted' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Accepted</Text>
+                                        <Text style={[{color: '#fff'}]}>Status:</Text>
+                                        <Text style={[{color: '#fff'}]}>Accepted</Text>
                                         <Ionicons name="checkmark-done" size={24} color="#fff" />
                                     </View>
                                 )
@@ -90,8 +90,8 @@ const NewAdAccount = () => {
                             {
                                 item.status === 'Rejected' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Rejected</Text>
+                                        <Text style={[{color: '#fff'}]}>Status:</Text>
+                                        <Text style={[{color: '#fff'}]}>Rejected</Text>
                                         <AntDesign name="close" size={24} color="#fff" />
                                     </View>
                                 )
@@ -99,8 +99,8 @@ const NewAdAccount = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <MaterialIcons name="attach-money" size={24} color="#fff" />
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>Total cost:</Text>
-                                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {color: '#fff'}]}>{`${item.totalCost} USD`}</Text>
+                                <Text style={[{color: '#fff'}]}>Total cost:</Text>
+                                <Text style={[{color: '#fff'}]}>{`${item.totalCost} USD`}</Text>
                             </View>
                         </View>
                     )

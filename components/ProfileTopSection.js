@@ -28,7 +28,7 @@ const ProfileTopSection = () => {
         <Ionicons name="time-sharp" size={24} color="#fff" />
         {
           userInfo !== null && (
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}]}>Joined in: {`${userInfo.date.slice(0, 4)} . ${userInfo.date.slice(5, 7)} . ${userInfo.date.slice(8, 10)}`}</Text>
+            <Text style={[{color: '#fff'}]}>Joined in: {`${userInfo.date.slice(0, 4)} . ${userInfo.date.slice(5, 7)} . ${userInfo.date.slice(8, 10)}`}</Text>
           )
         }
       </View>
@@ -42,7 +42,7 @@ const ProfileTopSection = () => {
 
         {
           userInfo !== null && (
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{userInfo.userName}</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 20}]}>{userInfo.userName}</Text>
           )
         }
       </View>

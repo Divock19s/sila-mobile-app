@@ -72,7 +72,7 @@ const CreateADPage = () => {
     const textInputs = [];
     for (let i = 0; i < pageNumber; i++) {
       textInputs.push(
-        <TextInput onChangeText={(text) => storeURLs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: phpRedLine ? 'red' : '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='URL...' />
+        <TextInput onChangeText={(text) => storeURLs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: phpRedLine ? 'red' : '#7538D4'}, {fontSize: 17}]} placeholder='URL...' />
       );
     }
     return textInputs;
@@ -122,7 +122,7 @@ const CreateADPage = () => {
     const appIDInput = [];
     for (let i = 0; i < domainNumber; i++) {
       appIDInput.push(
-        <TextInput onChangeText={(text) => storeAPPIDs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='APP ID...' />
+        <TextInput onChangeText={(text) => storeAPPIDs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='APP ID...' />
       );
     }
     return appIDInput;
@@ -145,7 +145,7 @@ const CreateADPage = () => {
     const DomainInput = [];
     for (let i = 0; i < domainNumber; i++) {
       DomainInput.push(
-        <TextInput onChangeText={(text) => storeDomainName(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Enter domain name...' />
+        <TextInput onChangeText={(text) => storeDomainName(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='Enter domain name...' />
       );
     }
     return DomainInput;
@@ -201,8 +201,8 @@ const CreateADPage = () => {
     for (let i = 0; i < adAccountsNumber; i++) {
       ADAccountSection.push(
         <View style={[{borderWidth: 3}, {marginTop: 20}, {borderRadius: 20}, {borderColor: '#7538D4'}, {paddingHorizontal: 10}]}>
-          <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account name...' />
-          <TextInput onChangeText={(text) => storeADaccountIDs(i, text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account ID...' />
+          <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account name...' />
+          <TextInput onChangeText={(text) => storeADaccountIDs(i, text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account ID...' />
           <RNPickerSelect
             onValueChange={(value) => storeADaccountDeposit(i, value)}
             items={[
@@ -492,12 +492,12 @@ const CreateADPage = () => {
       <View style={[{height: height / 1.6}, {marginBottom: 30}]}>
         <ScrollView>
           <View>
-          <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>License:</Text>
-          <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
+          <Text style={[{fontSize: 20}]}>License:</Text>
+          <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
         </View>
 
         <View style={[{marginTop: 30}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>Page number:</Text>
+          <Text style={[{fontSize: 20}]}>Page number:</Text>
           <RNPickerSelect
             onValueChange={(value) => setPageNumber(value)}
             items={[
@@ -513,7 +513,7 @@ const CreateADPage = () => {
           
           {
             phpRedLine && (
-              <Text style={[{color: 'red'}, {fontFamily: 'Ubuntu-Regular'}]}>This URL type is unaccepted, please add a URL that has a username. eg: 'https://facebook.com/Amine'</Text>
+              <Text style={[{color: 'red'}]}>This URL type is unaccepted, please add a URL that has a username. eg: 'https://facebook.com/Amine'</Text>
             )
           }
 
@@ -531,7 +531,7 @@ const CreateADPage = () => {
         </View>
 
         <View style={[{marginTop: 30}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>Domain Number:</Text>
+          <Text style={[{fontSize: 20}]}>Domain Number:</Text>
           <RNPickerSelect
             onValueChange={(value) => setDomainNumber(value)}
             items={[
@@ -544,7 +544,7 @@ const CreateADPage = () => {
           />
 
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 20}]}>
-            <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>is APP?</Text>
+            <Text style={[{fontSize: 16}]}>is APP?</Text>
             <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}]}>
               <Pressable onPress={() => setIsAPP(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                 <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
@@ -554,7 +554,7 @@ const CreateADPage = () => {
                     )
                   }
                 </View>
-                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>No</Text>
+                <Text style={[{fontSize: 16}]}>No</Text>
               </Pressable>
 
               <Pressable onPress={() => setIsAPP(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
@@ -565,7 +565,7 @@ const CreateADPage = () => {
                     )
                   }
                 </View>
-                <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Yes</Text>
+                <Text style={[{fontSize: 16}]}>Yes</Text>
               </Pressable>
             </View>
           </View>
@@ -580,7 +580,7 @@ const CreateADPage = () => {
         {
           !isAPP && (
             <View style={[{marginTop: 30}]}>
-              <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Do you currently have a Shopify shop at the time of this application?</Text>
+              <Text style={[{fontSize: 16}]}>Do you currently have a Shopify shop at the time of this application?</Text>
               <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}, {marginTop: 20}]}>
                 <Pressable onPress={() => setShopifyShop(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                   <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
@@ -590,7 +590,7 @@ const CreateADPage = () => {
                       )
                     }
                   </View>
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>No</Text>
+                  <Text style={[{fontSize: 16}]}>No</Text>
                 </Pressable>
 
                 <Pressable onPress={() => setShopifyShop(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
@@ -601,7 +601,7 @@ const CreateADPage = () => {
                       )
                     }
                   </View>
-                  <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Yes</Text>
+                  <Text style={[{fontSize: 16}]}>Yes</Text>
                 </Pressable>
               </View>
 
@@ -629,7 +629,7 @@ const CreateADPage = () => {
         }
 
         <View style={[{marginTop: 30}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>AD accounts number:</Text>
+          <Text style={[{fontSize: 20}]}>AD accounts number:</Text>
           <RNPickerSelect
             onValueChange={(value) => setAdAccountsNumber(value)}
             items={[
@@ -643,8 +643,8 @@ const CreateADPage = () => {
         </View>
 
         <View style={[{marginTop: 30}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
-          <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
+          <Text style={[{fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
+          <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
         </View>
         </ScrollView>
       </View>
@@ -653,17 +653,17 @@ const CreateADPage = () => {
 
       <View style={[{height: height / 3.3}, {gap: 10}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 30}, {borderTopRightRadius: 30}, {backgroundColor: '#7538D4'}, {padding: 30}, {justifyContent: 'space-between'}]}>
         <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
-          <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total deposit of ADs:</Text>
+          <Text style={[{color: '#fff'}, {fontSize: 17}]}>Total deposit of ADs:</Text>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalDepositOfADs}</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 20}]}>{totalDepositOfADs}</Text>
             <Foundation name="dollar" size={30} color="#fff" />
           </View>
         </View>
 
         <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
-          <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Total cost:</Text>
+          <Text style={[{color: '#fff'}, {fontSize: 17}]}>Total cost:</Text>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{totalCost}</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 20}]}>{totalCost}</Text>
             <Foundation name="dollar" size={30} color="#fff" />
           </View>
         </View>
@@ -671,12 +671,12 @@ const CreateADPage = () => {
         <View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}]}>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             <Entypo name="wallet" size={24} color="#fff" />
-            <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 17}]}>Wallet:</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 17}]}>Wallet:</Text>
           </View>
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             {
               wallet !== null && (
-                <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Medium'}, {fontSize: 20}]}>{wallet}</Text>
+                <Text style={[{color: '#fff'}, {fontSize: 20}]}>{wallet}</Text>
               )
             }
             <Foundation name="dollar" size={30} color="#fff" />
@@ -685,7 +685,7 @@ const CreateADPage = () => {
 
         <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
           <Pressable onPress={() => navigation.navigate('NewAdAccount')} style={[{paddingVertical: 17}, {paddingHorizontal: 40}, {borderRadius: 50}, {borderWidth: 4}, {borderColor: '#fff'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: '#fff'}]}>Cancel</Text>
+            <Text style={[{fontSize: 20}, {color: '#fff'}]}>Cancel</Text>
           </Pressable>
 
           <Pressable onPress={postForm} style={[{paddingVertical: 17}, {backgroundColor: '#fff'}, {paddingHorizontal: 40}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
@@ -693,7 +693,7 @@ const CreateADPage = () => {
               payLoading ? (
                 <ActivityIndicator color={'#7538D4'} size={'large'} />
               ) : (
-                <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}, {color: '#7538D4'}]}>Pay</Text>
+                <Text style={[{fontSize: 20}, {color: '#7538D4'}]}>Pay</Text>
               )
             }
           </Pressable>

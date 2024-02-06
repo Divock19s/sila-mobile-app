@@ -11,7 +11,7 @@ const RefundRecordPage = () => {
     <View style={[{flex: 1}, {padding: 30}]}>
       <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
         <FontAwesome5 name="money-check-alt" size={24} color="#fff" />
-        <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Bold'}, {fontSize: 17}]}>Refund Record</Text>
+        <Text style={[{color: '#fff'}, {fontSize: 17}]}>Refund Record</Text>
       </View>
 
       <RefundRecord />

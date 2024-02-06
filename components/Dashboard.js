@@ -77,7 +77,7 @@ const Dashboard = () => {
       <ScrollView>
         <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: 170}]} source={require('../assets/images&logos/triangles2.jpg')}>
           <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}, {padding: 30}]}>
-            <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 20}]}>Account Balance:</Text>
+            <Text style={[{fontSize: 20}]}>Account Balance:</Text>
             <Pressable onPress={() => Alert.alert('This is your wallet credit!')}>
               <Foundation name="info" size={35} color="black" />
             </Pressable>
@@ -86,7 +86,7 @@ const Dashboard = () => {
           <View style={[{paddingLeft: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             {
               userWallet !== null && (
-                <Text style={[{fontFamily: 'Ubuntu-Bold'}, {fontSize: 50}]}>{userWallet}</Text>
+                <Text style={[{fontSize: 50}]}>{userWallet}</Text>
               )
             }
             <Foundation name="dollar" size={50} color="black" />
@@ -94,27 +94,27 @@ const Dashboard = () => {
         </ImageBackground>
 
         <View style={[{marginTop: 30}]}>
-          <Text style={[{color: '#fff'}, {fontFamily: 'Ubuntu-Regular'}, {fontSize: 16}]}>Quick actions</Text>
+          <Text style={[{color: '#fff'}, {fontSize: 16}]}>Quick actions</Text>
 
           <View style={[{flexDirection: 'row'}, {gap: 30}, {marginTop: 30}]}>
             <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}]}>
               <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                 <AntDesign name="plus" size={24} color="black" />
               </View>
-              <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: '#000'}]}>Top up</Text>
+              <Text style={[{color: '#000'}]}>Top up</Text>
             </Pressable>
 
             <Pressable onPress={() => navigation.navigate('Profile')} style={[{gap: 5}, {alignItems: 'center'}]}>
               <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                 <AntDesign name="user" size={24} color="black" />
               </View>
-              <Text style={[{fontFamily: 'Ubuntu-Medium'}, {color: '#000'}]}>Profile</Text>
+              <Text style={[{color: '#000'}]}>Profile</Text>
             </Pressable>
           </View>
         </View>
 
         <View style={[{marginTop: 30}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-          <Text style={[{fontFamily: 'Ubuntu-Regular'}, {fontSize: 20}]}>AD accounts:</Text>
+          <Text style={[{fontSize: 20}]}>AD accounts:</Text>
           <CircularProgress
             value={adAccountsNumber}
             radius={120}
@@ -127,7 +127,7 @@ const Dashboard = () => {
             maxValue={200}
             title={'Ad'}
             titleColor={'#7538D4'}
-            titleStyle={[{fontFamily: 'Ubuntu-Bold'}]}
+            titleStyle={[]}
           />
         </View>
       </ScrollView>
