@@ -4,7 +4,7 @@
     "slug": "sila",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/playstore-icon.png",
+    "icon": "./assets/sila-icon.jpg",
     "userInterfaceStyle": "light",
     "splash": {
       "resizeMode": "contain",

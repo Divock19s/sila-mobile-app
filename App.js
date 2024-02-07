@@ -21,6 +21,8 @@ import RefundPage from './pages/RefundPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import ComingSoonPage from './pages/ComingSoonPage';
 import ServicesPage from './pages/ServicesPage';
+import MediaBuyingPage from './pages/MediaBuyingPage';
+import MBPacksPage from './pages/MBPacksPage';
 //
 
 
@@ -32,16 +34,14 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function App() {
 
   //states for the context
-  const [totalDepositOfADs, setTotalDepositOfADs] = useState(0);
-  const [totalCost, setTotalCost] = useState(0);
+  const [pressedMediaPack, setPressedMediaPack] = useState(null);
   //
 
   
   const Stack = createNativeStackNavigator();
 
   return (
-    <data.Provider value={{ totalDepositOfADs, setTotalDepositOfADs,
-    totalCost, setTotalCost }}>
+    <data.Provider value={{ pressedMediaPack, setPressedMediaPack }}>
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='StartUp' screenOptions={{headerShown: false,
@@ -63,6 +63,8 @@ export default function App() {
           <Stack.Screen name='Account' component={AccountSettingsPage} />
           <Stack.Screen name='ComingSoon' component={ComingSoonPage} />
           <Stack.Screen name='Services' component={ServicesPage} />
+          <Stack.Screen name='MediaBuying' component={MediaBuyingPage} />
+          <Stack.Screen name='MBPacks' component={MBPacksPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>

@@ -24,7 +24,7 @@ const ServicesPage = () => {
             <Text style={[{fontSize: 16}, {color: '#fff'}, {width: width / 2}]}>Development (Apps & Websites)</Text>
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {backgroundColor: '#7538D4'}, {marginTop: 30}, {borderRadius: 20}]}>
+        <Pressable onPress={() => navigation.navigate('MediaBuying')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {backgroundColor: '#7538D4'}, {marginTop: 30}, {borderRadius: 20}]}>
             <MaterialIcons name="movie-filter" size={30} color="#fff" />
             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Media buying</Text>
         </Pressable>
