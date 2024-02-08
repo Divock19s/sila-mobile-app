@@ -14,6 +14,21 @@ const MBPacksPage = () => {
 
     const { pressedMediaPack, setPressedMediaPack } = useContext(data);
 
+    const buyStartup = () => {
+        setPressedMediaPack('Pack startup / $399');
+        navigation.navigate('AddMedia');
+    };
+
+    const buyMedium = () => {
+        setPressedMediaPack('Pack medium / $599');
+        navigation.navigate('AddMedia');
+    };
+
+    const buyExpert = () => {
+        setPressedMediaPack('Pack expert / $899');
+        navigation.navigate('AddMedia');
+    };
+
   return (
     <View style={[{flex: 1}]}>
         <View style={[{flexDirection: 'row'}, {padding: 40}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
@@ -51,7 +66,7 @@ const MBPacksPage = () => {
                     <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>Lancement Ads</Text>
                 </View>
 
-                <Pressable onPress={() => setPressedMediaPack('Pack startup / $399')} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                <Pressable onPress={buyStartup} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
                     <Text style={[{fontWeight: 500}]}>Get Started</Text>
                 </Pressable>
@@ -81,7 +96,7 @@ const MBPacksPage = () => {
                     <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>Lancement Ads</Text>
                 </View>
 
-                <Pressable onPress={() => setPressedMediaPack('Pack startup / $599')} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                <Pressable onPress={buyMedium} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
                     <Text style={[{fontWeight: 500}]}>Get Started</Text>
                 </Pressable>
@@ -111,7 +126,7 @@ const MBPacksPage = () => {
                     <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>Lancement Ads</Text>
                 </View>
 
-                <Pressable onPress={() => setPressedMediaPack('Pack startup / $899')} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                <Pressable onPress={buyExpert} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
                     <Text style={[{fontWeight: 500}]}>Get Started</Text>
                 </Pressable>

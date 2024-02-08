@@ -23,6 +23,9 @@ import ComingSoonPage from './pages/ComingSoonPage';
 import ServicesPage from './pages/ServicesPage';
 import MediaBuyingPage from './pages/MediaBuyingPage';
 import MBPacksPage from './pages/MBPacksPage';
+import MBInterface from './pages/MBInterface';
+import AddMediaPage from './pages/AddMediaPage';
+import MyMediaPage from './pages/MyMediaPage';
 //
 
 
@@ -65,6 +68,9 @@ export default function App() {
           <Stack.Screen name='Services' component={ServicesPage} />
           <Stack.Screen name='MediaBuying' component={MediaBuyingPage} />
           <Stack.Screen name='MBPacks' component={MBPacksPage} />
+          <Stack.Screen name='MBInterface' component={MBInterface} />
+          <Stack.Screen name='AddMedia' component={AddMediaPage} />
+          <Stack.Screen name='MyMedia' component={MyMediaPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>

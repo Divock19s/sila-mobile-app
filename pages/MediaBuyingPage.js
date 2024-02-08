@@ -82,7 +82,7 @@ const MediaBuyingPage = () => {
                 <Text style={[{marginTop: 30}, {textAlign: 'center'}]}>Our new media buying service offers you the ability to deliver us your photos or videos, and we can hire our proffesional group of designers and video editors to give you the best results that you anticipate</Text>
 
                 <View style={[{marginTop: 30}]}>
-                    <Pressable onPress={() => navigation.navigate('MBPacks')} style={[{backgroundColor: '#7538D4'}, {padding: 15}, {borderRadius: 10}, {alignItems: 'center'}, {justifyContent: 'center'}]}>
+                    <Pressable onPress={() => navigation.navigate('MBInterface')} style={[{backgroundColor: '#7538D4'}, {padding: 15}, {borderRadius: 10}, {alignItems: 'center'}, {justifyContent: 'center'}]}>
                         <Text style={[{color: '#fff'}, {fontSize: 15}, {fontWeight: 500}]}>Get Started</Text>
                     </Pressable>
 
