@@ -1,10 +1,11 @@
-import { View, Text, Pressable, ImageBackground, ScrollView, Dimensions } from 'react-native';
+import { View, Text, Pressable, ImageBackground, ScrollView, Dimensions, Alert } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import data from '../Context';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const MBPacksPage = () => {
 
@@ -14,19 +15,85 @@ const MBPacksPage = () => {
 
     const { pressedMediaPack, setPressedMediaPack } = useContext(data);
 
+    const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+        const asyncStorage = async () => {
+            try {
+                const response = await AsyncStorage.getItem('userInfo');
+                setUserInfo(JSON.parse(response));
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        asyncStorage();
+    }, []);
+
     const buyStartup = () => {
-        setPressedMediaPack('Pack startup / $399');
-        navigation.navigate('AddMedia');
+        if (userInfo !== null) {
+            const usersApi = async () => {
+                try {
+                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                    const data = await response.json();
+
+                    if (data.user.wallet >= 399) {
+                        setPressedMediaPack('Pack startup / $399');
+                        navigation.navigate('AddMedia');
+                    } else {
+                        Alert.alert('Your balance is insufficient!');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            usersApi();
+        }
     };
 
     const buyMedium = () => {
-        setPressedMediaPack('Pack medium / $599');
-        navigation.navigate('AddMedia');
+        if (userInfo !== null) {
+            const usersApi = async () => {
+                try {
+                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                    const data = await response.json();
+
+                    if (data.user.wallet >= 599) {
+                        setPressedMediaPack('Pack medium / $599');
+                        navigation.navigate('AddMedia');
+                    } else {
+                        Alert.alert('Your balance is insufficient!');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            usersApi();
+        }
     };
 
     const buyExpert = () => {
-        setPressedMediaPack('Pack expert / $899');
-        navigation.navigate('AddMedia');
+        if (userInfo !== null) {
+            const usersApi = async () => {
+                try {
+                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                    const data = await response.json();
+
+                    if (data.user.wallet >= 899) {
+                        setPressedMediaPack('Pack expert / $899');
+                        navigation.navigate('AddMedia');
+                    } else {
+                        Alert.alert('Your balance is insufficient!');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            usersApi();
+        }
     };
 
   return (

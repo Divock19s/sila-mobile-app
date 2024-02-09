@@ -23,9 +23,15 @@ const MBInterface = () => {
             <MaterialIcons name="keyboard-arrow-down" size={30} color="black" />
         </View>
 
-        <Pressable onPress={() => navigation.navigate('MBPacks')} style={[{height: 60}, {width: 60}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {marginTop: 30}, {alignSelf: 'flex-end'}, {marginRight: 30}, {elevation: 50}]}>
-            <AntDesign name="plus" size={30} color="#fff" />
-        </Pressable>
+        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}, {paddingHorizontal: 30}]}>
+            <Pressable onPress={() => navigation.navigate('Services')} style={[{height: 60}, {width: 60}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {alignSelf: 'flex-end'}, {elevation: 50}]}>
+                <AntDesign name="home" size={30} color="#fff" />
+            </Pressable>
+
+            <Pressable onPress={() => navigation.navigate('MBPacks')} style={[{height: 60}, {width: 60}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {alignSelf: 'flex-end'}, {elevation: 50}]}>
+                <AntDesign name="plus" size={30} color="#fff" />
+            </Pressable>
+        </View>
 
         <View style={[{position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderTopRightRadius: 30}, {borderTopLeftRadius: 30}, {justifyContent: 'center'}, {gap: 15}, {backgroundColor: '#7538D4'}]}>
             <Pressable style={[{padding: 10}, {borderRadius: 10}, {backgroundColor: '#fff'}, {alignItems: 'center'}, {gap: 5}]}>
@@ -38,7 +44,7 @@ const MBInterface = () => {
                 <Text style={[{fontWeight: 500}]}>My Media</Text>
             </Pressable>
 
-            <Pressable style={[{padding: 10}, {borderRadius: 10}, {backgroundColor: '#fff'}, {alignItems: 'center'}, {gap: 5}]}>
+            <Pressable onPress={() => navigation.navigate('MyLandingPages')} style={[{padding: 10}, {borderRadius: 10}, {backgroundColor: '#fff'}, {alignItems: 'center'}, {gap: 5}]}>
                 <MaterialIcons name="web" size={24} color="black" />
                 <Text style={[{fontWeight: 500}]}>My Landing pages</Text>
             </Pressable>
