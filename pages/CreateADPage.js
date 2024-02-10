@@ -676,7 +676,7 @@ const CreateADPage = () => {
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             {
               wallet !== null && (
-                <Text style={[{color: '#fff'}, {fontSize: 20}]}>{wallet}</Text>
+                <Text style={[{color: '#fff'}, {fontSize: 20}]}>{wallet.toFixed(2)}</Text>
               )
             }
             <Foundation name="dollar" size={30} color="#fff" />
