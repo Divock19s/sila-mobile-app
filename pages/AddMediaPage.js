@@ -39,7 +39,7 @@ const AddMediaPage = () => {
     useEffect(() => {
         const mediaApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.5:4000/media');
+                const response = await fetch('https://sila-b.onrender.com/media');
                 const data = await response.json();
                 setApiData(data.media)
             } catch (err) {
@@ -95,7 +95,7 @@ const AddMediaPage = () => {
 
                     const mediaApi = async () => {
                         try {
-                            const response = await fetch('http://192.168.1.5:4000/media', {
+                            const response = await fetch('https://sila-b.onrender.com/media', {
                                 method: 'POST',
                                 body: formData
                             });
@@ -105,7 +105,7 @@ const AddMediaPage = () => {
                             if (userInfo !== null && pressedMediaPack !== null) {
                                 const userApi = async () => {
                                     try {
-                                        const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                                        const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
                                         const data = await response.json();
 
                                         const currentWallet = data.user.wallet
@@ -113,7 +113,7 @@ const AddMediaPage = () => {
                                         if (pressedMediaPack === 'Pack startup / $399') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`http://192.168.1.5:4000/users/wallet/${userInfo._id}`, {
+                                                    const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
@@ -127,7 +127,7 @@ const AddMediaPage = () => {
 
                                                     const paymentHistoryApi = async () => {
                                                         try {
-                                                            const response = await fetch('http://192.168.1.5:4000/paymentHistory', {
+                                                            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
                                                                 method: 'POST',
                                                                 headers: {
                                                                     'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ const AddMediaPage = () => {
                                         } else if (pressedMediaPack === 'Pack medium / $599') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`http://192.168.1.5:4000/users/wallet/${userInfo._id}`, {
+                                                    const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
@@ -174,7 +174,7 @@ const AddMediaPage = () => {
 
                                                     const paymentHistoryApi = async () => {
                                                         try {
-                                                            const response = await fetch('http://192.168.1.5:4000/paymentHistory', {
+                                                            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
                                                                 method: 'POST',
                                                                 headers: {
                                                                     'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ const AddMediaPage = () => {
                                         } else if (pressedMediaPack === 'Pack expert / $899') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`http://192.168.1.5:4000/users/wallet/${userInfo._id}`, {
+                                                    const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
@@ -221,7 +221,7 @@ const AddMediaPage = () => {
 
                                                     const paymentHistoryApi = async () => {
                                                         try {
-                                                            const response = await fetch('http://192.168.1.5:4000/paymentHistory', {
+                                                            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
                                                                 method: 'POST',
                                                                 headers: {
                                                                     'Content-Type': 'application/json'

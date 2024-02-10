@@ -31,7 +31,7 @@ const MyMediaPage = () => {
     useEffect(() => {
         const mediaApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.5:4000/media');
+                const response = await fetch('https://sila-b.onrender.com/media');
                 const data = await response.json();
                 setApiData(data.media);
             } catch (err) {
