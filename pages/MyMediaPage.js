@@ -49,7 +49,7 @@ const MyMediaPage = () => {
             <Text style={[{textAlign: 'center'}, {fontWeight: 300}, {fontSize: 20}, {color: '#fff'}]}>My raw media:</Text>
         </View>
 
-        <View style={[{marginHorizontal: 30}, {padding: 10}, {height: height / 2.2}]}>
+        <View style={[{marginHorizontal: 30}, {padding: 10}, {flex: 1}]}>
             {
                 userInfo !== null && (
                     <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
@@ -79,23 +79,6 @@ const MyMediaPage = () => {
                     }} />
                 )
             }
-        </View>
-
-        <View style={[{backgroundColor: '#7538D4'}, {padding: 20}, {marginHorizontal: 30}, {borderRadius: 50}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 20}]}>
-            <MaterialCommunityIcons name="movie-check" size={24} color="#fff" />
-            <Text style={[{textAlign: 'center'}, {fontWeight: 300}, {fontSize: 20}, {color: '#fff'}]}>My purchased media:</Text>
-        </View>
-
-        <View style={[{marginHorizontal: 30}, {padding: 10}, {flex: 1}]}>
-            <ScrollView>
-                <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
-                    <Video style={[{flex: 1}]} source={require('../assets/images&logos/mbVid.mp4')} useNativeControls resizeMode={ResizeMode.COVER} />
-                </View>
-
-                <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
-                    <Image source={require('../assets/images&logos/mb.jpg')} style={[{height: '100%'}, {width: '100%'}]} />
-                </View>
-            </ScrollView>
         </View>
     </View>
   )

@@ -53,33 +53,15 @@ const MediaBuyingPage = () => {
 
         <Animated.View style={[{height: height / 1.4}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {backgroundColor: '#fff'}, {borderTopLeftRadius: 40}, {borderTopRightRadius: 40}, {padding: 20}, {transform: [{translateY: slideWindow}]}]}>
             <ScrollView>
-                <Animated.View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginBottom: 20}, {transform: [{translateY: firstVid}]}]}>
-                    <View style={[{height: height / 6}, {width: width / 2}, {overflow: 'hidden'}, {borderRadius: 30}]}>
-                        <Video style={[{flex: 1}]} source={require('../assets/images&logos/mbVid.mp4')} useNativeControls resizeMode={ResizeMode.COVER} isLooping shouldPlay />
-                    </View>
-                    <Text style={[{width: width / 4}]}>Lorem ipsum dolor sit fjsijfeisjfosejfisefjisefjiosejfseiojfisjfiefhsfysegfyusegfyusgefesfyu</Text>
-                </Animated.View>
-
-                <Animated.View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginBottom: 20}, {transform: [{translateY: secondVid}]}]}>
-                    <Text style={[{width: width / 4}]}>Lorem ipsum dolor sit fjsijfeisjfosejfisefjisefjiosejfseiojfisjfiefhsfysegfyusegfyusgefesfyu</Text>
-                    <View style={[{height: height / 6}, {width: width / 2}, {overflow: 'hidden'}, {borderRadius: 30}]}>
-                        <Image resizeMode='cover' style={[{height: '100%'}, {width: '100%'}]} source={require('../assets/images&logos/mb.jpg')} />
-                    </View>
-                </Animated.View>
-
-                <Animated.View style={[{flexDirection: 'row'}, {gap: 20}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginBottom: 20}, {transform: [{translateY: thirdVid}]}]}>
-                    <View style={[{height: height / 6}, {width: width / 2}, {overflow: 'hidden'}, {borderRadius: 30}]}>
-                        <Video style={[{flex: 1}]} source={require('../assets/images&logos/mbVid.mp4')} useNativeControls resizeMode={ResizeMode.COVER} isLooping shouldPlay />
-                    </View>
-                    <Text style={[{width: width / 4}]}>Lorem ipsum dolor sit fjsijfeisjfosejfisefjisefjiosejfseiojfisjfiefhsfysegfyusegfyusgefesfyu</Text>
-                </Animated.View>
-
-                <View style={[{flexDirection: 'row'}, {marginTop: 20}, {alignItems: 'flex-start'}, {gap: 20}]}>
-                    <SimpleLineIcons name="location-pin" size={24} color="black" />
-                    <Text style={[{width: width / 1.5}]}>You can send your media whether it is photos or videos, from anywhere, anytime!</Text>
+                <View style={[{alignItems: 'center'}, {marginBottom: 50}]}>
+                    <Image style={[{height: 300}, {width: 300}]} source={require('../assets/images&logos/creative.png')} />
+                    <Text style={[{textAlign: 'center'}, {fontWeight: 300}]}>Unlocking the full potential of your brand, we offer image design, video editing, and ads analytics services. From captivating visuals to compelling storytelling and data-driven campaign optimization, we amplify your impact in the digital realm. Let us empower your brand to thrive and connect with your audience on a deeper level.</Text>
                 </View>
 
-                <Text style={[{marginTop: 30}, {textAlign: 'center'}]}>Our new media buying service offers you the ability to deliver us your photos or videos, and we can hire our proffesional group of designers and video editors to give you the best results that you anticipate</Text>
+                <View style={[{flexDirection: 'row'}, {alignItems: 'flex-start'}, {gap: 20}]}>
+                    <SimpleLineIcons name="location-pin" size={24} color="black" />
+                    <Text style={[{width: width / 1.5}]}>You can now send your media whether it is photos or videos, from anywhere, anytime!</Text>
+                </View>
 
                 <View style={[{marginTop: 30}]}>
                     <Pressable onPress={() => navigation.navigate('MBInterface')} style={[{backgroundColor: '#7538D4'}, {padding: 15}, {borderRadius: 10}, {alignItems: 'center'}, {justifyContent: 'center'}]}>

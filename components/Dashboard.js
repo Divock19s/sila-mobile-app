@@ -86,7 +86,7 @@ const Dashboard = () => {
           <View style={[{paddingLeft: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             {
               userWallet !== null && (
-                <Text style={[{fontSize: 50}]}>{userWallet}</Text>
+                <Text style={[{fontSize: 50}]}>{userWallet.toFixed(2)}</Text>
               )
             }
             <Foundation name="dollar" size={50} color="black" />

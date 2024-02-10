@@ -67,6 +67,9 @@ const AddMediaPage = () => {
 
                     if (userInfo !== null) {
                         formData.append('userID', userInfo._id);
+                        formData.append('userName', userInfo.userName);
+                        formData.append('email', userInfo.email);
+                        formData.append('phoneNumber', userInfo.phoneNumber);
                     };
 
                     response.assets.map((x) => {
