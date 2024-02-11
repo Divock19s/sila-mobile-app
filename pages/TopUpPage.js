@@ -19,6 +19,9 @@ const TopUpPage = () => {
     const [paymentMethodPicker, setPaymentMethodPicker] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
 
+    const [currencyPicker, setCurrencyPicker] = useState(false);
+    const [currency, setCurrency] = useState(null);
+
     const [chargeAmount, setChargeAmount] = useState(null);
     const [transactionID, setTransactionID] = useState(null);
 
@@ -27,6 +30,12 @@ const TopUpPage = () => {
     const [userInfo, setUserInfo] = useState(null);
 
     const [confirmLoading, setConfirmLoading] = useState(false);
+
+    useEffect(() => {
+        if (currency !== null) {
+            setCurrencyPicker(false);
+        }
+    }, [currency]);
 
     useEffect(() => {
         if (paymentMethod !== null) {
@@ -72,6 +81,10 @@ const TopUpPage = () => {
 
         const formData = new FormData();
 
+        if (currency !== null) {
+            formData.append('currency', currency);
+        }
+
         if (paymentMethod !== null) {
             formData.append('paymentMethod', paymentMethod);
         }
@@ -103,7 +116,7 @@ const TopUpPage = () => {
 
         const transactionApi = async () => {
             try {
-                const response = await fetch('https://sila-b.onrender.com/transaction', {
+                const response = await fetch('http://192.168.1.5:4000/transaction', {
                     method: 'POST',
                     body: formData
                 });
@@ -118,7 +131,10 @@ const TopUpPage = () => {
             }
         };
 
-        if (paymentMethod === null) {
+        if (currency === null) {
+            Alert.alert('Please select a currency!');
+            setConfirmLoading(false);
+        } else if (paymentMethod === null) {
             Alert.alert('Please select a payment method!');
             setConfirmLoading(false);
         } else if (chargeAmount === null) {
@@ -144,7 +160,40 @@ const TopUpPage = () => {
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
             <ScrollView>
-                <Pressable onPress={() => setPaymentMethodPicker(!paymentMethodPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}]}>
+                <Pressable onPress={() => setCurrencyPicker(!currencyPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}]}>
+                    {
+                        currency !== null ? (
+                            <Text style={[{fontSize: 17}, {color: '#fff'}]}>{currency}</Text>
+                        ) : (
+                            <Text style={[{fontSize: 17}, {color: 'gray'}]}>Currency</Text>
+                        )
+                    }
+                    
+                    {
+                        currencyPicker ? (
+                            <MaterialIcons name="arrow-drop-up" size={30} color="#fff" />
+                        ) : (
+                            <MaterialIcons name="arrow-drop-down" size={30} color="#fff" />
+                        )
+                    }
+                </Pressable>
+
+                {
+                    currencyPicker && (
+                        <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
+                            <Pressable onPress={() => setCurrency('EUR')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                <Text style={[{fontSize: 17}]}>EUR</Text>
+                            </Pressable>
+
+                            <Pressable onPress={() => setCurrency('USD')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                <Text style={[{fontSize: 17}]}>USD</Text>
+                            </Pressable>
+                        </View>
+                    )
+                }
+
+                {/* Payment method */}
+                <Pressable onPress={() => setPaymentMethodPicker(!paymentMethodPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {marginTop: 30}]}>
                     {
                         paymentMethod !== null ? (
                             <Text style={[{fontSize: 17}, {color: '#fff'}]}>{paymentMethod}</Text>
@@ -165,20 +214,16 @@ const TopUpPage = () => {
                 {
                     paymentMethodPicker && (
                         <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
-                            <Pressable onPress={() => setPaymentMethod('Baridi mob')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>Baridi mob</Text>
-                            </Pressable>
-
-                            <Pressable onPress={() => setPaymentMethod('CCP')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>CCP</Text>
-                            </Pressable>
-
                             <Pressable onPress={() => setPaymentMethod('Paysera')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
                                 <Text style={[{fontSize: 17}]}>Paysera</Text>
                             </Pressable>
 
-                            <Pressable onPress={() => setPaymentMethod('USDT')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>USDT</Text>
+                            <Pressable onPress={() => setPaymentMethod('Binance')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                <Text style={[{fontSize: 17}]}>Binance</Text>
+                            </Pressable>
+
+                            <Pressable onPress={() => setPaymentMethod('Redotpay')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                <Text style={[{fontSize: 17}]}>Redotpay</Text>
                             </Pressable>
                         </View>
                     )
@@ -205,27 +250,6 @@ const TopUpPage = () => {
                 {
                     paymentMethod !== null && (
                         <>
-                            {
-                                paymentMethod === 'Baridi mob' && (
-                                    <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{color: 'gray'}]}>Baridimob:</Text>
-                                        <Text style={[{color: 'gray'}]}>RIP : 00799999004065438501</Text>
-                                    </View>
-                                )
-                            }
-
-                            {
-                                paymentMethod === 'CCP' && (
-                                    <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{color: 'gray'}]}>CCP:</Text>
-                                        <Text style={[{color: 'gray'}]}>40654385 cle 44</Text>
-                                        <Text style={[{color: 'gray'}]}>ABDALLAH MERMOURI</Text>
-                                    </View>
-                                )
-                            }
-
                             {
                                 paymentMethod === 'Paysera' && (
                                     <View style={[{marginTop: 20}]}>
@@ -254,7 +278,7 @@ const TopUpPage = () => {
                             }
 
                             {
-                                paymentMethod === 'USDT' && (
+                                paymentMethod === 'Binance' && (
                                     <View style={[{marginTop: 20}]}>
                                         <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
                                         <Text style={[{color: 'gray'}]}>Binance :</Text>
@@ -262,6 +286,21 @@ const TopUpPage = () => {
                                         <Text style={[{color: 'gray'}]}>Usdt adresse TRC20  : TMNDfXxomc9AqdkMvMDBrqKy4q8JPMBpY5</Text>
                                         <Text style={[{color: 'gray'}]}>Username: sila_marketing</Text>
                                         <Text style={[{color: 'gray'}]}>Email: adomerou@gmail.com</Text>
+                                    </View>
+                                )
+                            }
+
+                            {
+                                paymentMethod === 'Redotpay' && (
+                                    <View style={[{marginTop: 20}]}>
+                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
+                                        <Text style={[{color: 'gray'}]}>Redotpay :</Text>
+                                        <Text style={[{color: 'gray'}]}>ID : 1613123172</Text>
+                                        <Text style={[{color: 'gray'}]}>Email : adomerou@gmail.com</Text>
+                                        <Text style={[{color: 'gray'}]}>Tron (TRC20) :</Text>
+                                        <Text style={[{color: 'gray'}]}>TJPSmjyqbrpKUZqRBUUwSUWtkgVaMDYeL7</Text>
+                                        <Text style={[{color: 'gray'}]}>BNB Smart chain (BEP20):</Text>
+                                        <Text style={[{color: 'gray'}]}>0xA1A2205a7934103770D5739CcAceA850725cb896</Text>
                                     </View>
                                 )
                             }

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CircularProgress from 'react-native-circular-progress-indicator';
+import { FontAwesome } from '@expo/vector-icons';
 
 const Dashboard = () => {
 
@@ -15,6 +16,7 @@ const Dashboard = () => {
 
   const [userID, setUserID] = useState(null);
   const [userWallet, setUserWallet] = useState(null);
+  const [userEurWallet, setUserEurWallet] = useState(null);
 
   const [adAccountsNumber, setAdAccountsNumber] = useState(0);
 
@@ -35,9 +37,10 @@ const Dashboard = () => {
     if (userID !== null) {
       const usersApi = async () => {
         try {
-          const response = await fetch(`https://sila-b.onrender.com/users/${userID}`);
+          const response = await fetch(`http://192.168.1.5:4000/users/${userID}`);
           const data = await response.json();
           setUserWallet(data.user.wallet);
+          setUserEurWallet(data.user.eurWallet);
         } catch (err) {
           console.error(err);
         }
@@ -78,7 +81,7 @@ const Dashboard = () => {
         <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: 170}]} source={require('../assets/images&logos/triangles2.jpg')}>
           <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}, {padding: 30}]}>
             <Text style={[{fontSize: 20}]}>Account Balance:</Text>
-            <Pressable onPress={() => Alert.alert('This is your wallet credit!')}>
+            <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
               <Foundation name="info" size={35} color="black" />
             </Pressable>
           </View>  
@@ -90,6 +93,24 @@ const Dashboard = () => {
               )
             }
             <Foundation name="dollar" size={50} color="black" />
+          </View>
+        </ImageBackground>
+
+        <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: 170}, {marginTop: 30}]} source={require('../assets/images&logos/triangles2.jpg')}>
+          <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}, {padding: 30}]}>
+            <Text style={[{fontSize: 20}]}>Account Balance:</Text>
+            <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
+              <Foundation name="info" size={35} color="black" />
+            </Pressable>
+          </View>  
+
+          <View style={[{paddingLeft: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+            {
+              userEurWallet !== null && (
+                <Text style={[{fontSize: 50}]}>{userEurWallet.toFixed(2)}</Text>
+              )
+            }
+            <FontAwesome name="euro" size={35} color="black" />
           </View>
         </ImageBackground>
 

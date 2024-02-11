@@ -34,14 +34,14 @@ const MBPacksPage = () => {
         if (userInfo !== null) {
             const usersApi = async () => {
                 try {
-                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
                     const data = await response.json();
 
-                    if (data.user.wallet >= 399) {
+                    if (data.user.eurWallet >= 399) {
                         setPressedMediaPack('Pack startup / $399');
                         navigation.navigate('AddMedia');
                     } else {
-                        Alert.alert('Your balance is insufficient!');
+                        Alert.alert('Your Euro wallet balance is insufficient!');
                     }
                 } catch (err) {
                     console.error(err);
@@ -56,14 +56,14 @@ const MBPacksPage = () => {
         if (userInfo !== null) {
             const usersApi = async () => {
                 try {
-                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
                     const data = await response.json();
 
-                    if (data.user.wallet >= 599) {
+                    if (data.user.eurWallet >= 599) {
                         setPressedMediaPack('Pack medium / $599');
                         navigation.navigate('AddMedia');
                     } else {
-                        Alert.alert('Your balance is insufficient!');
+                        Alert.alert('Your Euro wallet balance is insufficient!');
                     }
                 } catch (err) {
                     console.error(err);
@@ -78,14 +78,14 @@ const MBPacksPage = () => {
         if (userInfo !== null) {
             const usersApi = async () => {
                 try {
-                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
                     const data = await response.json();
 
-                    if (data.user.wallet >= 899) {
+                    if (data.user.eurWallet >= 899) {
                         setPressedMediaPack('Pack expert / $899');
                         navigation.navigate('AddMedia');
                     } else {
-                        Alert.alert('Your balance is insufficient!');
+                        Alert.alert('Your Euro wallet balance is insufficient!');
                     }
                 } catch (err) {
                     console.error(err);

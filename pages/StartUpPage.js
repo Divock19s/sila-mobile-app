@@ -34,7 +34,7 @@ const StartUpPage = () => {
                 if (response !== null) {
                     navigation.reset({
                         index: 0,
-                        routes: [{ name: 'Dashboard' }]
+                        routes: [{ name: 'Home' }]
                     });
                 } else {
                     navigation.reset({

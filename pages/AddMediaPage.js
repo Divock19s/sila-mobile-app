@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, ScrollView, Dimensions, Alert, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, Image, Pressable, Dimensions, Alert, FlatList, ActivityIndicator } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Video, ResizeMode } from 'expo-av';
@@ -105,21 +105,21 @@ const AddMediaPage = () => {
                             if (userInfo !== null && pressedMediaPack !== null) {
                                 const userApi = async () => {
                                     try {
-                                        const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                                        const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
                                         const data = await response.json();
 
-                                        const currentWallet = data.user.wallet
+                                        const currentEurWallet = data.user.eurWallet
 
                                         if (pressedMediaPack === 'Pack startup / $399') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
+                                                    const response = await fetch(`http://192.168.1.5:4000/users/eurWallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
                                                         },
                                                         body: JSON.stringify({
-                                                            wallet: currentWallet - 399
+                                                            eurWallet: currentEurWallet - 399
                                                         })
                                                     });
 
@@ -160,13 +160,13 @@ const AddMediaPage = () => {
                                         } else if (pressedMediaPack === 'Pack medium / $599') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
+                                                    const response = await fetch(`http://192.168.1.5:4000/users/eurWallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
                                                         },
                                                         body: JSON.stringify({
-                                                            wallet: currentWallet - 599
+                                                            eurWallet: currentEurWallet - 599
                                                         })
                                                     });
 
@@ -207,13 +207,13 @@ const AddMediaPage = () => {
                                         } else if (pressedMediaPack === 'Pack expert / $899') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`https://sila-b.onrender.com/users/wallet/${userInfo._id}`, {
+                                                    const response = await fetch(`http://192.168.1.5:4000/users/eurWallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
                                                         },
                                                         body: JSON.stringify({
-                                                            wallet: currentWallet - 899
+                                                            eurWallet: currentEurWallet - 899
                                                         })
                                                     });
 
