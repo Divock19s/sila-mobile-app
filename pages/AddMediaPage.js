@@ -105,7 +105,7 @@ const AddMediaPage = () => {
                             if (userInfo !== null && pressedMediaPack !== null) {
                                 const userApi = async () => {
                                     try {
-                                        const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                                        const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
                                         const data = await response.json();
 
                                         const currentEurWallet = data.user.eurWallet
@@ -113,7 +113,7 @@ const AddMediaPage = () => {
                                         if (pressedMediaPack === 'Pack startup / $399') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`http://192.168.1.5:4000/users/eurWallet/${userInfo._id}`, {
+                                                    const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
@@ -160,7 +160,7 @@ const AddMediaPage = () => {
                                         } else if (pressedMediaPack === 'Pack medium / $599') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`http://192.168.1.5:4000/users/eurWallet/${userInfo._id}`, {
+                                                    const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ const AddMediaPage = () => {
                                         } else if (pressedMediaPack === 'Pack expert / $899') {
                                             const patchWalletApi = async () => {
                                                 try {
-                                                    const response = await fetch(`http://192.168.1.5:4000/users/eurWallet/${userInfo._id}`, {
+                                                    const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'

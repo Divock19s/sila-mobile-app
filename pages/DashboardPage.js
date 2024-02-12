@@ -4,10 +4,10 @@ import BottomNav from '../components/BottomNav';
 
 const DashboardPage = () => {
   return (
-    <ImageBackground style={[{flex: 1}, {paddingHorizontal: 30}]} source={require('../assets/images&logos/background-gradient-lights.jpg')}>
+    <View style={[{flex: 1}, {paddingHorizontal: 30}]}>
       <Dashboard />
       <BottomNav />
-    </ImageBackground>
+    </View>
   )
 }
 

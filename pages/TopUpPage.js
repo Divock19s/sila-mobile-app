@@ -116,7 +116,7 @@ const TopUpPage = () => {
 
         const transactionApi = async () => {
             try {
-                const response = await fetch('http://192.168.1.5:4000/transaction', {
+                const response = await fetch('https://sila-b.onrender.com/transaction', {
                     method: 'POST',
                     body: formData
                 });

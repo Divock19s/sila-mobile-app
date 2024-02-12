@@ -37,7 +37,7 @@ const Dashboard = () => {
     if (userID !== null) {
       const usersApi = async () => {
         try {
-          const response = await fetch(`http://192.168.1.5:4000/users/${userID}`);
+          const response = await fetch(`https://sila-b.onrender.com/users/${userID}`);
           const data = await response.json();
           setUserWallet(data.user.wallet);
           setUserEurWallet(data.user.eurWallet);
@@ -78,63 +78,27 @@ const Dashboard = () => {
   return (
     <View style={[{height: height / 1.3}, {marginTop: 50}]}>
       <ScrollView>
-        <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: 170}]} source={require('../assets/images&logos/triangles2.jpg')}>
-          <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}, {padding: 30}]}>
-            <Text style={[{fontSize: 20}]}>Account Balance:</Text>
+        {/* Wallet */}
+        <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
+          <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
+            <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
             <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
-              <Foundation name="info" size={35} color="black" />
+              <Foundation name="info" size={35} color="#fff" />
             </Pressable>
           </View>  
 
-          <View style={[{paddingLeft: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
             {
               userWallet !== null && (
-                <Text style={[{fontSize: 50}]}>{userWallet.toFixed(2)}</Text>
+                <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userWallet.toFixed(2)}</Text>
               )
             }
-            <Foundation name="dollar" size={50} color="black" />
-          </View>
-        </ImageBackground>
-
-        <ImageBackground style={[{borderRadius: 20}, {overflow: 'hidden'}, {height: 170}, {marginTop: 30}]} source={require('../assets/images&logos/triangles2.jpg')}>
-          <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}, {padding: 30}]}>
-            <Text style={[{fontSize: 20}]}>Account Balance:</Text>
-            <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
-              <Foundation name="info" size={35} color="black" />
-            </Pressable>
-          </View>  
-
-          <View style={[{paddingLeft: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            {
-              userEurWallet !== null && (
-                <Text style={[{fontSize: 50}]}>{userEurWallet.toFixed(2)}</Text>
-              )
-            }
-            <FontAwesome name="euro" size={35} color="black" />
-          </View>
-        </ImageBackground>
-
-        <View style={[{marginTop: 30}]}>
-          <Text style={[{color: '#fff'}, {fontSize: 16}]}>Quick actions</Text>
-
-          <View style={[{flexDirection: 'row'}, {gap: 30}, {marginTop: 30}]}>
-            <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}]}>
-              <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                <AntDesign name="plus" size={24} color="black" />
-              </View>
-              <Text style={[{color: '#000'}]}>Top up</Text>
-            </Pressable>
-
-            <Pressable onPress={() => navigation.navigate('Profile')} style={[{gap: 5}, {alignItems: 'center'}]}>
-              <View style={[{backgroundColor: '#fff'}, {height: 40}, {width: 40}, {borderRadius: 100 / 2}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                <AntDesign name="user" size={24} color="black" />
-              </View>
-              <Text style={[{color: '#000'}]}>Profile</Text>
-            </Pressable>
+            <Foundation name="dollar" size={50} color="#fff" />
           </View>
         </View>
+        {/* ////// */}
 
-        <View style={[{marginTop: 30}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+        <View style={[{marginTop: 60}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
           <Text style={[{fontSize: 20}]}>AD accounts:</Text>
           <CircularProgress
             value={adAccountsNumber}

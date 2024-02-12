@@ -34,7 +34,7 @@ const MBPacksPage = () => {
         if (userInfo !== null) {
             const usersApi = async () => {
                 try {
-                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
                     const data = await response.json();
 
                     if (data.user.eurWallet >= 399) {
@@ -56,7 +56,7 @@ const MBPacksPage = () => {
         if (userInfo !== null) {
             const usersApi = async () => {
                 try {
-                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
                     const data = await response.json();
 
                     if (data.user.eurWallet >= 599) {
@@ -78,7 +78,7 @@ const MBPacksPage = () => {
         if (userInfo !== null) {
             const usersApi = async () => {
                 try {
-                    const response = await fetch(`http://192.168.1.5:4000/users/${userInfo._id}`);
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
                     const data = await response.json();
 
                     if (data.user.eurWallet >= 899) {
