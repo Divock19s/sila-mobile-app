@@ -309,7 +309,7 @@ const TopUpPage = () => {
                 }
 
                 <View style={[{flexDirection: 'row'}, {marginTop: 50}, {justifyContent: 'center'}, {gap: 20}]}>
-                    <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {borderWidth: 3}, {borderColor: '#7538D4'}]}>
+                    <Pressable onPress={() => navigation.navigate('Home')} style={[{paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {borderWidth: 3}, {borderColor: '#7538D4'}]}>
                         <Text style={[{fontSize: 17}]}>Cancel</Text>
                     </Pressable>
 
