@@ -1,9 +1,10 @@
-import { View, Text, ScrollView, Image, Dimensions, FlatList } from 'react-native';
+import { View, Text, ScrollView, Image, Dimensions, FlatList, Pressable, Linking } from 'react-native';
 import { Video, ResizeMode } from 'expo-av';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Feather } from '@expo/vector-icons';
 
 const MyMediaPage = () => {
 
@@ -61,6 +62,9 @@ const MyMediaPage = () => {
                                             videoRegex.test(m) && (
                                                 <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
                                                     <Video style={[{flex: 1}]} source={{uri: m}} useNativeControls resizeMode={ResizeMode.COVER} />
+                                                    <Pressable onPress={() => Linking.openURL(m)} style={[{padding: 10}, {backgroundColor: '#7538D4'}, {borderRadius: 100 / 2}, {position: 'absolute'}, {right: 10}, {top: 10}]}>
+                                                        <Feather name="download-cloud" size={24} color="#fff" />
+                                                    </Pressable>
                                                 </View>
                                             )
                                         }
@@ -69,6 +73,9 @@ const MyMediaPage = () => {
                                             imageRegex.test(m) && (
                                                 <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
                                                     <Image source={{uri: m}} style={[{height: '100%'}, {width: '100%'}]} />
+                                                    <Pressable onPress={() => Linking.openURL(m)} style={[{padding: 10}, {backgroundColor: '#7538D4'}, {borderRadius: 100 / 2}, {position: 'absolute'}, {right: 10}, {top: 10}]}>
+                                                        <Feather name="download-cloud" size={24} color="#fff" />
+                                                    </Pressable>
                                                 </View>
                                             )
                                         }

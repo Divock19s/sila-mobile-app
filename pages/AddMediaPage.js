@@ -1,4 +1,4 @@
-import { View, Text, Image, Pressable, Dimensions, Alert, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, Image, Pressable, Dimensions, Alert, FlatList, ActivityIndicator, Linking } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Video, ResizeMode } from 'expo-av';
@@ -7,6 +7,7 @@ import { useState, useContext, useEffect } from 'react';
 import data from '../Context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { Feather } from '@expo/vector-icons';
 
 const AddMediaPage = () => {
 
@@ -307,6 +308,9 @@ const AddMediaPage = () => {
                                             videoRegex.test(m) && (
                                                 <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
                                                     <Video style={[{flex: 1}]} source={{uri: m}} useNativeControls resizeMode={ResizeMode.COVER} />
+                                                    <Pressable onPress={() => Linking.openURL(m)} style={[{padding: 10}, {backgroundColor: '#7538D4'}, {borderRadius: 100 / 2}, {position: 'absolute'}, {right: 10}, {top: 10}]}>
+                                                        <Feather name="download-cloud" size={24} color="#fff" />
+                                                    </Pressable>
                                                 </View>
                                             )
                                         }
@@ -315,6 +319,9 @@ const AddMediaPage = () => {
                                             imageRegex.test(m) && (
                                                 <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
                                                     <Image source={{uri: m}} style={[{height: '100%'}, {width: '100%'}]} />
+                                                    <Pressable onPress={() => Linking.openURL(m)} style={[{padding: 10}, {backgroundColor: '#7538D4'}, {borderRadius: 100 / 2}, {position: 'absolute'}, {right: 10}, {top: 10}]}>
+                                                        <Feather name="download-cloud" size={24} color="#fff" />
+                                                    </Pressable>
                                                 </View>
                                             )
                                         }

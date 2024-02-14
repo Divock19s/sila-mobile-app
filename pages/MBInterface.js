@@ -82,7 +82,8 @@ const MBInterface = () => {
                             <Text style={[{fontWeight: 600}]}>Hi there! {userInfo.userName}</Text>
                         )
                     }
-                    <Text style={[{fontSize: 16}, {fontWeight: 300}]}>Discover our new service where we can edit your content as well as managing your Ads and sending you all the analytics every week with just $0.65</Text>
+                    <Text style={[{fontSize: 16}, {fontWeight: 300}]}>Discover our new service where we can edit your content as well as managing your Ads and sending you all the analytics every week with just £0.65</Text>
+                    <Text>Scroll down if the buttons are hidden!</Text>
                     <MaterialIcons name="keyboard-arrow-down" size={30} color="black" />
                 </View>
 
