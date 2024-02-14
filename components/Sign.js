@@ -150,7 +150,7 @@ const Sign = () => {
 
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Dashboard' }]
+                    routes: [{ name: 'Home' }]
                 });
             } catch (err) {
                 console.error(err);
@@ -204,7 +204,7 @@ const Sign = () => {
 
                         navigation.reset({
                             index: 0,
-                            routes: [{ name: 'Dashboard' }]
+                            routes: [{ name: 'Home' }]
                         });
                     } else {
                         Alert.alert('Oops, please re-check your credentials!');
