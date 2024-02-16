@@ -155,9 +155,9 @@ const HomePage = () => {
     }, []);
 
   return (
-    <View style={[{flex: 1}, {padding: 30}]}>
+    <View style={[{flex: 1}, {padding: 20}]}>
         <View style={[{height: height / 1.2}]}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
                     <View>
                         {
@@ -183,7 +183,7 @@ const HomePage = () => {
                 <Text style={[{fontSize: 16}, {marginTop: 30}]}>Services</Text>
 
                 <View style={[{marginTop: 20}]}>
-                    <ScrollView horizontal>
+                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                         <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                             <Entypo name="code" size={30} color="#fff" />
                             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Development</Text>
@@ -224,7 +224,7 @@ const HomePage = () => {
                                 }
                             ]
                             }}
-                            width={width - 60} // from react-native
+                            width={width - 40} // from react-native
                             height={220}
                             yAxisLabel=""
                             yAxisSuffix=""

@@ -159,7 +159,7 @@ const TopUpPage = () => {
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <Pressable onPress={() => setCurrencyPicker(!currencyPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}]}>
                     {
                         currency !== null ? (
