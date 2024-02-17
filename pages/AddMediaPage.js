@@ -103,6 +103,28 @@ const AddMediaPage = () => {
 
                             const data = await response.json();
 
+                            if (userInfo !== null) {
+                                const sendEmail = async () => {
+                                    try {
+                                        const response = await fetch('https://sila-b.onrender.com/sendMail/mediaBuying', {
+                                            method: 'POST',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                userEmail: userInfo.email
+                                            })
+                                        });
+
+                                        const data = await response.json();
+                                    } catch (err) {
+                                        console.error(err);
+                                    }
+                                };
+    
+                                sendEmail();
+                            }
+
                             if (userInfo !== null && pressedMediaPack !== null) {
                                 const userApi = async () => {
                                     try {

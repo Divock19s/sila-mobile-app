@@ -148,6 +148,31 @@ const TopUpPage = () => {
             setConfirmLoading(false);
         } else {
             transactionApi();
+
+            if (userInfo !== null) {
+                const sendEmail = async () => {
+                    try {
+                        const response = await fetch('https://sila-b.onrender.com/sendMail/sentTopUp', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                userEmail: userInfo.email,
+                                paymentMethod: paymentMethod,
+                                transferAmount: chargeAmount,
+                                transactionID: transactionID
+                            })
+                        });
+
+                        const data = await response.json();
+                    } catch (err) {
+                        console.error(err);
+                    }
+                };
+
+                sendEmail();
+            }
         }
     };
 

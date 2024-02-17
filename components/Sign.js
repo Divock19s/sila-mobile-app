@@ -165,6 +165,27 @@ const Sign = () => {
             Alert.alert('Please enter a strong password!');
         } else {
             createUserApi();
+            
+            const sendEmail = async () => {
+                try {
+                    const response = await fetch('https://sila-b.onrender.com/sendMail', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            userEmail: emailSignUp,
+                            userName: userName
+                        })
+                    });
+
+                    const data = await response.json();
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            sendEmail();
         }
     };
     //

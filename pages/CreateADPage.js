@@ -377,6 +377,28 @@ const CreateADPage = () => {
         });
         const data = await response.json();
         setFirstApiDone(true);
+
+        if (userInfo !== null) {
+          const sendEmail = async () => {
+            try {
+              const response = await fetch('https://sila-b.onrender.com/sendMail/ad', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                  userEmail: userInfo.email
+                })
+              });
+
+              const data = await response.json();
+            } catch (err) {
+              console.error(err);
+            }
+          };
+  
+          sendEmail();
+        }
       } catch (err) {
         console.error(err);
       }
