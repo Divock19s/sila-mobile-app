@@ -3,6 +3,9 @@ import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { Entypo } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
 
 const BottomNav = () => {
 
@@ -11,25 +14,25 @@ const BottomNav = () => {
     const { width, height } = Dimensions.get('window');
 
   return (
-    <View style={[{height: height / 10}, {position: 'absolute'}, {bottom: 0}, {right: 0}, {left: 0}, {backgroundColor: '#fff'}, {borderTopLeftRadius: 50}, {borderTopRightRadius: 50}, {elevation: 50}, {alignItems: 'center'}, {padding: 30}, {flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-        <Pressable onPress={() => navigation.navigate('Meta')} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}, {elevation: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <Image style={[{height: 20}, {width: 30}, {resizeMode: 'stretch'}]} source={require('../assets/images&logos/brand-meta-icon-512x358-6oqf35bx.png')} />
+    <View style={[{position: 'absolute'}, {bottom: 20}, {left: 20}, {right: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {justifyContent: 'space-between'}, {backgroundColor: '#7538D4'}, {borderRadius: 100}]}>
+        <Pressable onPress={() => navigation.navigate('Home')} style={[{backgroundColor: '#fff'}, {padding: 13}, {borderRadius: 100 / 2}]}>
+            <AntDesign name="home" size={27} color="#7538D4" />
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}, {elevation: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <AntDesign name="google" size={24} color="black" />
+        <Pressable onPress={() => navigation.navigate('ComingSoon')}>
+            <Entypo name="code" size={27} color="#fff" />
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('Home')} style={[{height: 80}, {width: 80}, {borderRadius: 100 / 2}, {marginTop: -50}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {borderWidth: 8}, {borderColor: '#fff'}]}>
-            <AntDesign name="home" size={35} color="#fff" />
+        <Pressable onPress={() => navigation.navigate('MediaBuying')}>
+            <MaterialIcons name="movie-filter" size={27} color="#fff" />
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}, {elevation: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <FontAwesome name="snapchat-ghost" size={24} color="black" />
+        <Pressable onPress={() => navigation.navigate('Dashboard')}>
+            <AntDesign name="barschart" size={27} color="#fff" />
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}, {elevation: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <FontAwesome5 name="tiktok" size={24} color="black" />
+        <Pressable onPress={() => navigation.navigate('Services')}>
+            <Entypo name="dots-three-horizontal" size={27} color="#fff" />
         </Pressable>
     </View>
   )

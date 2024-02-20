@@ -178,6 +178,7 @@ const HomePage = () => {
 
                 <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}]}>
                     <AntDesign name="plus" size={24} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Re-charge your wallet</Text>
                 </Pressable>
 
                 <Text style={[{fontSize: 16}, {marginTop: 30}]}>Services</Text>

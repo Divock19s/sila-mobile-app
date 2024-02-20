@@ -207,11 +207,11 @@ const TopUpPage = () => {
                     currencyPicker && (
                         <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
                             <Pressable onPress={() => setCurrency('EUR')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>EUR</Text>
+                                <Text style={[{fontSize: 17}]}>EUR (All services)</Text>
                             </Pressable>
 
                             <Pressable onPress={() => setCurrency('USD')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>USD</Text>
+                                <Text style={[{fontSize: 17}]}>USD (Ads only)</Text>
                             </Pressable>
                         </View>
                     )

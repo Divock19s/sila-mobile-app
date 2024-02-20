@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const Dashboard = () => {
 
@@ -114,6 +115,24 @@ const Dashboard = () => {
             titleColor={'#7538D4'}
             titleStyle={[]}
           />
+        </View>
+
+        <View style={[{flexDirection: 'row'}, {gap: 10}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {gap: 20}, {marginTop: 20}]}>
+          <Pressable onPress={() => navigation.navigate('Meta')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <Image style={[{height: 22}, {width: 30}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <FontAwesome name="snapchat-ghost" size={27} color="#fff" />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <AntDesign name="google" size={27} color="#fff" />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <FontAwesome5 name="tiktok" size={27} color="#fff" />
+          </Pressable>
         </View>
       </ScrollView>
     </View>
