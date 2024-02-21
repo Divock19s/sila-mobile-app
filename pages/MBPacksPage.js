@@ -113,7 +113,7 @@ const MBPacksPage = () => {
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
                     <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>Pack startup</Text>
                     <View style={[{flexDirection: 'row'}]}>
-                        <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>$</Text>
+                        <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>€</Text>
                         <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 40}]}>399</Text>
                     </View>
                 </View>
@@ -133,6 +133,16 @@ const MBPacksPage = () => {
                     <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>Lancement Ads</Text>
                 </View>
 
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
+                    <Ionicons name="checkmark-done" size={30} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>No leads commision</Text>
+                </View>
+
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
+                    <Ionicons name="checkmark-done" size={30} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>3 Products</Text>
+                </View>
+
                 <Pressable onPress={buyStartup} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
                     <Text style={[{fontWeight: 500}]}>Get Started</Text>
@@ -143,7 +153,7 @@ const MBPacksPage = () => {
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
                     <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>Pack medium</Text>
                     <View style={[{flexDirection: 'row'}]}>
-                        <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>$</Text>
+                        <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>€</Text>
                         <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 40}]}>599</Text>
                     </View>
                 </View>
@@ -163,6 +173,16 @@ const MBPacksPage = () => {
                     <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>Lancement Ads</Text>
                 </View>
 
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
+                    <Ionicons name="checkmark-done" size={30} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}, {width: width / 2}]}>Optimization ads + Suivre les ads</Text>
+                </View>
+
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
+                    <Ionicons name="checkmark-done" size={30} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>6 Products</Text>
+                </View>
+
                 <Pressable onPress={buyMedium} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
                     <Text style={[{fontWeight: 500}]}>Get Started</Text>
@@ -173,7 +193,7 @@ const MBPacksPage = () => {
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
                     <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>Pack expert</Text>
                     <View style={[{flexDirection: 'row'}]}>
-                        <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>$</Text>
+                        <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>€</Text>
                         <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 40}]}>899</Text>
                     </View>
                 </View>
@@ -191,6 +211,16 @@ const MBPacksPage = () => {
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
                     <Ionicons name="checkmark-done" size={30} color="#fff" />
                     <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>Lancement Ads</Text>
+                </View>
+
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
+                    <Ionicons name="checkmark-done" size={30} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}, {width: width / 2}]}>Optimization ads + Suivre les ads</Text>
+                </View>
+
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 10}]}>
+                    <Ionicons name="checkmark-done" size={30} color="#fff" />
+                    <Text style={[{color: '#fff'}, {fontWeight: 100}, {fontSize: 20}]}>11 Products</Text>
                 </View>
 
                 <Pressable onPress={buyExpert} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>

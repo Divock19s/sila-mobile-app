@@ -98,7 +98,6 @@ const RefundPage = () => {
             body: JSON.stringify({
               userID: userInfo._id,
               accountName: adAccount.adName,
-              accountID: adAccount.adID,
               refundReason: refundReason,
               amount: refundAmount
             })

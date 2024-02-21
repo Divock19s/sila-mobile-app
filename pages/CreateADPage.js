@@ -38,7 +38,6 @@ const CreateADPage = () => {
   const [adAccountsNumber, setAdAccountsNumber] = useState(0);
   const [adAccountNames, setAdAccountNames] = useState([]);
   const [adAccountDeposits, setAdAccountDeposits] = useState([]);
-  const [adAccountIDs, setAdAccountIDs] = useState([]);
 
   const [remark, setRemark] = useState(null);
 
@@ -202,7 +201,6 @@ const CreateADPage = () => {
       ADAccountSection.push(
         <View style={[{borderWidth: 3}, {marginTop: 20}, {borderRadius: 20}, {borderColor: '#7538D4'}, {paddingHorizontal: 10}]}>
           <TextInput onChangeText={(text) => storeADaccountName(i, text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account name...' />
-          <TextInput onChangeText={(text) => storeADaccountIDs(i, text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {height: height / 15}]} placeholder='AD account ID...' />
           <RNPickerSelect
             onValueChange={(value) => storeADaccountDeposit(i, value)}
             items={[
@@ -245,21 +243,10 @@ const CreateADPage = () => {
   };
   //
 
-  //getting the AD account IDs values and storing them in ADaccountIDs state, which is an array
-  const storeADaccountIDs = (i, text) => {
-    setAdAccountIDs((prev) => {
-      const newValue = [...prev];
-      newValue[i] = text;
-      return newValue;
-    });
-  };
-  //
-
   // deleting values from the array, after picker number changes
   useEffect(() => {
     setAdAccountDeposits((prev) => prev.slice(0, adAccountsNumber));
     setAdAccountNames((prev) => prev.slice(0, adAccountsNumber));
-    setAdAccountIDs((prev) => prev.slice(0, adAccountsNumber));
   }, [adAccountsNumber]);
   //
 
@@ -353,10 +340,6 @@ const CreateADPage = () => {
       formData.append(`ads[${i}][adDeposit]`, x);
     });
 
-    adAccountIDs.map((x, i) => {
-      formData.append(`ads[${i}][adID]`, x);
-    });
-
     if (remark !== null) {
       formData.append('remark', remark);
     };
@@ -440,9 +423,6 @@ const CreateADPage = () => {
     } else if (adAccountDeposits.length === 0) {
       Alert.alert('Please fill-in Ad Account deposit(s)!');
       setPayLoading(false);
-    } else if (adAccountIDs.length === 0) {
-      Alert.alert('Please fill-in Ad Account ID(s)!');
-      setPayLoading(false);
     } else if (wallet !== null && wallet < totalCost) {
       Alert.alert('Your balance is not sufficient!');
       setPayLoading(false);
@@ -512,7 +492,7 @@ const CreateADPage = () => {
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
       <View style={[{height: height / 1.6}, {marginBottom: 30}]}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View>
           <Text style={[{fontSize: 20}]}>License:</Text>
           <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />

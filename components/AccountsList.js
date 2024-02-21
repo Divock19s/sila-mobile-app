@@ -65,7 +65,6 @@ const AccountsList = () => {
                                         },
                                         body: JSON.stringify({
                                             userID: userInfo._id,
-                                            adID: y.adID,
                                             adName: y.adName,
                                             bmID: bmShareID
                                         })
@@ -109,8 +108,8 @@ const AccountsList = () => {
 
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                     <FontAwesome name="id-card-o" size={24} color="#fff" />
-                                    <Text style={[{color: '#fff'}]}>Ad ID:</Text>
-                                    <Text style={[{color: '#fff'}]}>{ad.adID}</Text>
+                                    <Text style={[{color: '#fff'}]}>ID:</Text>
+                                    <Text style={[{color: '#fff'}]}>{ad._id}</Text>
                                 </View>
 
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>

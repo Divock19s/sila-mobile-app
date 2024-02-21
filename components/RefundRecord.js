@@ -56,12 +56,6 @@ const RefundRecord = () => {
                                 </View>
 
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                    <FontAwesome name="id-card-o" size={24} color="#fff" />
-                                    <Text style={[{color: '#fff'}]}>Ad ID:</Text>
-                                    <Text style={[{color: '#fff'}]}>{item.adAccountID}</Text>
-                                </View>
-
-                                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                     <MaterialIcons name="drive-file-rename-outline" size={24} color="#fff" />
                                     <Text style={[{color: '#fff'}]}>Ad name:</Text>
                                     <Text style={[{color: '#fff'}]}>{item.adAccountName}</Text>
