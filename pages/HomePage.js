@@ -195,7 +195,7 @@ const HomePage = () => {
                             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Media buying</Text>
                         </Pressable>
 
-                        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
+                        <Pressable onPress={() => navigation.navigate('Shooting')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                             <Entypo name="video-camera" size={30} color="#fff" />
                             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Shooting</Text>
                         </Pressable>

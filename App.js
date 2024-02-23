@@ -27,6 +27,9 @@ import MBInterface from './pages/MBInterface';
 import AddMediaPage from './pages/AddMediaPage';
 import MyMediaPage from './pages/MyMediaPage';
 import HomePage from './pages/HomePage';
+import ShootingPage from './pages/ShootingPage';
+import ShootingSuccessPage from './pages/ShootingSuccessPage';
+import ShootingDashboardPage from './pages/ShootingDashboardPage';
 //
 
 
@@ -73,6 +76,9 @@ export default function App() {
           <Stack.Screen name='AddMedia' component={AddMediaPage} />
           <Stack.Screen name='MyMedia' component={MyMediaPage} />
           <Stack.Screen name='Home' component={HomePage} />
+          <Stack.Screen name='Shooting' component={ShootingPage} />
+          <Stack.Screen name='ShootingSuccess' component={ShootingSuccessPage} />
+          <Stack.Screen name='ShootingDashboard' component={ShootingDashboardPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>
