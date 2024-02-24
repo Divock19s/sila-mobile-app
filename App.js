@@ -30,6 +30,8 @@ import HomePage from './pages/HomePage';
 import ShootingPage from './pages/ShootingPage';
 import ShootingSuccessPage from './pages/ShootingSuccessPage';
 import ShootingDashboardPage from './pages/ShootingDashboardPage';
+import AddCreativePage from './pages/AddCreativePage';
+import CreativeDashboardPage from './pages/CreativeDashboardPage';
 //
 
 
@@ -42,13 +44,15 @@ export default function App() {
 
   //states for the context
   const [pressedMediaPack, setPressedMediaPack] = useState(null);
+  const [pressedCreativePack, setPressedCreativePack] = useState(null);
   //
 
   
   const Stack = createNativeStackNavigator();
 
   return (
-    <data.Provider value={{ pressedMediaPack, setPressedMediaPack }}>
+    <data.Provider value={{ pressedMediaPack, setPressedMediaPack, pressedCreativePack,
+    setPressedCreativePack }}>
       <StatusBar style="auto" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='StartUp' screenOptions={{headerShown: false,
@@ -79,6 +83,8 @@ export default function App() {
           <Stack.Screen name='Shooting' component={ShootingPage} />
           <Stack.Screen name='ShootingSuccess' component={ShootingSuccessPage} />
           <Stack.Screen name='ShootingDashboard' component={ShootingDashboardPage} />
+          <Stack.Screen name='AddCreative' component={AddCreativePage} />
+          <Stack.Screen name='CreativeDashboard' component={CreativeDashboardPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>

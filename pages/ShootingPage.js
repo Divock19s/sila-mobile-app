@@ -1,15 +1,18 @@
-import { View, Text, Pressable, Animated, Dimensions, ScrollView } from 'react-native';
+import { View, Text, Pressable, Animated, Dimensions, ScrollView, Alert } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
+import data from '../Context';
 
 const ShootingPage = () => {
 
     const navigation = useNavigation();
+
+    const { pressedCreativePack, setPressedCreativePack } = useContext(data);
 
     const { width, height } = Dimensions.get('window');
 
@@ -385,6 +388,72 @@ const ShootingPage = () => {
         }
     };
 
+    const buyStarter = () => {
+        if (userInfo !== null) {
+            const userApi = async () => {
+                try {
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                    const data = await response.json();
+                    
+                    if (data.user.eurWallet < 29) {
+                        Alert.alert('Your balance is insufficient!');
+                    } else {
+                        setPressedCreativePack('Pack Starter / €29');
+                        navigation.navigate('AddCreative');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            userApi();
+        }
+    };
+
+    const buyMedium = () => {
+        if (userInfo !== null) {
+            const userApi = async () => {
+                try {
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                    const data = await response.json();
+                    
+                    if (data.user.eurWallet < 69) {
+                        Alert.alert('Your balance is insufficient!');
+                    } else {
+                        setPressedCreativePack('Pack Medium / €69');
+                        navigation.navigate('AddCreative');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            userApi();
+        }
+    };
+
+    const buyExpert = () => {
+        if (userInfo !== null) {
+            const userApi = async () => {
+                try {
+                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                    const data = await response.json();
+                    
+                    if (data.user.eurWallet < 129) {
+                        Alert.alert('Your balance is insufficient!');
+                    } else {
+                        setPressedCreativePack('Pack Expert / €129');
+                        navigation.navigate('AddCreative');
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            };
+
+            userApi();
+        }
+    };
+
   return (
     <View style={[{flex: 1}]}>
         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}]}>
@@ -529,7 +598,7 @@ const ShootingPage = () => {
         {
             section === 'creative' && (
                 <ScrollView style={[{padding: 20}]}>
-                    <Pressable style={[{marginBottom: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
+                    <Pressable onPress={() => navigation.navigate('CreativeDashboard')} style={[{marginBottom: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                         <FontAwesome name="square" size={24} color="#fff" />
                         <Text style={[{color: '#fff'}, {fontWeight: 500}, {fontSize: 15}]}>My Creative Dashboard</Text>
                     </Pressable>
@@ -548,7 +617,7 @@ const ShootingPage = () => {
                             <Text style={[{fontSize: 15}, {color: '#fff'}, {fontWeight: 500}]}>1 Script + 1 voix ALG</Text>
                         </View>
 
-                        <Pressable style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                        <Pressable onPress={buyStarter} style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                             <Ionicons name="card-outline" size={24} color="black" />
                             <Text>Buy now</Text>
                             <Text>€29</Text>
@@ -570,7 +639,7 @@ const ShootingPage = () => {
                             <Text style={[{fontSize: 15}, {color: '#fff'}, {fontWeight: 500}]}>3 Script + 3 voix ALG</Text>
                         </View>
 
-                        <Pressable style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                        <Pressable onPress={buyMedium} style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                             <Ionicons name="card-outline" size={24} color="black" />
                             <Text>Buy now</Text>
                             <Text>€69</Text>
@@ -597,7 +666,7 @@ const ShootingPage = () => {
                             <Text style={[{fontSize: 15}, {color: '#fff'}, {fontWeight: 500}]}>1 Free Landing Page</Text>
                         </View>
 
-                        <Pressable style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                        <Pressable onPress={buyExpert} style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                             <Ionicons name="card-outline" size={24} color="black" />
                             <Text>Buy now</Text>
                             <Text>€129</Text>
