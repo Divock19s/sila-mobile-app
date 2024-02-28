@@ -284,7 +284,7 @@ const Sign = () => {
       <Animated.View style={[{backgroundColor: '#fff'}, {height: height / 1.6}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopLeftRadius: 50}, {borderTopRightRadius: 50}, {padding: 50}, {elevation: 50}, {transform: [{translateY: signAnimation}]}]}>
         {
             signWindow === 'signUp' && (
-                <ScrollView>
+                <ScrollView showsVerticalScrollIndicator={false}>
                     <View style={[{gap: 10}, {marginBottom: 30}]}>
                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 5}]}>
                             <Text style={[{fontSize: 20}, {color: 'red'}]}>*</Text>

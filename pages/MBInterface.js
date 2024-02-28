@@ -49,7 +49,7 @@ const MBInterface = () => {
   return (
     <View style={[{flex: 1}]}>
         <View style={[{height: height / 1.2}]}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 {/* Wallet */}
                 <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginHorizontal: 20}, {marginBottom: 40}]}>
                     <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>

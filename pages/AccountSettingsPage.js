@@ -306,7 +306,7 @@ const AccountSettingsPage = () => {
         </View>
 
         <View style={[{padding: 30}, {gap: 40}, {height: height / 2}]}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
                     <Text style={[{fontSize: 17}]}>Email:</Text>
                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {backgroundColor: 'lightgray'}, {padding: 10}, {borderRadius: 30}]}>

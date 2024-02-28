@@ -108,7 +108,7 @@ const MBPacksPage = () => {
             </View>
         </View>
 
-        <ScrollView style={[{paddingHorizontal: 20}]}>
+        <ScrollView showsVerticalScrollIndicator={false} style={[{paddingHorizontal: 20}]}>
             <View style={[{borderRadius: 30}, {overflow: 'hidden'}, {marginBottom: 20}, {padding: 30}, {backgroundColor: "rgba(117, 56, 212, .3)"}]}>
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
                     <Text style={[{color: '#fff'}, {fontWeight: 800}, {fontSize: 20}]}>Pack startup</Text>

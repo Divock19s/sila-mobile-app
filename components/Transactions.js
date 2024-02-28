@@ -51,7 +51,7 @@ const Transactions = () => {
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
-            <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
+            <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                 if (item.userID === userID) {
                     return(
                         <View style={[{borderRadius: 50}, {backgroundColor: '#000'}, {padding: 20}, {marginBottom: 30}, {gap: 30}]}>

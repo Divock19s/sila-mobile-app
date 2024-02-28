@@ -83,13 +83,13 @@ const CreativeDashboardPage = () => {
         <View style={[{height: height / 2.3}, {padding: 10}]}>
             {
                 userInfo !== null && (
-                    <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
+                    <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                         if (item.userID === userInfo._id) {
                             return(
-                                <View style={[{borderRadius: 30}, {overflow: 'hidden'}, {marginBottom: 30}]}>
-                                    <Video source={{uri: item.videos}} useNativeControls style={[{height: height / 4}]} resizeMode={ResizeMode.COVER} />
-                                    <Pressable onPress={() => openLink(item.videos)} style={[{position: 'absolute'}, {right: 30}, {top: 20}, {backgroundColor: '#7538D4'}, {padding: 15}, {borderRadius: 100 / 2}]}>
-                                        <Feather name="download-cloud" size={24} color="#fff" />
+                                <View style={[{marginBottom: 30}, {padding: 20}, {backgroundColor: '#7538D4'}, {borderRadius: 10}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
+                                    <Text style={[{color: '#fff'}]}>{item.video}</Text>
+                                    <Pressable onPress={() => Linking.openURL(item.video)}>
+                                        <Feather name="external-link" size={24} color="#fff" />
                                     </Pressable>
                                 </View>
                             )
@@ -104,11 +104,11 @@ const CreativeDashboardPage = () => {
 
             {
                 userInfo !== null && (
-                    <FlatList data={linksApiData} keyExtractor={item => item._id} renderItem={({item}) => {
+                    <FlatList showsVerticalScrollIndicator={false} data={linksApiData} keyExtractor={item => item._id} renderItem={({item}) => {
                         if(item.userID === userInfo._id) {
                             return(
                                 <View style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 10}, {marginTop: 30}, {flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                                    <Text>{item.link}</Text>
+                                    <Text>{item.linkName}</Text>
                                     <Pressable onPress={() => openCreativeLink(item.link)}>
                                         <Ionicons name="open" size={24} color="black" />
                                     </Pressable>

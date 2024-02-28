@@ -75,7 +75,7 @@ const FacebookPage = () => {
       </View>
 
       <View style={[{height: height / 1.4}, {marginTop: 100}, {paddingHorizontal: 10}]}>
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {rowGap: 40}]}>
             <Pressable onPress={() => navigation.navigate('AccountsList')}>
               <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: first}]}]}>

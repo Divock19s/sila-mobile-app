@@ -78,7 +78,7 @@ const Dashboard = () => {
 
   return (
     <View style={[{height: height / 1.3}, {marginTop: 50}]}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         {/* Wallet */}
         <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
           <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>

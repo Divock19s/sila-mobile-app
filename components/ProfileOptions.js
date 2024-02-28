@@ -32,7 +32,7 @@ const ProfileOptions = () => {
 
   return (
     <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {padding: 20}, {marginTop: 20}, {elevation: 50}]}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <Pressable onPress={() => navigation.navigate('Transactions')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <Entypo name="wallet" size={24} color="black" />
           <Text style={[]}>My transactions</Text>

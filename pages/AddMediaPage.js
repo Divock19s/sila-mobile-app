@@ -1,13 +1,12 @@
-import { View, Text, Image, Pressable, Dimensions, Alert, FlatList, ActivityIndicator, Linking } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
-import { MaterialIcons } from '@expo/vector-icons';
-import { Video, ResizeMode } from 'expo-av';
-import * as DocumentPicker from 'expo-document-picker';
+import { View, Text, Image, Pressable, Dimensions, Alert, FlatList, ActivityIndicator, Linking, TextInput } from 'react-native';
 import { useState, useContext, useEffect } from 'react';
 import data from '../Context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { Feather } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const AddMediaPage = () => {
 
@@ -18,8 +17,8 @@ const AddMediaPage = () => {
     const { pressedMediaPack } = useContext(data);
     
     const [userInfo, setUserInfo] = useState(null);
-    const [apiData, setApiData] = useState([]);
     const [uploadLoading, setUploadLoading] = useState(false);
+    const [linkInput, setLinkInput] = useState(null);
 
     const videoRegex = /\b(mp4|mov)\b/;
     const imageRegex = /\b(jpg|png|jpeg|gif)\b/;
@@ -37,323 +36,281 @@ const AddMediaPage = () => {
         asyncStorage();
     }, []);
 
-    useEffect(() => {
-        const mediaApi = async () => {
-            try {
-                const response = await fetch('https://sila-b.onrender.com/media');
-                const data = await response.json();
-                setApiData(data.media)
-            } catch (err) {
-                console.error(err);
-            }
-        };
+    const sendLink = () => {
+        setUploadLoading(true);
 
-        mediaApi();
-    }, []);
-
-    const pickFiles = () => {
-        const pick = async () => {
-            try {
-                const response = await DocumentPicker.getDocumentAsync({
-                    type: '*/*',
-                    multiple: true
-                });
-
-                if (response.canceled) {
-                    Alert.alert('No media was selected!');
-                } else {
-                    setUploadLoading(true);
-
-                    const formData = new FormData();
-
-                    if (userInfo !== null) {
-                        formData.append('userID', userInfo._id);
-                        formData.append('userName', userInfo.userName);
-                        formData.append('email', userInfo.email);
-                        formData.append('phoneNumber', userInfo.phoneNumber);
-                    };
-
-                    response.assets.map((x) => {
-                        const file = {
-                            uri: x.uri,
-                            type: x.mimeType,
-                            name: x.name
-                        };
-
-                        formData.append('media', file);
+        if (linkInput !== null && userInfo !== null && pressedMediaPack !== null) {
+            const mediaApi = async () => {
+                try {
+                    const response = await fetch('https://sila-b.onrender.com/media', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            userID: userInfo._id,
+                            media: linkInput,
+                            userName: userInfo.userName,
+                            email: userInfo.email,
+                            phoneNumber: userInfo.phoneNumber,
+                            pack: pressedMediaPack
+                        })
                     });
 
-                    if (pressedMediaPack !== null) {
-                        formData.append('pack', pressedMediaPack);
-                        if (pressedMediaPack === 'Pack startup / $399') {
-                            formData.append('limit', 12);
-                        } else if (pressedMediaPack === 'Pack medium / $599') {
-                            formData.append('limit', 24);
-                        } else if (pressedMediaPack === 'Pack expert / $899') {
-                            formData.append('limit', 45);
-                        }
-                    };
+                    const data = await response.json();
 
-                    const mediaApi = async () => {
+                    const usersApi = async () => {
                         try {
-                            const response = await fetch('https://sila-b.onrender.com/media', {
-                                method: 'POST',
-                                body: formData
-                            });
-
+                            const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
                             const data = await response.json();
+                            const currentWallet = data.user.eurWallet;
 
-                            if (userInfo !== null) {
-                                const sendEmail = async () => {
+                            if (pressedMediaPack === 'Pack startup / $399') {
+                                const patchWalletApi = async () => {
                                     try {
-                                        const response = await fetch('https://sila-b.onrender.com/sendMail/mediaBuying', {
-                                            method: 'POST',
+                                        const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
+                                            method: 'PATCH',
                                             headers: {
                                                 'Content-Type': 'application/json'
                                             },
                                             body: JSON.stringify({
-                                                userEmail: userInfo.email
+                                                eurWallet: currentWallet - 399
                                             })
                                         });
 
                                         const data = await response.json();
+
+                                        const paymentHistoryApi = async () => {
+                                            try {
+                                                const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                    },
+                                                    body: JSON.stringify({
+                                                        userID: userInfo._id,
+                                                        type: 'Purchased media buying starter pack',
+                                                        amount: '-399'
+                                                    })
+                                                });
+
+                                                const data = await response.json();
+                                                setUploadLoading(false);
+                                                navigation.navigate('MyMedia');
+
+                                                const sendMail = async () => {
+                                                    try {
+                                                        const response = await fetch('https://sila-b.onrender.com/sendMail/mediaBuying', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            },
+                                                            body: JSON.stringify({
+                                                                userEmail: userInfo.email
+                                                            })
+                                                        });
+
+                                                        const data = await response.json();
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                    }
+                                                };
+
+                                                sendMail();
+                                            } catch (err) {
+                                                console.error(err);
+                                            }
+                                        };
+
+                                        paymentHistoryApi();
                                     } catch (err) {
                                         console.error(err);
                                     }
                                 };
-    
-                                sendEmail();
-                            }
 
-                            if (userInfo !== null && pressedMediaPack !== null) {
-                                const userApi = async () => {
+                                patchWalletApi();
+                            } else if (pressedMediaPack === 'Pack medium / $599') {
+                                const patchWalletApi = async () => {
                                     try {
-                                        const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+                                        const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
+                                            method: 'PATCH',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                eurWallet: currentWallet - 599
+                                            })
+                                        });
+
                                         const data = await response.json();
 
-                                        const currentEurWallet = data.user.eurWallet
+                                        const paymentHistoryApi = async () => {
+                                            try {
+                                                const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                    },
+                                                    body: JSON.stringify({
+                                                        userID: userInfo._id,
+                                                        type: 'Purchased media buying medium pack',
+                                                        amount: '-599'
+                                                    })
+                                                });
 
-                                        if (pressedMediaPack === 'Pack startup / $399') {
-                                            const patchWalletApi = async () => {
-                                                try {
-                                                    const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
-                                                        method: 'PATCH',
-                                                        headers: {
-                                                            'Content-Type': 'application/json'
-                                                        },
-                                                        body: JSON.stringify({
-                                                            eurWallet: currentEurWallet - 399
-                                                        })
-                                                    });
+                                                const data = await response.json();
+                                                setUploadLoading(false);
+                                                navigation.navigate('MyMedia');
 
-                                                    const data = await response.json();
+                                                const sendMail = async () => {
+                                                    try {
+                                                        const response = await fetch('https://sila-b.onrender.com/sendMail/mediaBuying', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            },
+                                                            body: JSON.stringify({
+                                                                userEmail: userInfo.email
+                                                            })
+                                                        });
 
-                                                    const paymentHistoryApi = async () => {
-                                                        try {
-                                                            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
-                                                                method: 'POST',
-                                                                headers: {
-                                                                    'Content-Type': 'application/json'
-                                                                },
-                                                                body: JSON.stringify({
-                                                                    userID: userInfo._id,
-                                                                    type: 'Purchased a media pack',
-                                                                    amount: '-399'
-                                                                })
-                                                            });
+                                                        const data = await response.json();
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                    }
+                                                };
 
-                                                            const data = await response.json();
-                                                            setUploadLoading(false);
-                                                            navigation.reset({
-                                                                index: 0,
-                                                                routes: [{ name: 'MBInterface' }]
-                                                            });
-                                                        } catch (err) {
-                                                            console.error(err);
-                                                        }
-                                                    };
+                                                sendMail();
+                                            } catch (err) {
+                                                console.error(err);
+                                            }
+                                        };
 
-                                                    paymentHistoryApi();
-                                                } catch (err) {
-                                                    console.error(err);
-                                                }
-                                            };
-
-                                            patchWalletApi();
-                                        } else if (pressedMediaPack === 'Pack medium / $599') {
-                                            const patchWalletApi = async () => {
-                                                try {
-                                                    const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
-                                                        method: 'PATCH',
-                                                        headers: {
-                                                            'Content-Type': 'application/json'
-                                                        },
-                                                        body: JSON.stringify({
-                                                            eurWallet: currentEurWallet - 599
-                                                        })
-                                                    });
-
-                                                    const data = await response.json();
-
-                                                    const paymentHistoryApi = async () => {
-                                                        try {
-                                                            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
-                                                                method: 'POST',
-                                                                headers: {
-                                                                    'Content-Type': 'application/json'
-                                                                },
-                                                                body: JSON.stringify({
-                                                                    userID: userInfo._id,
-                                                                    type: 'Purchased a media pack',
-                                                                    amount: '-599'
-                                                                })
-                                                            });
-
-                                                            const data = await response.json();
-                                                            setUploadLoading(false);
-                                                            navigation.reset({
-                                                                index: 0,
-                                                                routes: [{ name: 'MBInterface' }]
-                                                            });
-                                                        } catch (err) {
-                                                            console.error(err);
-                                                        }
-                                                    };
-
-                                                    paymentHistoryApi();
-                                                } catch (err) {
-                                                    console.error(err);
-                                                }
-                                            };
-
-                                            patchWalletApi();
-                                        } else if (pressedMediaPack === 'Pack expert / $899') {
-                                            const patchWalletApi = async () => {
-                                                try {
-                                                    const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
-                                                        method: 'PATCH',
-                                                        headers: {
-                                                            'Content-Type': 'application/json'
-                                                        },
-                                                        body: JSON.stringify({
-                                                            eurWallet: currentEurWallet - 899
-                                                        })
-                                                    });
-
-                                                    const data = await response.json();
-
-                                                    const paymentHistoryApi = async () => {
-                                                        try {
-                                                            const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
-                                                                method: 'POST',
-                                                                headers: {
-                                                                    'Content-Type': 'application/json'
-                                                                },
-                                                                body: JSON.stringify({
-                                                                    userID: userInfo._id,
-                                                                    type: 'Purchased a media pack',
-                                                                    amount: '-899'
-                                                                })
-                                                            });
-
-                                                            const data = await response.json();
-                                                            setUploadLoading(false);
-                                                            navigation.reset({
-                                                                index: 0,
-                                                                routes: [{ name: 'MBInterface' }]
-                                                            });
-                                                        } catch (err) {
-                                                            console.error(err);
-                                                        }
-                                                    };
-
-                                                    paymentHistoryApi();
-                                                } catch (err) {
-                                                    console.error(err);
-                                                }
-                                            };
-
-                                            patchWalletApi();
-                                        }
+                                        paymentHistoryApi();
                                     } catch (err) {
                                         console.error(err);
                                     }
                                 };
 
-                                userApi();
+                                patchWalletApi();
+                            } else if (pressedMediaPack === 'Pack expert / $899') {
+                                const patchWalletApi = async () => {
+                                    try {
+                                        const response = await fetch(`https://sila-b.onrender.com/users/eurWallet/${userInfo._id}`, {
+                                            method: 'PATCH',
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            },
+                                            body: JSON.stringify({
+                                                eurWallet: currentWallet - 899
+                                            })
+                                        });
+
+                                        const data = await response.json();
+
+                                        const paymentHistoryApi = async () => {
+                                            try {
+                                                const response = await fetch('https://sila-b.onrender.com/paymentHistory', {
+                                                    method: 'POST',
+                                                    headers: {
+                                                        'Content-Type': 'application/json'
+                                                    },
+                                                    body: JSON.stringify({
+                                                        userID: userInfo._id,
+                                                        type: 'Purchased media buying expert pack',
+                                                        amount: '-899'
+                                                    })
+                                                });
+
+                                                const data = await response.json();
+                                                setUploadLoading(false);
+                                                navigation.navigate('MyMedia');
+
+                                                const sendMail = async () => {
+                                                    try {
+                                                        const response = await fetch('https://sila-b.onrender.com/sendMail/mediaBuying', {
+                                                            method: 'POST',
+                                                            headers: {
+                                                                'Content-Type': 'application/json'
+                                                            },
+                                                            body: JSON.stringify({
+                                                                userEmail: userInfo.email
+                                                            })
+                                                        });
+
+                                                        const data = await response.json();
+                                                    } catch (err) {
+                                                        console.error(err);
+                                                    }
+                                                };
+
+                                                sendMail();
+                                            } catch (err) {
+                                                console.error(err);
+                                            }
+                                        };
+
+                                        paymentHistoryApi();
+                                    } catch (err) {
+                                        console.error(err);
+                                    }
+                                };
+
+                                patchWalletApi();
                             }
                         } catch (err) {
                             console.error(err);
                         }
                     };
 
-                    mediaApi();
+                    usersApi();
+                } catch (err) {
+                    console.error(err);
                 }
-            } catch (err) {
-                console.error(err);
-            }
-        };
+            };
 
-        pick();
+            mediaApi();
+        }
     };
 
   return (
     <View style={[{flex: 1}]}>
-        <Pressable onPress={pickFiles} style={[{padding: 30}, {flexDirection: 'row'}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
-            {
-                uploadLoading ? (
-                    <ActivityIndicator color={'#fff'} size={'large'} />
-                ) : (
-                    <>
-                        <AntDesign name="plus" size={30} color="#fff" />
-                        <Text style={[{color: '#fff'}, {fontWeight: 500}, {fontSize: 16}]}>Add your media</Text>
-                    </>
-                )
-            }
-        </Pressable>
+        <Image source={require('../assets/images&logos/Innovation-v2.gif')} style={[{height: height / 2}, {width: width}]} />
 
-        <View style={[{alignItems: 'center'}]}>
-            <Image source={require('../assets/images&logos/Innovation-v2.gif')} style={[{height: 200}, {width: 200}]} />
-            <MaterialIcons name="keyboard-arrow-down" size={50} color="black" />
-            <Text style={[{fontWeight: 300}, {fontSize: 16}]}>All of your Media will be shown here:</Text>
-        </View>
+        <View style={[{borderTopLeftRadius: 50}, {borderTopRightRadius: 50}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {backgroundColor: '#7538D4'}, {padding: 30}, {gap: 30}]}>
+            <View style={[{alignItems: 'center'}, {gap: 30}]}>
+                <Entypo name="google-drive" size={50} color="#fff" />
 
-        <View style={[{borderTopWidth: 5}, {flex: 1}, {marginHorizontal: 30}, {borderColor: '#7538D4'}, {padding: 10}]}>
-            {
-                userInfo !== null && (
-                    <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
-                        if (item.userID === userInfo._id) {
-                            return(
-                                <FlatList data={item.media} keyExtractor={item => item._id} renderItem={({item: m}) => (
-                                    <>
-                                        {
-                                            videoRegex.test(m) && (
-                                                <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
-                                                    <Video style={[{flex: 1}]} source={{uri: m}} useNativeControls resizeMode={ResizeMode.COVER} />
-                                                    <Pressable onPress={() => Linking.openURL(m)} style={[{padding: 10}, {backgroundColor: '#7538D4'}, {borderRadius: 100 / 2}, {position: 'absolute'}, {right: 10}, {top: 10}]}>
-                                                        <Feather name="download-cloud" size={24} color="#fff" />
-                                                    </Pressable>
-                                                </View>
-                                            )
-                                        }
-                    
-                                        {
-                                            imageRegex.test(m) && (
-                                                <View style={[{height: height / 5}, {borderRadius: 20}, {overflow: 'hidden'}, {marginBottom: 20}]}>
-                                                    <Image source={{uri: m}} style={[{height: '100%'}, {width: '100%'}]} />
-                                                    <Pressable onPress={() => Linking.openURL(m)} style={[{padding: 10}, {backgroundColor: '#7538D4'}, {borderRadius: 100 / 2}, {position: 'absolute'}, {right: 10}, {top: 10}]}>
-                                                        <Feather name="download-cloud" size={24} color="#fff" />
-                                                    </Pressable>
-                                                </View>
-                                            )
-                                        }
-                                    </>
-                                )} />
-                            )
-                        }
-                    }} />
-                )
-            }
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 10}]}>
+                    <Text style={[{color: '#fff'}]}>1- Upload your video in Google drive</Text>
+                    <Feather name="upload" size={24} color="#fff" />
+                </View>
+
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 10}]}>
+                    <Text style={[{color: '#fff'}]}>2- Allow access for anyone to see the video</Text>
+                    <Octicons name="eye" size={24} color="#fff" />
+                </View>
+
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 10}]}>
+                    <Text style={[{color: '#fff'}]}>3- Paste the link here and send!</Text>
+                    <Ionicons name="link" size={24} color="#fff" />
+                </View>
+            </View>
+
+            <View style={[{justifyContent: 'center'}]}>
+                {
+                    uploadLoading ? (
+                        <ActivityIndicator size={'large'} color={'#fff'} />
+                    ) : (
+                        <>
+                            <TextInput onChangeText={(text) => setLinkInput(text)} style={[{backgroundColor: '#fff'}, {height: height / 15}, {borderRadius: 50}, {paddingLeft: 30}]} placeholder='Your Google drive link...' />
+                            <Pressable onPress={sendLink} style={[{backgroundColor: '#7538D4'}, {position: 'absolute'}, {right: 10}, {height: 40}, {width: 40}, {justifyContent: 'center'}, {alignItems: 'center'}, {borderRadius: 100 / 2}]}>
+                                <Feather name="send" size={24} color="#fff" />
+                            </Pressable>
+                        </>
+                    )
+                }
+            </View>
         </View>
     </View>
   )

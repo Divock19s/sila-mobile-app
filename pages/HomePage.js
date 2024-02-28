@@ -1,4 +1,4 @@
-import { View, Text, ScrollView, Dimensions, Pressable, Image, FlatList } from 'react-native';
+import { View, Text, ScrollView, Dimensions, Pressable, Image, FlatList, Alert } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { LineChart } from "react-native-chart-kit";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { Video, ResizeMode } from 'expo-av';
+import { FontAwesome } from '@expo/vector-icons';
+import { Foundation } from '@expo/vector-icons';
 
 const HomePage = () => {
 
@@ -16,6 +18,8 @@ const HomePage = () => {
     const { width, height } = Dimensions.get('window');
 
     const [userInfo, setUserInfo] = useState(null);
+    const [userWallet, setUserWallet] = useState(null);
+    const [userEurWallet, setUserEurWallet] = useState(null);
 
     const [transactions, setTransactions] = useState(null);
     const [successfulPayments, setSuccessfulPayments] = useState(null);
@@ -39,6 +43,38 @@ const HomePage = () => {
 
         asyncStorage();
     }, []);
+
+    useEffect(() => {
+        if (userInfo !== null) {
+          const usersApi = async () => {
+            try {
+              const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+              const data = await response.json();
+              setUserEurWallet(data.user.eurWallet);
+            } catch (err) {
+              console.error(err);
+            }
+          };
+      
+          usersApi();
+        }
+    }, [userInfo]);
+
+    useEffect(() => {
+        if (userInfo !== null) {
+          const usersApi = async () => {
+            try {
+              const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+              const data = await response.json();
+              setUserWallet(data.user.wallet);
+            } catch (err) {
+              console.error(err);
+            }
+          };
+      
+          usersApi();
+        }
+      }, [userInfo]);
 
     useEffect(() => {
         const transactionsApi = async () => {
@@ -255,7 +291,7 @@ const HomePage = () => {
                     )
                 }
 
-                <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
+                <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
                     <>
                         {
                             imageRegex.test(item.media) && (
@@ -270,6 +306,46 @@ const HomePage = () => {
                         }
                     </>
                 )} />
+
+                {/* Euro Wallet */}
+                <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
+                    <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
+                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
+                        <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
+                            <Foundation name="info" size={35} color="#fff" />
+                        </Pressable>
+                    </View>  
+
+                    <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                        {
+                        userEurWallet !== null && (
+                            <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userEurWallet.toFixed(2)}</Text>
+                        )
+                        }
+                        <FontAwesome name="euro" size={35} color="#fff" />
+                    </View>
+                </View>
+                {/* //////// */}
+
+                {/* Dollar Wallet */}
+                <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginTop: 30}]}>
+                    <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
+                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
+                        <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
+                        <Foundation name="info" size={35} color="#fff" />
+                        </Pressable>
+                    </View>  
+
+                    <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                        {
+                        userWallet !== null && (
+                            <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userWallet.toFixed(2)}</Text>
+                        )
+                        }
+                        <Foundation name="dollar" size={50} color="#fff" />
+                    </View>
+                </View>
+                {/* ////// */}
             </ScrollView>
         </View>
 

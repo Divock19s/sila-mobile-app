@@ -63,7 +63,7 @@ const ShootingDashboardPage = () => {
             <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>You can see all of your videos and photos here:</Text>
             {
                 userInfo !== null && (
-                    <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
+                    <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                         if (item.userID === userInfo._id) {
                             return(
                                 <View style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 10}, {marginTop: 30}, {flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>

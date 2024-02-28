@@ -52,7 +52,7 @@ const MediaBuyingPage = () => {
         <Text style={[{fontWeight: 100}, {marginTop: 20}, {color: '#fff'}, {fontSize: 25}]}>Welcome to our new service!</Text>
 
         <Animated.View style={[{height: height / 1.4}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {backgroundColor: '#fff'}, {borderTopLeftRadius: 40}, {borderTopRightRadius: 40}, {padding: 20}, {transform: [{translateY: slideWindow}]}]}>
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[{alignItems: 'center'}, {marginBottom: 50}]}>
                     <Image style={[{height: 300}, {width: 300}]} source={require('../assets/images&logos/creative.png')} />
                     <Text style={[{textAlign: 'center'}, {fontWeight: 300}]}>Unlocking the full potential of your brand, we offer image design, video editing, and ads analytics services. From captivating visuals to compelling storytelling and data-driven campaign optimization, we amplify your impact in the digital realm. Let us empower your brand to thrive and connect with your audience on a deeper level.</Text>

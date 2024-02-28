@@ -45,7 +45,7 @@ const NewAdAccount = () => {
     <View style={[{marginTop: 30}, {height: height / 1.4}]}>
       {
         userID !== null && (
-            <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
+            <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                 if (item.userID === userID) {
                     return(
                         <View style={[{backgroundColor: '#000'}, {borderRadius: 30}, {padding: 20}, {gap: 20}, {marginBottom: 20}]}>

@@ -29,7 +29,7 @@ const ServicesPage = () => {
             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Media buying</Text>
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {backgroundColor: '#7538D4'}, {marginTop: 30}, {borderRadius: 20}]}>
+        <Pressable onPress={() => navigation.navigate('Shooting')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {backgroundColor: '#7538D4'}, {marginTop: 30}, {borderRadius: 20}]}>
             <Entypo name="video-camera" size={30} color="#fff" />
             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Shooting</Text>
         </Pressable>

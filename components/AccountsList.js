@@ -95,10 +95,10 @@ const AccountsList = () => {
     <View style={[{marginTop: 30}, {height: height / 1.4}]}>
       {
         userInfo !== null && (
-            <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
+            <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                 if (item.userID === userInfo._id) {
                     return(
-                        <FlatList data={item.ads} keyExtractor={item => item._id} renderItem={({item: ad}) => (
+                        <FlatList showsVerticalScrollIndicator={false} data={item.ads} keyExtractor={item => item._id} renderItem={({item: ad}) => (
                             <View style={[{backgroundColor: '#000'}, {borderRadius: 30}, {padding: 20}, {gap: 20}, {marginBottom: 20}]}>
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                     <Fontisto name="database" size={24} color="#fff" />

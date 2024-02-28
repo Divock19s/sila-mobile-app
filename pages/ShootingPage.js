@@ -472,7 +472,7 @@ const ShootingPage = () => {
 
         {
             section === 'shooting' && (
-                <ScrollView style={[{padding: 20}]}>
+                <ScrollView showsVerticalScrollIndicator={false} style={[{padding: 20}]}>
                     <Pressable onPress={() => navigation.navigate('ShootingDashboard')} style={[{marginBottom: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                         <FontAwesome name="square" size={24} color="#fff" />
                         <Text style={[{color: '#fff'}, {fontWeight: 500}, {fontSize: 15}]}>My Shooting Dashboard</Text>
@@ -597,7 +597,7 @@ const ShootingPage = () => {
 
         {
             section === 'creative' && (
-                <ScrollView style={[{padding: 20}]}>
+                <ScrollView showsVerticalScrollIndicator={false} style={[{padding: 20}]}>
                     <Pressable onPress={() => navigation.navigate('CreativeDashboard')} style={[{marginBottom: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                         <FontAwesome name="square" size={24} color="#fff" />
                         <Text style={[{color: '#fff'}, {fontWeight: 500}, {fontSize: 15}]}>My Creative Dashboard</Text>
