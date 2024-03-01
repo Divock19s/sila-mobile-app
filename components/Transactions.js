@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 const Transactions = () => {
 
@@ -72,7 +73,13 @@ const Transactions = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
                                 <Text style={[{fontSize: 30}, {color: '#fff'}]}>{item.chargeAmount}</Text>
-                                <Foundation name="dollar" size={30} color="#fff" />
+                                {
+                                    item.currency === 'USD' ? (
+                                        <Foundation name="dollar" size={30} color="#fff" />
+                                    ) : (
+                                        <Foundation name="euro" size={30} color="#fff" />
+                                    )
+                                }
                             </View>
 
                             <View style={[{alignItems: 'center'}]}>

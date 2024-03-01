@@ -24,6 +24,16 @@ const ProfileOptions = () => {
 
     asyncStorage();
 
+    const removeChoice = async () => {
+      try {
+        await AsyncStorage.removeItem('Choice');
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    removeChoice();
+
     navigation.reset({
       index: 0,
       routes: [{ name: 'Sign' }]

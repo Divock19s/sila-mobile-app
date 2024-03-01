@@ -29,18 +29,25 @@ const StartUpPage = () => {
     useEffect(() => {
         const asyncStorage = async () => {
             try {
-                const response = await AsyncStorage.getItem('userInfo');
+                const response = await AsyncStorage.getItem('Choice');
                 
-                if (response !== null) {
-                    navigation.reset({
-                        index: 0,
-                        routes: [{ name: 'Home' }]
-                    });
-                } else {
+                if (response === null) {
                     navigation.reset({
                         index: 0,
                         routes: [{ name: 'Sign' }]
                     });
+                } else {
+                    if (response === 'Formation') {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Formation' }]
+                        });
+                    } else {
+                        navigation.reset({
+                            index: 0,
+                            routes: [{ name: 'Home' }]
+                        });
+                    }
                 }
             } catch (err) {
                 console.error(err);

@@ -67,7 +67,6 @@ const PaymentHistory = () => {
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
                                         <Text style={[{fontSize: 50}, {color: '#fff'}]}>{item.amount}</Text>
-                                        <Foundation name="dollar" size={50} color="#fff" />
                                     </View>
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>

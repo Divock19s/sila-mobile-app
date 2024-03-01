@@ -3,7 +3,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { SimpleLineIcons } from '@expo/vector-icons';
-import BottomNav from '../components/BottomNav';
 import { AntDesign } from '@expo/vector-icons';
 import * as DocumentPicker from 'expo-document-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -140,7 +139,7 @@ const TopUpPage = () => {
         } else if (chargeAmount === null) {
             Alert.alert('Please provide a charge amount!');
             setConfirmLoading(false);
-        } else if (transactionID === null) {
+        } else if (paymentMethod !== 'Cash' && transactionID === null) {
             Alert.alert('Please fill-in the transaction ID!');
             setConfirmLoading(false);
         } else if (photoProof === null) {
@@ -250,13 +249,21 @@ const TopUpPage = () => {
                             <Pressable onPress={() => setPaymentMethod('Redotpay')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
                                 <Text style={[{fontSize: 17}]}>Redotpay</Text>
                             </Pressable>
+
+                            <Pressable onPress={() => setPaymentMethod('Cash')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                <Text style={[{fontSize: 17}]}>Cash</Text>
+                            </Pressable>
                         </View>
                     )
                 }
 
                 <TextInput onChangeText={(text) => setChargeAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
 
-                <TextInput onChangeText={(text) => setTransactionID(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Transaction ID' />
+                {
+                    paymentMethod !== 'Cash' && (
+                        <TextInput onChangeText={(text) => setTransactionID(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Transaction ID' />
+                    )
+                }
 
                 <View style={[{marginTop: 30}]}>
                     <Text style={[{fontSize: 17}]}>Photo proof:</Text>
@@ -333,25 +340,17 @@ const TopUpPage = () => {
                     )
                 }
 
-                <View style={[{flexDirection: 'row'}, {marginTop: 50}, {justifyContent: 'center'}, {gap: 20}]}>
-                    <Pressable onPress={() => navigation.navigate('Home')} style={[{paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {borderWidth: 3}, {borderColor: '#7538D4'}]}>
-                        <Text style={[{fontSize: 17}]}>Cancel</Text>
-                    </Pressable>
-
-                    <Pressable onPress={sendTransaction} style={[{backgroundColor: '#7538D4'}, {paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                        {
-                            confirmLoading ? (
-                                <ActivityIndicator color={'#fff'} size={'large'} />
-                            ) : (
-                                <Text style={[{fontSize: 17}, {color: '#fff'}]}>Confirm</Text>
-                            )
-                        }
-                    </Pressable>
-                </View>
+                <Pressable onPress={sendTransaction} style={[{backgroundColor: '#7538D4'}, {paddingVertical: 20}, {paddingHorizontal: 40}, {borderRadius: 60}, {justifyContent: 'center'}, {alignItems: 'center'}, {marginTop: 40}]}>
+                    {
+                        confirmLoading ? (
+                            <ActivityIndicator color={'#fff'} size={'large'} />
+                        ) : (
+                            <Text style={[{fontSize: 17}, {color: '#fff'}]}>Confirm</Text>
+                        )
+                    }
+                </Pressable>
             </ScrollView>
         </View>
-
-        <BottomNav />
     </View>
   )
 };

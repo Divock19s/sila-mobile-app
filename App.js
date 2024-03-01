@@ -32,6 +32,8 @@ import ShootingSuccessPage from './pages/ShootingSuccessPage';
 import ShootingDashboardPage from './pages/ShootingDashboardPage';
 import AddCreativePage from './pages/AddCreativePage';
 import CreativeDashboardPage from './pages/CreativeDashboardPage';
+import ChoicePage from './pages/ChoicePage';
+import FormationPage from './pages/FormationPage';
 //
 
 
@@ -85,6 +87,8 @@ export default function App() {
           <Stack.Screen name='ShootingDashboard' component={ShootingDashboardPage} />
           <Stack.Screen name='AddCreative' component={AddCreativePage} />
           <Stack.Screen name='CreativeDashboard' component={CreativeDashboardPage} />
+          <Stack.Screen name='Choice' component={ChoicePage} />
+          <Stack.Screen name='Formation' component={FormationPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>

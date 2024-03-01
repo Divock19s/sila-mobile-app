@@ -150,7 +150,7 @@ const Sign = () => {
 
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Home' }]
+                    routes: [{ name: 'Choice' }]
                 });
             } catch (err) {
                 console.error(err);
@@ -223,10 +223,34 @@ const Sign = () => {
 
                         asyncStorage();
 
-                        navigation.reset({
-                            index: 0,
-                            routes: [{ name: 'Home' }]
-                        });
+                        const checkChoice = async () => {
+                            try {
+                                const response = await AsyncStorage.getItem('Choice');
+
+                                if (response === null) {
+                                    navigation.reset({
+                                        index: 0,
+                                        routes: [{ name: 'Choice' }]
+                                    });
+                                } else {
+                                    if (response === 'Formation') {
+                                        navigation.reset({
+                                            index: 0,
+                                            routes: [{ name: 'Formation' }]
+                                        });
+                                    } else {
+                                        navigation.reset({
+                                            index: 0,
+                                            routes: [{ name: 'Home' }]
+                                        });
+                                    }
+                                }
+                            } catch (err) {
+                                console.error(err);
+                            }
+                        };
+
+                        checkChoice();
                     } else {
                         Alert.alert('Oops, please re-check your credentials!');
                     }
