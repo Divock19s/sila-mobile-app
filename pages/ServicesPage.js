@@ -5,6 +5,7 @@ import BottomNav from '../components/BottomNav';
 import { useNavigation } from '@react-navigation/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
 
 const ServicesPage = () => {
 
@@ -39,7 +40,10 @@ const ServicesPage = () => {
             <Text style={[{fontSize: 16}, {color: '#fff'}]}>Ads</Text>
         </Pressable>
 
-        <BottomNav />
+        <Pressable onPress={() => navigation.navigate('Formation')} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {backgroundColor: '#7538D4'}, {marginTop: 30}, {borderRadius: 20}]}>
+            <SimpleLineIcons name="graduation" size={30} color="#fff" />
+            <Text style={[{fontSize: 16}, {color: '#fff'}]}>Formation</Text>
+        </Pressable>
     </View>
   )
 }

@@ -7,18 +7,8 @@ const ShootingDashboardPage = () => {
 
     const { width, height } = Dimensions.get('window');
 
-    const value = new Animated.Value(height);
-
     const [apiData, setApiData] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
-
-    useEffect(() => {
-        Animated.timing(value, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true
-        }).start();
-    }, []);
 
     useEffect(() => {
         const asyncStorage = async () => {
@@ -59,7 +49,7 @@ const ShootingDashboardPage = () => {
             <Image source={require('../assets/images&logos/shooting.gif')} style={[{height: height / 2}, {width: width}]} />
         </View>
 
-        <Animated.View style={[{height: height / 2}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}, {transform: [{translateY: value}]}]}>
+        <View style={[{height: height / 2}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}]}>
             <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>You can see all of your videos and photos here:</Text>
             {
                 userInfo !== null && (
@@ -77,7 +67,7 @@ const ShootingDashboardPage = () => {
                     }} />
                 )
             }
-        </Animated.View>
+        </View>
     </View>
   )
 };

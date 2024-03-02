@@ -6,7 +6,6 @@ const TransactionsPage = () => {
   return (
     <View style={[{flex: 1}]}>
       <Transactions />
-      <BottomNav />
     </View>
   )
 };

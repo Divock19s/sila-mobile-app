@@ -457,12 +457,12 @@ const ShootingPage = () => {
   return (
     <View style={[{flex: 1}]}>
         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}]}>
-            <Pressable onPress={moveToCreative} style={[{width: '50%'}, {padding: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 20}]}>
+            <Pressable onPress={moveToCreative} style={[{width: '50%'}, {padding: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 20}]}>
                 <MaterialCommunityIcons name="movie-filter-outline" size={24} color="#7538D4" />
                 <Text style={[{color: '#7538D4'}, {fontWeight: 500}, {fontSize: 15}]}>Creative</Text>
             </Pressable>
 
-            <Pressable onPress={moveToShooting} style={[{width: '50%'}, {padding: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 20}]}>
+            <Pressable onPress={moveToShooting} style={[{width: '50%'}, {padding: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 20}]}>
                 <Entypo name="video-camera" size={24} color="#7538D4" />
                 <Text style={[{color: '#7538D4'}, {fontWeight: 500}, {fontSize: 15}]}>Shooting</Text>
             </Pressable>
@@ -488,7 +488,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 20}, {fontWeight: 300}]}>01 seul vidèo professionnelle</Text>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 30}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Petit Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€39</Text>
@@ -497,7 +497,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Personne</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€69</Text>
@@ -506,7 +506,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Grand Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€79</Text>
@@ -515,7 +515,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Magasin</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€199</Text>
@@ -524,7 +524,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Sociètè/Hotel</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€299</Text>
@@ -545,7 +545,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 20}, {fontWeight: 300}]}>5 Photos Par Produit</Text>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 30}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Petit Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€29</Text>
@@ -554,7 +554,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Personne</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€59</Text>
@@ -563,7 +563,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Grand Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€69</Text>
@@ -572,7 +572,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Magasin</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€99</Text>
@@ -581,7 +581,7 @@ const ShootingPage = () => {
                             </Pressable>
                         </View>
 
-                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 20}]}>
+                        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {marginTop: 30}, {gap: 10}, {flexWrap: 'wrap'}]}>
                             <Ionicons name="checkmark-done" size={24} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Sociètè/Hotel</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€179</Text>

@@ -10,19 +10,9 @@ const CreativeDashboardPage = () => {
 
     const { width, height } = Dimensions.get('window');
 
-    const value = new Animated.Value(height);
-
     const [userInfo, setUserInfo] = useState(null);
     const [apiData, setApiData] = useState([]);
     const [linksApiData, setLinksApiData] = useState([]);
-
-    useEffect(() => {
-        Animated.timing(value, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true
-        }).start();
-    }, []);
 
     useEffect(() => {
         const asyncStorage = async () => {
@@ -99,7 +89,7 @@ const CreativeDashboardPage = () => {
             }
         </View>
 
-        <Animated.View style={[{flex: 1}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}, {transform: [{translateY: value}]}]}>
+        <View style={[{flex: 1}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}]}>
             <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>You can see all of your (Edited) videos here:</Text>
 
             {
@@ -118,7 +108,7 @@ const CreativeDashboardPage = () => {
                     }} />
                 )
             }
-        </Animated.View>
+        </View>
     </View>
   )
 }
