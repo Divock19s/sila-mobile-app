@@ -79,6 +79,24 @@ const Dashboard = () => {
   return (
     <View style={[{height: height / 1.3}, {marginTop: 50}]}>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={[{flexDirection: 'row'}, {gap: 10}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {gap: 20}, {marginBottom: 20}]}>
+          <Pressable onPress={() => navigation.navigate('Meta')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <Image style={[{height: 22}, {width: 30}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <FontAwesome name="snapchat-ghost" size={27} color="#fff" />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <AntDesign name="google" size={27} color="#fff" />
+          </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+            <FontAwesome5 name="tiktok" size={27} color="#fff" />
+          </Pressable>
+        </View>
+
         {/* Wallet */}
         <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
           <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
@@ -115,24 +133,6 @@ const Dashboard = () => {
             titleColor={'#7538D4'}
             titleStyle={[]}
           />
-        </View>
-
-        <View style={[{flexDirection: 'row'}, {gap: 10}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {gap: 20}, {marginTop: 20}]}>
-          <Pressable onPress={() => navigation.navigate('Meta')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <Image style={[{height: 22}, {width: 30}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <FontAwesome name="snapchat-ghost" size={27} color="#fff" />
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <AntDesign name="google" size={27} color="#fff" />
-          </Pressable>
-
-          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <FontAwesome5 name="tiktok" size={27} color="#fff" />
-          </Pressable>
         </View>
       </ScrollView>
     </View>
