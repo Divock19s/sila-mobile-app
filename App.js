@@ -35,6 +35,7 @@ import CreativeDashboardPage from './pages/CreativeDashboardPage';
 import ChoicePage from './pages/ChoicePage';
 import FormationPage from './pages/FormationPage';
 import EcommercePage from './pages/EcommercePage';
+import PresentialFormationPage from './pages/PresentialFormationPage';
 //
 
 
@@ -91,6 +92,7 @@ export default function App() {
           <Stack.Screen name='Choice' component={ChoicePage} />
           <Stack.Screen name='Formation' component={FormationPage} />
           <Stack.Screen name='Ecommerce' component={EcommercePage} />
+          <Stack.Screen name='PresentialFormation' component={PresentialFormationPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>
