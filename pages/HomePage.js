@@ -297,22 +297,6 @@ const HomePage = () => {
                     )
                 }
 
-                <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
-                    <>
-                        {
-                            imageRegex.test(item.media) && (
-                                <Image source={{uri: item.media}} style={[{height: 220}, {width: '100%'}, {borderRadius: 16}, {marginTop: 30}]} />
-                            )
-                        }
-
-                        {
-                            videoRegex.test(item.media) && (
-                                <Video source={{uri: item.media}} style={[{height: 220}, {borderRadius: 16}, {marginTop: 30}]} resizeMode={ResizeMode.COVER} useNativeControls />
-                            )
-                        }
-                    </>
-                )} />
-
                 {/* Euro Wallet */}
                 <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
                     <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
@@ -352,6 +336,22 @@ const HomePage = () => {
                     </View>
                 </View>
                 {/* ////// */}
+
+                <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
+                    <>
+                        {
+                            imageRegex.test(item.media) && (
+                                <Image source={{uri: item.media}} style={[{height: 220}, {width: '100%'}, {borderRadius: 16}, {marginTop: 30}]} />
+                            )
+                        }
+
+                        {
+                            videoRegex.test(item.media) && (
+                                <Video source={{uri: item.media}} style={[{height: 220}, {borderRadius: 16}, {marginTop: 30}]} resizeMode={ResizeMode.COVER} useNativeControls />
+                            )
+                        }
+                    </>
+                )} />
             </ScrollView>
         </View>
 
