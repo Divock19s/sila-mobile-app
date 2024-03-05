@@ -461,7 +461,8 @@ const CreateADPage = () => {
               body: JSON.stringify({
                 userID: userInfo._id,
                 type: 'Created a new license',
-                amount: `-${totalCost}`
+                amount: `-${totalCost}`,
+                service: 'Ads'
               })
             });
 

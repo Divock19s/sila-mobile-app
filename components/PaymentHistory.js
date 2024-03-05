@@ -67,6 +67,13 @@ const PaymentHistory = () => {
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
                                         <Text style={[{fontSize: 50}, {color: '#fff'}]}>{item.amount}</Text>
+                                        {
+                                            item.service === 'Ads' ? (
+                                                <Foundation name="dollar" size={35} color="#fff" />
+                                            ) : (
+                                                <Foundation name="euro" size={35} color="#fff" />
+                                            )
+                                        }
                                     </View>
 
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
