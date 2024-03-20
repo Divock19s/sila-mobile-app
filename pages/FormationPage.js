@@ -136,7 +136,7 @@ const FormationPage = () => {
                 <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
                     <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
                         <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/e-commerce-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>E-Commerce cours</Text>
+                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Expert Class</Text>
                         <View style={[{flexDirection: 'row'}, {gap: 5}]}>
                             <FontAwesome name="euro" size={20} color="#fff" />
                             <Text style={[{color: '#fff'}, {fontSize: 40}]}>99</Text>
