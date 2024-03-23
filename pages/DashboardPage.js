@@ -6,7 +6,6 @@ const DashboardPage = () => {
   return (
     <View style={[{flex: 1}, {paddingHorizontal: 30}]}>
       <Dashboard />
-      <BottomNav />
     </View>
   )
 }

@@ -16,7 +16,6 @@ const BMshareLogsPage = () => {
         </Pressable>
 
         <BMShareLogs />
-        <BottomNav />
     </View>
   )
 }

@@ -16,7 +16,6 @@ const NewAdAccountPage = () => {
       </Pressable>
 
       <NewAdAccount />
-      <BottomNav />
     </View>
   )
 }

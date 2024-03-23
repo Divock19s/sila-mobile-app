@@ -167,8 +167,6 @@ const RefundPage = () => {
           </Pressable>
         </View>
       </View>
-
-      <BottomNav />
     </View>
   )
 }

@@ -124,8 +124,6 @@ const FacebookPage = () => {
           </View>
         </ScrollView>
       </View>
-
-      <BottomNav />
     </View>
   )
 }

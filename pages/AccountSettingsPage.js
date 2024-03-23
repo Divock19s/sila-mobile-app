@@ -460,8 +460,6 @@ const AccountSettingsPage = () => {
                 </Pressable>
             </ScrollView>
         </View>
-
-        <BottomNav />
     </View>
   )
 }

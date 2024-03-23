@@ -15,7 +15,6 @@ const RefundRecordPage = () => {
       </View>
 
       <RefundRecord />
-      <BottomNav />
     </View>
   )
 }

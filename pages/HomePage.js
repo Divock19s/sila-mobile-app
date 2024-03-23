@@ -192,170 +192,166 @@ const HomePage = () => {
     }, []);
 
   return (
-    <View style={[{flex: 1}, {padding: 20}]}>
-        <View style={[{height: height / 1.2}]}>
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
-                    <View>
-                        {
-                            userInfo !== null && (
-                                <Text style={[{fontSize: 20}, {fontWeight: 300}]}>Hello {userInfo.userName}</Text>
-                            )
-                        }
-                        <Text>Discover joy in every interaction!</Text>
-                    </View>
+    <View style={[{flex: 1}, {paddingHorizontal: 20}, {paddingTop: 30}]}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}]}>
+                <View>
                     {
                         userInfo !== null && (
-                            <Pressable onPress={() => navigation.navigate('Profile')}>
-                                <Image source={{uri: userInfo.profilePhoto}} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}]} />
-                            </Pressable>
+                            <Text style={[{fontSize: 20}, {fontWeight: 300}]}>Hello {userInfo.userName}</Text>
                         )
                     }
+                    <Text>Discover joy in every interaction!</Text>
                 </View>
-
-                <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}]}>
-                    <AntDesign name="plus" size={24} color="#fff" />
-                    <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Re-charge your wallet</Text>
-                </Pressable>
-
-                <Text style={[{fontSize: 16}, {marginTop: 30}]}>Services</Text>
-
-                <View style={[{marginTop: 20}]}>
-                    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                            <Entypo name="code" size={30} color="#fff" />
-                            <Text style={[{fontSize: 16}, {color: '#fff'}]}>Development</Text>
-                        </Pressable>
-
-                        <Pressable onPress={() => navigation.navigate('MediaBuying')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                            <MaterialIcons name="movie-filter" size={30} color="#fff" />
-                            <Text style={[{fontSize: 16}, {color: '#fff'}]}>Media buying</Text>
-                        </Pressable>
-
-                        <Pressable onPress={() => navigation.navigate('Shooting')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                            <Entypo name="video-camera" size={30} color="#fff" />
-                            <Text style={[{fontSize: 16}, {color: '#fff'}]}>Shooting</Text>
-                        </Pressable>
-
-                        <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                            <AntDesign name="barschart" size={30} color="#fff" />
-                            <Text style={[{fontSize: 16}, {color: '#fff'}]}>Ads</Text>
-                        </Pressable>
-
-                        <Pressable onPress={() => navigation.navigate('Formation')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                            <SimpleLineIcons name="graduation" size={30} color="#fff" />
-                            <Text style={[{fontSize: 16}, {color: '#fff'}]}>Formation</Text>
-                        </Pressable>
-                    </ScrollView>
-                </View>
-
-                <Text style={[{fontSize: 16}, {marginTop: 30}]}>Account stats</Text>
-
                 {
-                    transactions !== null && successfulPayments !== null && licenses !== null && refunds !== null && (
-                        <LineChart
-                            data={{
-                            labels: ["Transactions      ", "Payments", "      Ads licenses", "      Refunds"],
-                            datasets: [
-                                {
-                                data: [
-                                    transactions,
-                                    successfulPayments,
-                                    licenses,
-                                    refunds
-                                ]
-                                }
-                            ]
-                            }}
-                            width={width - 40} // from react-native
-                            height={220}
-                            yAxisLabel=""
-                            yAxisSuffix=""
-                            yAxisInterval={1} // optional, defaults to 1
-                            chartConfig={{
-                            backgroundColor: "#7538D4",
-                            backgroundGradientFrom: "#7538D4",
-                            backgroundGradientTo: "#7538D4",
-                            decimalPlaces: 0, // optional, defaults to 2dp
-                            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-                            style: {
-                                borderRadius: 16
-                            },
-                            propsForDots: {
-                                r: "3",
-                                strokeWidth: "2",
-                                stroke: "#fff"
-                            }
-                            }}
-                            bezier
-                            style={{
-                            marginVertical: 8,
-                            borderRadius: 16
-                            }}
-                        />
+                    userInfo !== null && (
+                        <Pressable onPress={() => navigation.navigate('Profile')}>
+                            <Image source={{uri: userInfo.profilePhoto}} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}]} />
+                        </Pressable>
                     )
                 }
+            </View>
 
-                {/* Euro Wallet */}
-                <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-                        <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
-                            <Foundation name="info" size={35} color="#fff" />
-                        </Pressable>
-                    </View>  
+            <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}]}>
+                <AntDesign name="plus" size={24} color="#fff" />
+                <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Re-charge your wallet</Text>
+            </Pressable>
 
-                    <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                        {
-                        userEurWallet !== null && (
-                            <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userEurWallet.toFixed(2)}</Text>
-                        )
+            <Text style={[{fontSize: 16}, {marginTop: 30}]}>Services</Text>
+
+            <View style={[{marginTop: 20}]}>
+                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
+                        <Entypo name="code" size={30} color="#fff" />
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Development</Text>
+                    </Pressable>
+
+                    <Pressable onPress={() => navigation.navigate('MediaBuying')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
+                        <MaterialIcons name="movie-filter" size={30} color="#fff" />
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Media buying</Text>
+                    </Pressable>
+
+                    <Pressable onPress={() => navigation.navigate('Shooting')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
+                        <Entypo name="video-camera" size={30} color="#fff" />
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Shooting</Text>
+                    </Pressable>
+
+                    <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
+                        <AntDesign name="barschart" size={30} color="#fff" />
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Ads</Text>
+                    </Pressable>
+
+                    <Pressable onPress={() => navigation.navigate('Formation')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
+                        <SimpleLineIcons name="graduation" size={30} color="#fff" />
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Formation</Text>
+                    </Pressable>
+                </ScrollView>
+            </View>
+
+            <Text style={[{fontSize: 16}, {marginTop: 30}]}>Account stats</Text>
+
+            {
+                transactions !== null && successfulPayments !== null && licenses !== null && refunds !== null && (
+                    <LineChart
+                        data={{
+                        labels: ["Transactions      ", "Payments", "      Ads licenses", "      Refunds"],
+                        datasets: [
+                            {
+                            data: [
+                                transactions,
+                                successfulPayments,
+                                licenses,
+                                refunds
+                            ]
+                            }
+                        ]
+                        }}
+                        width={width - 40} // from react-native
+                        height={220}
+                        yAxisLabel=""
+                        yAxisSuffix=""
+                        yAxisInterval={1} // optional, defaults to 1
+                        chartConfig={{
+                        backgroundColor: "#7538D4",
+                        backgroundGradientFrom: "#7538D4",
+                        backgroundGradientTo: "#7538D4",
+                        decimalPlaces: 0, // optional, defaults to 2dp
+                        color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                        style: {
+                            borderRadius: 16
+                        },
+                        propsForDots: {
+                            r: "3",
+                            strokeWidth: "2",
+                            stroke: "#fff"
                         }
-                        <FontAwesome name="euro" size={35} color="#fff" />
-                    </View>
-                </View>
-                {/* //////// */}
+                        }}
+                        bezier
+                        style={{
+                        marginVertical: 8,
+                        borderRadius: 16
+                        }}
+                    />
+                )
+            }
 
-                {/* Dollar Wallet */}
-                <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginTop: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-                        <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
+            {/* Euro Wallet */}
+            <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
+                <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
+                    <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
+                    <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
                         <Foundation name="info" size={35} color="#fff" />
-                        </Pressable>
-                    </View>  
+                    </Pressable>
+                </View>  
 
-                    <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                        {
-                        userWallet !== null && (
-                            <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userWallet.toFixed(2)}</Text>
-                        )
-                        }
-                        <Foundation name="dollar" size={50} color="#fff" />
-                    </View>
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                    {
+                    userEurWallet !== null && (
+                        <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userEurWallet.toFixed(2)}</Text>
+                    )
+                    }
+                    <FontAwesome name="euro" size={35} color="#fff" />
                 </View>
-                {/* ////// */}
+            </View>
+            {/* //////// */}
 
-                <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
-                    <>
-                        {
-                            imageRegex.test(item.media) && (
-                                <Image source={{uri: item.media}} style={[{height: 220}, {width: '100%'}, {borderRadius: 16}, {marginTop: 30}]} />
-                            )
-                        }
+            {/* Dollar Wallet */}
+            <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginTop: 30}]}>
+                <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
+                    <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
+                    <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
+                    <Foundation name="info" size={35} color="#fff" />
+                    </Pressable>
+                </View>  
 
-                        {
-                            videoRegex.test(item.media) && (
-                                <Video source={{uri: item.media}} style={[{height: 220}, {borderRadius: 16}, {marginTop: 30}]} resizeMode={ResizeMode.COVER} useNativeControls />
-                            )
-                        }
-                    </>
-                )} />
-            </ScrollView>
-        </View>
+                <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+                    {
+                    userWallet !== null && (
+                        <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userWallet.toFixed(2)}</Text>
+                    )
+                    }
+                    <Foundation name="dollar" size={50} color="#fff" />
+                </View>
+            </View>
+            {/* ////// */}
 
-        <BottomNav />
+            <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
+                <>
+                    {
+                        imageRegex.test(item.media) && (
+                            <Image source={{uri: item.media}} style={[{height: 220}, {width: '100%'}, {borderRadius: 16}, {marginTop: 30}]} />
+                        )
+                    }
+
+                    {
+                        videoRegex.test(item.media) && (
+                            <Video source={{uri: item.media}} style={[{height: 220}, {borderRadius: 16}, {marginTop: 30}]} resizeMode={ResizeMode.COVER} useNativeControls />
+                        )
+                    }
+                </>
+            )} />
+        </ScrollView>
     </View>
   )
 }

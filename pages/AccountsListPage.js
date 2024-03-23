@@ -16,7 +16,6 @@ const AccountsListPage = () => {
       </Pressable>
 
       <AccountsList />
-      <BottomNav />
     </View>
   )
 };

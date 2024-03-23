@@ -8,7 +8,6 @@ const ProfilePage = () => {
     <View style={[{flex: 1}, {padding: 20}]}>
         <ProfileTopSection />
         <ProfileOptions />
-        <BottomNav />
     </View>
   )
 }
