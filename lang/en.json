@@ -1,0 +1,15 @@
+{
+    "translation": {
+        "sign-up-greet": "Hi, get on board!",
+        "sign-up-under-greet": "Sign up below to continue...",
+        "user-name": "User Name:",
+        "phone-number": "Phone Number:",
+        "email": "Email:",
+        "password": "Password:",
+        "profile-photo": "Profile Photo:",
+        "sign-up": "Sign Up",
+        "sign-in": "Sign In",
+        "sign-in-greet": "Hello, again!",
+        "sign-in-under-greet": "Feel free to sign in"
+    }
+}

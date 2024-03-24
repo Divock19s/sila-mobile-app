@@ -1,9 +1,13 @@
 import { View } from 'react-native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import data from './Context';
+import './lang/i18n';
+import i18next from 'i18next';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //Pages imports:
+import BottomNav from './components/BottomNav';
 import TopUpPage from './pages/TopUpPage';
 import TransactionsPage from './pages/TransactionsPage';
 import PaymentsHistoryPage from './pages/PaymentsHistoryPage';
@@ -32,7 +36,8 @@ import ChoicePage from './pages/ChoicePage';
 import FormationPage from './pages/FormationPage';
 import EcommercePage from './pages/EcommercePage';
 import PresentialFormationPage from './pages/PresentialFormationPage';
-import BottomNav from './components/BottomNav';
+import CreateVipAdPage from './pages/CreateVipAdPage';
+import LanguagePage from './pages/LanguagePage';
 //
 
 
@@ -51,10 +56,23 @@ export default function App() {
   
   const Stack = createNativeStackNavigator();
 
+  useEffect(() => {
+    const getLanguage = async () => {
+      try {
+        const response = await AsyncStorage.getItem('lang');
+        i18next.changeLanguage(response);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getLanguage();
+  }, []);
+
   return (
     <data.Provider value={{ pressedMediaPack, setPressedMediaPack, pressedCreativePack,
     setPressedCreativePack }}>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName='StartUp' screenOptions={{headerShown: false,
         contentStyle: {backgroundColor: '#fff'}}}>
@@ -87,6 +105,8 @@ export default function App() {
           <Stack.Screen name='Formation' component={FormationPage} />
           <Stack.Screen name='Ecommerce' component={EcommercePage} />
           <Stack.Screen name='PresentialFormation' component={PresentialFormationPage} />
+          <Stack.Screen name='VipAd' component={CreateVipAdPage} />
+          <Stack.Screen name='Language' component={LanguagePage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>

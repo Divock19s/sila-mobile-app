@@ -205,9 +205,7 @@ const HomePage = () => {
                 </View>
                 {
                     userInfo !== null && (
-                        <Pressable onPress={() => navigation.navigate('Profile')}>
-                            <Image source={{uri: userInfo.profilePhoto}} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}]} />
-                        </Pressable>
+                        <Image source={{uri: userInfo.profilePhoto}} style={[{height: 50}, {width: 50}, {borderRadius: 100 / 2}]} />
                     )
                 }
             </View>

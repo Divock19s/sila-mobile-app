@@ -1,4 +1,4 @@
-import { View, Text, Pressable, TextInput, ScrollView, Alert, Image, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, Pressable, TextInput, ScrollView, Alert, Image, Dimensions, ActivityIndicator, TouchableOpacity } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useEffect, useState, useContext } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
@@ -14,7 +14,7 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Foundation } from '@expo/vector-icons';
 
-const CreateADPage = () => {
+const CreateVipAdPage = () => {
 
   const navigation = useNavigation();
 
@@ -97,13 +97,6 @@ const CreateADPage = () => {
   };
   //
 
-
-  // deleting values from the array, after picker number changes
-  useEffect(() => {
-    setPageURLs((prev) => prev.slice(0, pageNumber));
-  }, [pageNumber]);
-  //
-
   //copying admin to clipboard
   const copy = async () => {
     try {
@@ -160,15 +153,6 @@ const CreateADPage = () => {
     });
   };
   //
-
-
-  // deleting values from the array, after picker number changes
-  useEffect(() => {
-    setAPPIDs((prev) => prev.slice(0, domainNumber));
-    setDomainName((prev) => prev.slice(0, domainNumber));
-  }, [domainNumber]);
-  //
-
 
   //picking shopify screenshot proof:
   const pickScreenshot = () => {
@@ -501,16 +485,10 @@ const CreateADPage = () => {
 
         <View style={[{marginTop: 30}]}>
           <Text style={[{fontSize: 20}]}>Page number:</Text>
-          <RNPickerSelect
-            onValueChange={(value) => setPageNumber(value)}
-            items={[
-              { label: '1', value: 1 },
-              { label: '2', value: 2 },
-              { label: '3', value: 3 },
-              { label: '4', value: 4 },
-              { label: '5', value: 5 }
-            ]}
-          />
+          <TouchableOpacity onPress={() => setPageNumber(pageNumber + 1)} style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 13}, {borderRadius: 10}, {alignSelf: 'flex-start'}, {marginTop: 10}]}>
+            <Text style={[{color: '#fff'}]}>Add pages</Text>
+            <AntDesign name="plus" size={24} color="#fff" />
+          </TouchableOpacity>
 
           { renderPageURLInputs() }
           
@@ -535,16 +513,10 @@ const CreateADPage = () => {
 
         <View style={[{marginTop: 30}]}>
           <Text style={[{fontSize: 20}]}>Domain Number:</Text>
-          <RNPickerSelect
-            onValueChange={(value) => setDomainNumber(value)}
-            items={[
-              { label: '1', value: 1 },
-              { label: '2', value: 2 },
-              { label: '3', value: 3 },
-              { label: '4', value: 4 },
-              { label: '5', value: 5 }
-            ]}
-          />
+          <TouchableOpacity onPress={() => setDomainNumber(domainNumber + 1)} style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 13}, {borderRadius: 10}, {alignSelf: 'flex-start'}, {marginTop: 10}]}>
+            <Text style={[{color: '#fff'}]}>Add domains</Text>
+            <AntDesign name="plus" size={24} color="#fff" />
+          </TouchableOpacity>
 
           <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 20}]}>
             <Text style={[{fontSize: 16}]}>is APP?</Text>
@@ -706,4 +678,4 @@ const CreateADPage = () => {
   )
 };
 
-export default CreateADPage;
+export default CreateVipAdPage;

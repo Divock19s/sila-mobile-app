@@ -1,0 +1,15 @@
+{
+    "translation": {
+        "sign-up-greet": "مرحبا, ابدأ معنا",
+        "sign-up-under-greet": "قم بالتسجيل في الأسفل لتبدأ",
+        "user-name": "اسم المستخدم:",
+        "phone-number": "رقم الهاتف:",
+        "email": "الايميل:",
+        "password": "كلمة السر:",
+        "profile-photo": "صورة شخصية:",
+        "sign-up": "انشاء حساب",
+        "sign-in": "تسجيل الدخول",
+        "sign-in-greet": "مرحبا مجددا!",
+        "sign-in-under-greet": "تفضل بالتسجيل"
+    }
+}

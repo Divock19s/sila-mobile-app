@@ -5,6 +5,7 @@ import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRef } from 'react';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 //Screens
 import HomePage from '../pages/HomePage';
@@ -23,19 +24,20 @@ const BottomNav = () => {
 
   return (
     <>
-      <Tab.Navigator screenOptions={{headerShown: false, 
-        tabBarStyle: {
-          height: height / 10,
-          borderTopLeftRadius: 30,
-          borderTopRightRadius: 30
-        },
-        tabBarShowLabel: false}}>
+      <Tab.Navigator sceneContainerStyle={{ backgroundColor: "white" }} 
+        screenOptions={{headerShown: false, 
+          tabBarStyle: {
+            height: height / 9,
+            borderRadius: 10,
+            marginHorizontal: 20
+          },
+          tabBarShowLabel: false}}>
         <Tab.Screen name='Home' component={HomePage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
               <Ionicons name="home" size={24} color="#7538D4" />
             ) : (
-              <Ionicons name="home" size={24} color="black" />
+              <Ionicons name="home-outline" size={24} color="black" />
             )
           ),
           }}
@@ -51,15 +53,15 @@ const BottomNav = () => {
         <Tab.Screen name='Ads' component={AdsPage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
-              <Entypo name="megaphone" size={24} color="#7538D4" />
+              <Ionicons name="share" size={24} color="#7538D4" />
             ) : (
-              <Entypo name="megaphone" size={24} color="black" />
+              <Ionicons name="share-outline" size={24} color="black" />
             )
           )}}
           listeners={() => ({
             tabPress: e => {
               Animated.spring(indicator, {
-                toValue: width / 4,
+                toValue: (width - 40) / 4,
                 duration: 300,
                 useNativeDriver: true
               }).start();
@@ -70,13 +72,13 @@ const BottomNav = () => {
             focused ? (
               <FontAwesome name="user" size={24} color="#7538D4" />
             ) : (
-              <FontAwesome name="user" size={24} color="black" />
+              <FontAwesome name="user-o" size={24} color="black" />
             )
           )}}
           listeners={() => ({
             tabPress: e => {
               Animated.spring(indicator, {
-                toValue: width / 2,
+                toValue: ((width - 40) / 4) * 2,
                 duration: 300,
                 useNativeDriver: true
               }).start();
@@ -85,15 +87,15 @@ const BottomNav = () => {
         <Tab.Screen name='Services' component={ServicesPage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
-              <Entypo name="dots-three-horizontal" size={24} color="#7538D4" />
+              <MaterialCommunityIcons name="storefront" size={24} color="#7538D4" />
             ) : (
-              <Entypo name="dots-three-horizontal" size={24} color="black" />
+              <MaterialCommunityIcons name="storefront-outline" size={24} color="black" />
             )
           )}}
           listeners={() => ({
             tabPress: e => {
               Animated.spring(indicator, {
-                toValue: width / 1.33,
+                toValue: ((width - 40) / 4) * 3,
                 duration: 300,
                 useNativeDriver: true
               }).start();
@@ -102,7 +104,7 @@ const BottomNav = () => {
       </Tab.Navigator>
 
       {/* Indicator */}
-      <Animated.View style={[{height: 7}, {width: 55}, {backgroundColor: '#7538D4'}, {position: 'absolute'}, {bottom: 10}, {left: 25}, {borderRadius: 30}, {zIndex: 1}, {transform: [{translateX: indicator}]}]} />
+      <Animated.View style={[{height: 7}, {width: (width - 240) / 4}, {backgroundColor: '#7538D4'}, {position: 'absolute'}, {bottom: height / 11}, {left: 44}, {borderRadius: 30}, {zIndex: 1}, {transform: [{translateX: indicator}]}]} />
     </>
   )
 };

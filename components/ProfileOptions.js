@@ -6,6 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons';
 
 const ProfileOptions = () => {
 
@@ -41,7 +42,7 @@ const ProfileOptions = () => {
   };
 
   return (
-    <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {padding: 20}, {marginTop: 20}, {elevation: 50}]}>
+    <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {padding: 20}, {marginTop: 20}]}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Pressable onPress={() => navigation.navigate('Transactions')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <Entypo name="wallet" size={24} color="black" />
@@ -58,6 +59,12 @@ const ProfileOptions = () => {
         <Pressable onPress={() => navigation.navigate('Account')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
           <AntDesign name="user" size={24} color="black" />
           <Text style={[]}>Account settings</Text>
+          <EvilIcons name="chevron-right" size={30} color="black" />
+        </Pressable>
+
+        <Pressable onPress={() => navigation.navigate('Language')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {backgroundColor: '#fff'}, {justifyContent: 'space-between'}, {marginBottom: 20}]}>
+          <Ionicons name="language-outline" size={30} color="black" />
+          <Text style={[]}>Language settings</Text>
           <EvilIcons name="chevron-right" size={30} color="black" />
         </Pressable>
 

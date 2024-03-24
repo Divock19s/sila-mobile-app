@@ -77,65 +77,63 @@ const Dashboard = () => {
   }, [userID]);
 
   return (
-    <View style={[{height: height / 1.3}, {marginTop: 50}]}>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={[{flexDirection: 'row'}, {gap: 10}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {gap: 20}, {marginBottom: 20}]}>
-          <Pressable onPress={() => navigation.navigate('Meta')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <Image style={[{height: 22}, {width: 30}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
-          </Pressable>
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={[{flexDirection: 'row'}, {gap: 10}, {justifyContent: 'space-between'}, {flexWrap: 'wrap'}, {gap: 20}, {marginBottom: 20}]}>
+        <Pressable onPress={() => navigation.navigate('Meta')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <Image style={[{height: 22}, {width: 30}]} source={require('../assets/images&logos/output-onlinepngtools-meta.png')} />
+        </Pressable>
 
-          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <FontAwesome name="snapchat-ghost" size={27} color="#fff" />
-          </Pressable>
+        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <FontAwesome name="snapchat-ghost" size={27} color="#fff" />
+        </Pressable>
 
-          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <AntDesign name="google" size={27} color="#fff" />
-          </Pressable>
+        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <AntDesign name="google" size={27} color="#fff" />
+        </Pressable>
 
-          <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <FontAwesome5 name="tiktok" size={27} color="#fff" />
+        <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{padding: 20}, {borderRadius: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <FontAwesome5 name="tiktok" size={27} color="#fff" />
+        </Pressable>
+      </View>
+
+      {/* Wallet */}
+      <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
+        <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
+          <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
+          <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
+            <Foundation name="info" size={35} color="#fff" />
           </Pressable>
+        </View>  
+
+        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+          {
+            userWallet !== null && (
+              <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userWallet.toFixed(2)}</Text>
+            )
+          }
+          <Foundation name="dollar" size={50} color="#fff" />
         </View>
+      </View>
+      {/* ////// */}
 
-        {/* Wallet */}
-        <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
-          <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-            <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-            <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
-              <Foundation name="info" size={35} color="#fff" />
-            </Pressable>
-          </View>  
-
-          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-            {
-              userWallet !== null && (
-                <Text style={[{fontSize: 50}, {color: '#fff'}]}>{userWallet.toFixed(2)}</Text>
-              )
-            }
-            <Foundation name="dollar" size={50} color="#fff" />
-          </View>
-        </View>
-        {/* ////// */}
-
-        <View style={[{marginTop: 60}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-          <Text style={[{fontSize: 20}]}>AD accounts:</Text>
-          <CircularProgress
-            value={adAccountsNumber}
-            radius={120}
-            duration={2000}
-            progressValueColor={'#7538D4'}
-            activeStrokeColor={'#7538D4'}
-            inActiveStrokeColor={'#fff'}
-            activeStrokeWidth={20}
-            inActiveStrokeWidth={5}
-            maxValue={200}
-            title={'Ad'}
-            titleColor={'#7538D4'}
-            titleStyle={[]}
-          />
-        </View>
-      </ScrollView>
-    </View>
+      <View style={[{marginTop: 60}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+        <Text style={[{fontSize: 20}]}>AD accounts:</Text>
+        <CircularProgress
+          value={adAccountsNumber}
+          radius={120}
+          duration={2000}
+          progressValueColor={'#7538D4'}
+          activeStrokeColor={'#7538D4'}
+          inActiveStrokeColor={'#fff'}
+          activeStrokeWidth={20}
+          inActiveStrokeWidth={5}
+          maxValue={200}
+          title={'Ad'}
+          titleColor={'#7538D4'}
+          titleStyle={[]}
+        />
+      </View>
+    </ScrollView>
   )
 };
 
