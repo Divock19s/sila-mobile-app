@@ -12,8 +12,6 @@ const LanguagePage = () => {
 
     const {t} = useTranslation();
 
-    const [selectedLang, setSelectedLang] = useState('en');
-
     const switchToEnglish = () => {
         const saveLang = async () => {
             try {
@@ -42,19 +40,6 @@ const LanguagePage = () => {
         saveLang();
     };
 
-    useEffect(() => {
-        const getLang = async () => {
-            try {
-                const response = await AsyncStorage.getItem('lang');
-                setSelectedLang(response);
-            } catch (err) {
-                console.error(err);
-            }
-        };
-
-        getLang();
-    }, []);
-
   return (
     <View style={[{flex: 1}, {padding: 40}]}>
         <View style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {padding: 30}, {borderRadius: 20}, {gap: 30}]}>
@@ -66,21 +51,11 @@ const LanguagePage = () => {
             <TouchableOpacity onPress={switchToEnglish} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}, {backgroundColor: 'lightgray'}, {padding: 20}, {borderRadius: 20}]}>
                 <Image style={[{height: 50}, {width: 50}]} source={require('../assets/images&logos/Usa.png')} />
                 <Text>English</Text>
-                {
-                    selectedLang === 'en' && (
-                        <Ionicons name="checkmark-circle" size={24} color="#7538D4" />
-                    )
-                }
             </TouchableOpacity>
 
             <TouchableOpacity onPress={switchToArabic} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}, {backgroundColor: 'lightgray'}, {padding: 20}, {borderRadius: 20}]}>
                 <Image style={[{height: 50}, {width: 50}]} source={require('../assets/images&logos/Arabic.png')} />
                 <Text>العربية</Text>
-                {
-                    selectedLang === 'ar' && (
-                        <Ionicons name="checkmark-circle" size={24} color="#7538D4" />
-                    )
-                }
             </TouchableOpacity>
         </View>
     </View>

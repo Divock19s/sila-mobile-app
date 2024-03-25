@@ -234,11 +234,6 @@ const HomePage = () => {
                         <Text style={[{fontSize: 16}, {color: '#fff'}]}>Shooting</Text>
                     </Pressable>
 
-                    <Pressable onPress={() => navigation.navigate('Dashboard')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                        <AntDesign name="barschart" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Ads</Text>
-                    </Pressable>
-
                     <Pressable onPress={() => navigation.navigate('Formation')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                         <SimpleLineIcons name="graduation" size={30} color="#fff" />
                         <Text style={[{fontSize: 16}, {color: '#fff'}]}>Formation</Text>

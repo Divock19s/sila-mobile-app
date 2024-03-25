@@ -1,4 +1,4 @@
-import { View, Dimensions, Animated, Alert } from 'react-native';
+import { View, Dimensions, Animated, Alert, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -35,9 +35,15 @@ const BottomNav = () => {
         <Tab.Screen name='Home' component={HomePage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
-              <Ionicons name="home" size={24} color="#7538D4" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <Ionicons name="home" size={24} color="#7538D4" />
+                <Text style={[{color: '#7538D4'}]}>Home</Text>
+              </View>
             ) : (
-              <Ionicons name="home-outline" size={24} color="black" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <Ionicons name="home-outline" size={24} color="black" />
+                <Text>Home</Text>
+              </View>
             )
           ),
           }}
@@ -53,9 +59,15 @@ const BottomNav = () => {
         <Tab.Screen name='Ads' component={AdsPage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
-              <Ionicons name="share" size={24} color="#7538D4" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <Ionicons name="share" size={24} color="#7538D4" />
+                <Text style={[{color: '#7538D4'}]}>Ads</Text>
+              </View>
             ) : (
-              <Ionicons name="share-outline" size={24} color="black" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <Ionicons name="share-outline" size={24} color="black" />
+                <Text>Ads</Text>
+              </View>
             )
           )}}
           listeners={() => ({
@@ -70,9 +82,15 @@ const BottomNav = () => {
         <Tab.Screen name='Profile' component={ProfilePage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
-              <FontAwesome name="user" size={24} color="#7538D4" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <FontAwesome name="user" size={24} color="#7538D4" />
+                <Text style={[{color: '#7538D4'}]}>Profile</Text>
+              </View>
             ) : (
-              <FontAwesome name="user-o" size={24} color="black" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <FontAwesome name="user-o" size={24} color="black" />
+                <Text>Profile</Text>
+              </View>
             )
           )}}
           listeners={() => ({
@@ -87,9 +105,15 @@ const BottomNav = () => {
         <Tab.Screen name='Services' component={ServicesPage}
           options={{tabBarIcon: ({ focused }) => (
             focused ? (
-              <MaterialCommunityIcons name="storefront" size={24} color="#7538D4" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <MaterialCommunityIcons name="storefront" size={24} color="#7538D4" />
+                <Text style={[{color: '#7538D4'}]}>Services</Text>
+              </View>
             ) : (
-              <MaterialCommunityIcons name="storefront-outline" size={24} color="black" />
+              <View style={[{alignItems: 'center'}, {gap: 5}]}>
+                <MaterialCommunityIcons name="storefront-outline" size={24} color="black" />
+                <Text>Services</Text>
+              </View>
             )
           )}}
           listeners={() => ({

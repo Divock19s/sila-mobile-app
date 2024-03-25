@@ -12,7 +12,7 @@ const ShootingSuccessPage = () => {
     const goHome = () => {
         navigation.reset({
             index: 0,
-            routes: [{ name: 'Home' }]
+            routes: [{ name: 'Shooting' }]
         });
     };
 
