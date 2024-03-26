@@ -5,10 +5,13 @@ import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 const CreativeDashboardPage = () => {
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userInfo, setUserInfo] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -67,7 +70,7 @@ const CreativeDashboardPage = () => {
     <View style={[{flex: 1}]}>
         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 30}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {borderBottomLeftRadius: 30}, {borderBottomRightRadius: 30}]}>
             <MaterialCommunityIcons name="movie-filter-outline" size={24} color="#fff" />
-            <Text style={[{color: '#fff'}]}>My videos</Text>
+            <Text style={[{color: '#fff'}]}>{t('my-videos')}</Text>
         </View>
 
         <View style={[{height: height / 2.3}, {padding: 10}]}>
@@ -90,7 +93,7 @@ const CreativeDashboardPage = () => {
         </View>
 
         <View style={[{flex: 1}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}]}>
-            <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>You can see all of your (Edited) videos here:</Text>
+            <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>{t('edited-videos-title')}</Text>
 
             {
                 userInfo !== null && (

@@ -8,12 +8,15 @@ import { Fontisto } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const FacebookPage = () => {
 
   const navigation = useNavigation();
 
   const { width, height } = Dimensions.get('window');
+
+  const {t} = useTranslation();
 
   const first = new Animated.Value(height);
   const second = new Animated.Value(height);
@@ -87,7 +90,7 @@ const FacebookPage = () => {
             <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: first}]}]}>
               <ImageBackground source={require('../assets/images&logos/1.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                 <FontAwesome5 name="clipboard-list" size={24} color="black" />
-                <Text style={[]}>Accounts list</Text>
+                <Text style={[]}>{t('account-list')}</Text>
               </ImageBackground>
             </Animated.View>
           </Pressable>
@@ -96,7 +99,7 @@ const FacebookPage = () => {
             <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: second}]}]}>
               <ImageBackground source={require('../assets/images&logos/6.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                 <AntDesign name="plus" size={24} color="black" />
-                <Text style={[]}>New AD account</Text>
+                <Text style={[]}>{t('new-ad-account')}</Text>
               </ImageBackground>
             </Animated.View>
           </Pressable>
@@ -105,7 +108,7 @@ const FacebookPage = () => {
             <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: third}]}]}>
               <ImageBackground source={require('../assets/images&logos/3.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                 <Ionicons name="layers" size={24} color="black" />
-                <Text style={[]}>BM share logs</Text>
+                <Text style={[]}>{t('bm-share-logs')}</Text>
               </ImageBackground>
             </Animated.View>
           </Pressable>
@@ -114,7 +117,7 @@ const FacebookPage = () => {
             <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: sixth}]}]}>
               <ImageBackground source={require('../assets/images&logos/6.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                 <MaterialCommunityIcons name="cash-refund" size={24} color="black" />
-                <Text style={[]}>Refund</Text>
+                <Text style={[]}>{t('refund')}</Text>
               </ImageBackground>
             </Animated.View>
           </Pressable>
@@ -123,7 +126,7 @@ const FacebookPage = () => {
             <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: seventh}]}]}>
               <ImageBackground source={require('../assets/images&logos/4.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                 <MaterialCommunityIcons name="cash-refund" size={24} color="black" />
-                <Text style={[]}>Refund record</Text>
+                <Text style={[]}>{t('refund-record')}</Text>
               </ImageBackground>
             </Animated.View>
           </Pressable>
@@ -132,7 +135,7 @@ const FacebookPage = () => {
             <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: eighth}]}]}>
               <ImageBackground source={require('../assets/images&logos/3.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
                 <FontAwesome5 name="crown" size={24} color="black" />
-                <Text style={[]}>VIP Account</Text>
+                <Text style={[]}>{t('vip-account')}</Text>
               </ImageBackground>
             </Animated.View>
           </Pressable>

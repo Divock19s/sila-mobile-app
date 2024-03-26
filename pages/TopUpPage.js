@@ -8,12 +8,15 @@ import * as DocumentPicker from 'expo-document-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { Foundation } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const TopUpPage = () => {
 
     const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [paymentMethodPicker, setPaymentMethodPicker] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState(null);
@@ -179,7 +182,7 @@ const TopUpPage = () => {
     <View style={[{flex: 1}, {paddingHorizontal: 30}]}>
         <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Foundation name="dollar" size={50} color="#fff" />
-            <Text style={[{color: '#fff'}, {fontSize: 17}]}>Top Up</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 17}]}>{t('top-up')}</Text>
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
@@ -189,7 +192,7 @@ const TopUpPage = () => {
                         currency !== null ? (
                             <Text style={[{fontSize: 17}, {color: '#fff'}]}>{currency}</Text>
                         ) : (
-                            <Text style={[{fontSize: 17}, {color: 'gray'}]}>Currency</Text>
+                            <Text style={[{fontSize: 17}, {color: 'gray'}]}>{t('currency')}</Text>
                         )
                     }
                     
@@ -206,11 +209,11 @@ const TopUpPage = () => {
                     currencyPicker && (
                         <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
                             <Pressable onPress={() => setCurrency('EUR')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>EUR (All services)</Text>
+                                <Text style={[{fontSize: 17}]}>EUR {t('all-services')}</Text>
                             </Pressable>
 
                             <Pressable onPress={() => setCurrency('USD')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>USD (Ads only)</Text>
+                                <Text style={[{fontSize: 17}]}>USD {t('ads-only')}</Text>
                             </Pressable>
                         </View>
                     )
@@ -222,7 +225,7 @@ const TopUpPage = () => {
                         paymentMethod !== null ? (
                             <Text style={[{fontSize: 17}, {color: '#fff'}]}>{paymentMethod}</Text>
                         ) : (
-                            <Text style={[{fontSize: 17}, {color: 'gray'}]}>Payment method</Text>
+                            <Text style={[{fontSize: 17}, {color: 'gray'}]}>{t('payment-method')}</Text>
                         )
                     }
                     
@@ -266,7 +269,7 @@ const TopUpPage = () => {
                 }
 
                 <View style={[{marginTop: 30}]}>
-                    <Text style={[{fontSize: 17}]}>Photo proof:</Text>
+                    <Text style={[{fontSize: 17}]}>{t('photo-proof')}</Text>
 
                     <Pressable onPress={pickProof} style={[{marginTop: 10}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
@@ -345,7 +348,7 @@ const TopUpPage = () => {
                         confirmLoading ? (
                             <ActivityIndicator color={'#fff'} size={'large'} />
                         ) : (
-                            <Text style={[{fontSize: 17}, {color: '#fff'}]}>Confirm</Text>
+                            <Text style={[{fontSize: 17}, {color: '#fff'}]}>{t('confirm')}</Text>
                         )
                     }
                 </Pressable>

@@ -8,12 +8,15 @@ import { useState, useEffect } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import FormationTab from '../components/FormationTab';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const FormationPage = () => {
 
     const navigation = useNavigation();
 
     const {width, height} = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userInfo, setUserInfo] = useState(null);
     const [userEurWallet, setUserEurWallet] = useState(null);
@@ -94,10 +97,10 @@ const FormationPage = () => {
                     <View>
                         {
                             userInfo !== null && (
-                                <Text style={[{fontSize: 20}, {fontWeight: 300}]}>Hello {userInfo.userName}</Text>
+                                <Text style={[{fontSize: 20}, {fontWeight: 300}]}>{t('hello')} {userInfo.userName}</Text>
                             )
                         }
-                        <Text>Discover joy in every interaction!</Text>
+                        <Text>{t('home-page-sub-greet')}</Text>
                     </View>
                     {
                         userInfo !== null && (
@@ -110,14 +113,14 @@ const FormationPage = () => {
 
                 <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}]}>
                     <AntDesign name="plus" size={24} color="#fff" />
-                    <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Re-charge your wallet</Text>
+                    <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>{t('re-charge-your-wallet')}</Text>
                 </Pressable>
 
                 {/* Euro Wallet */}
                 <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginTop: 30}]}>
                     <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-                        <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
+                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>{t('account-balance')}</Text>
+                        <Pressable onPress={() => Alert.alert(t('eur-wallet-tooltip'))}>
                             <Foundation name="info" size={35} color="#fff" />
                         </Pressable>
                     </View>  
@@ -146,9 +149,9 @@ const FormationPage = () => {
                     <Pressable onPress={goToEcommerce} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                         {
                             boughtEcommerce ? (
-                                <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Open</Text>
+                                <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('open')}</Text>
                             ) : (
-                                <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Buy now</Text>
+                                <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('buy-now')}</Text>
                             )
                         }
                     </Pressable>
@@ -165,7 +168,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>
@@ -181,7 +184,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>
@@ -197,7 +200,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>
@@ -213,7 +216,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>
@@ -229,7 +232,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>
@@ -245,7 +248,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>
@@ -261,7 +264,7 @@ const FormationPage = () => {
                     </View>
 
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>Coming soon</Text>
+                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
                         <Ionicons name="time" size={24} color="#7538D4" />
                     </Pressable>
                 </View>

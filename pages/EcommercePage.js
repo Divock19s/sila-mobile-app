@@ -6,12 +6,15 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { EvilIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const EcommercePage = () => {
 
     const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userInfo, setUserInfo] = useState(null);
     const [boughtEcommerce, setBoughtEcommerce] = useState(false);
@@ -246,7 +249,7 @@ const EcommercePage = () => {
             <View style={[{padding: 20}, {borderRadius: 30}, {backgroundColor: '#7538D4'}]}>
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                     <Ionicons name="checkmark-circle" size={24} color="#fff" />
-                    <Text style={[{color: '#fff'}]}>You have enough credit!</Text>
+                    <Text style={[{color: '#fff'}]}>{t('you-have-enough-credit')}</Text>
                 </View>
 
                 <View style={[{flexDirection: 'row'}, {marginTop: 30}, {alignItems: 'center'}, {gap: 20}]}>
@@ -255,13 +258,13 @@ const EcommercePage = () => {
                             buyLoading ? (
                                 <ActivityIndicator size={'large'} color={'#7538D4'} />
                             ) : (
-                                <Text style={[{color: '#7538D4'}]}>Buy Now!</Text>
+                                <Text style={[{color: '#7538D4'}]}>{t('buy-now')}</Text>
                             )
                         }
                     </Pressable>
 
                     <Pressable onPress={() => navigation.navigate('Formation')} style={[{borderWidth: 3}, {borderColor: '#fff'}, {padding: 20}, {borderRadius: 30}]}>
-                        <Text style={[{color: '#fff'}]}>Cancel</Text>
+                        <Text style={[{color: '#fff'}]}>{t('cancel')}</Text>
                     </Pressable>
                 </View>
             </View>
@@ -279,7 +282,7 @@ const EcommercePage = () => {
                                 <AntDesign name="unlock" size={24} color="black" />
                                 <Pressable onPress={() => Linking.openURL(item.link)} style={[{alignItems: 'center'}]}>
                                     <EvilIcons name="external-link" size={24} color="black" />
-                                    <Text>Open</Text>
+                                    <Text>{t('open')}</Text>
                                 </Pressable>
                             </>
                         ) : (

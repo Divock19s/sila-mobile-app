@@ -7,12 +7,15 @@ import { Feather } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const AddMediaPage = () => {
 
     const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const { pressedMediaPack } = useContext(data);
     
@@ -282,17 +285,17 @@ const AddMediaPage = () => {
                 <Entypo name="google-drive" size={50} color="#fff" />
 
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 10}]}>
-                    <Text style={[{color: '#fff'}]}>1- Upload your video in Google drive</Text>
+                    <Text style={[{color: '#fff'}]}>1- {t('google-drive-step-1')}</Text>
                     <Feather name="upload" size={24} color="#fff" />
                 </View>
 
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 10}]}>
-                    <Text style={[{color: '#fff'}]}>2- Allow access for anyone to see the video</Text>
+                    <Text style={[{color: '#fff'}]}>2- {t('google-drive-step-2')}</Text>
                     <Octicons name="eye" size={24} color="#fff" />
                 </View>
 
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 10}]}>
-                    <Text style={[{color: '#fff'}]}>3- Paste the link here and send!</Text>
+                    <Text style={[{color: '#fff'}]}>3- {t('google-drive-step-3')}</Text>
                     <Ionicons name="link" size={24} color="#fff" />
                 </View>
             </View>

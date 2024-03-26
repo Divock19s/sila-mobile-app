@@ -6,10 +6,13 @@ import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { AntDesign } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const NewAdAccount = () => {
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -63,15 +66,15 @@ const NewAdAccount = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <MaterialIcons name="format-list-numbered" size={24} color="#fff" />
-                                <Text style={[{color: '#fff'}]}>Ads number:</Text>
+                                <Text style={[{color: '#fff'}]}>{t('ad-account-number')}</Text>
                                 <Text style={[{color: '#fff'}]}>{item.adNumber}</Text>
                             </View>
 
                             {
                                 item.status === 'Pending' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{color: '#fff'}]}>Pending</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('status')}</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('pending')}</Text>
                                         <Ionicons name="time" size={24} color="#fff" />
                                     </View>
                                 )
@@ -80,8 +83,8 @@ const NewAdAccount = () => {
                             {
                                 item.status === 'Accepted' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{color: '#fff'}]}>Accepted</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('status')}</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('accepted')}</Text>
                                         <Ionicons name="checkmark-done" size={24} color="#fff" />
                                     </View>
                                 )
@@ -90,8 +93,8 @@ const NewAdAccount = () => {
                             {
                                 item.status === 'Rejected' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{color: '#fff'}]}>Rejected</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('status')}</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('rejected')}</Text>
                                         <AntDesign name="close" size={24} color="#fff" />
                                     </View>
                                 )
@@ -99,7 +102,7 @@ const NewAdAccount = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <MaterialIcons name="attach-money" size={24} color="#fff" />
-                                <Text style={[{color: '#fff'}]}>Total cost:</Text>
+                                <Text style={[{color: '#fff'}]}>{t('total-cost')}</Text>
                                 <Text style={[{color: '#fff'}]}>{`${item.totalCost} USD`}</Text>
                             </View>
                         </View>

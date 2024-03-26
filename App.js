@@ -38,6 +38,7 @@ import EcommercePage from './pages/EcommercePage';
 import PresentialFormationPage from './pages/PresentialFormationPage';
 import CreateVipAdPage from './pages/CreateVipAdPage';
 import LanguagePage from './pages/LanguagePage';
+import SuccessVipPage from './pages/SuccessVipPage';
 //
 
 
@@ -107,6 +108,7 @@ export default function App() {
           <Stack.Screen name='PresentialFormation' component={PresentialFormationPage} />
           <Stack.Screen name='VipAd' component={CreateVipAdPage} />
           <Stack.Screen name='Language' component={LanguagePage} />
+          <Stack.Screen name='SuccessVip' component={SuccessVipPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>

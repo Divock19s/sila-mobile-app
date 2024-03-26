@@ -7,12 +7,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { FontAwesome } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const MBInterface = () => {
 
     const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userInfo, setUserInfo] = useState(null);
     const [userEurWallet, setUserEurWallet] = useState(null);
@@ -53,8 +56,8 @@ const MBInterface = () => {
                 {/* Wallet */}
                 <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginHorizontal: 20}, {marginBottom: 40}]}>
                     <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-                        <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
+                        <Text style={[{fontSize: 20}, {color: '#fff'}]}>{t('account-balance')}</Text>
+                        <Pressable onPress={() => Alert.alert(t('eur-wallet-tooltip'))}>
                             <Foundation name="info" size={35} color="#fff" />
                         </Pressable>
                     </View>  
@@ -79,10 +82,10 @@ const MBInterface = () => {
                     
                     {
                         userInfo !== null && (
-                            <Text style={[{fontWeight: 600}]}>Hi there! {userInfo.userName}</Text>
+                            <Text style={[{fontWeight: 600}]}>{t('hello')} {userInfo.userName}</Text>
                         )
                     }
-                    <Text style={[{fontSize: 16}, {fontWeight: 300}]}>Discover our new service where we can edit your content as well as managing your Ads and sending you all the analytics every week with just €0.65</Text>
+                    <Text style={[{fontSize: 16}, {fontWeight: 300}]}>{t('media-buying-dashboard-description')}</Text>
                 </View>
 
                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {marginTop: 40}, {paddingHorizontal: 30}]}>
@@ -99,7 +102,7 @@ const MBInterface = () => {
 
         <Pressable onPress={() => navigation.navigate('MyMedia')} style={[{position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {flexDirection: 'row'}, {alignItems: 'center'}, {padding: 20}, {borderTopRightRadius: 30}, {borderTopLeftRadius: 30}, {justifyContent: 'center'}, {gap: 15}, {backgroundColor: '#7538D4'}]}>
             <MaterialIcons name="movie-filter" size={24} color="#fff" />
-            <Text style={[{fontWeight: 500}, {color: '#fff'}]}>My Media</Text>
+            <Text style={[{fontWeight: 500}, {color: '#fff'}]}>{t('my-media')}</Text>
         </Pressable>
     </View>
   )

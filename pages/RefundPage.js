@@ -5,12 +5,15 @@ import RNPickerSelect from 'react-native-picker-select';
 import { useNavigation } from '@react-navigation/native';
 import BottomNav from '../components/BottomNav';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 const RefundPage = () => {
 
   const navigation = useNavigation();
 
   const { width, height } = Dimensions.get('window');
+
+  const {t} = useTranslation();
 
   const [adAccount, setAdAccount] = useState(null);
   const [refundReason, setRefundReason] = useState(null);
@@ -126,7 +129,7 @@ const RefundPage = () => {
     <View style={[{flex: 1}, {padding: 30}]}>
       <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
         <Foundation name="dollar" size={24} color="#fff" />
-        <Text style={[{color: '#fff'}, {fontSize: 17}]}>Refund</Text>
+        <Text style={[{color: '#fff'}, {fontSize: 17}]}>{t('refund')}</Text>
       </View>
 
       <View style={[{marginTop: 80}, {gap: 20}]}>
@@ -142,18 +145,18 @@ const RefundPage = () => {
         <RNPickerSelect
           onValueChange={(value) => setRefundReason(value)}
           items={[
-            { label: 'Ads disabled', value: 'Ads disabled' },
-            { label: 'Ads daily spend limit=0', value: 'Ads daily spend limit=0' },
-            { label: 'Page die all', value: 'Page die all' },
-            { label: "Everything is fine, don't want to use it anymore!", value: "Everything is fine, don't want to use it anymore!" }
+            { label: t('refund-reason-1'), value: 'Ads disabled' },
+            { label: t('refund-reason-2'), value: 'Ads daily spend limit=0' },
+            { label: t('refund-reason-3'), value: 'Page die all' },
+            { label: t('refund-reason-4'), value: "Everything is fine, don't want to use it anymore!" }
           ]}
         />
 
-        <TextInput onChangeText={(text) => setRefundAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 16}, {borderColor: '#7538D4'}]} placeholder='Charge amount...' keyboardType='numeric' />
+        <TextInput onChangeText={(text) => setRefundAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 16}, {borderColor: '#7538D4'}]} placeholder={t('refund-placeholder')} keyboardType='numeric' />
 
         <View style={[{flexDirection: 'row'}, {gap: 20}, {marginTop: 30}, {justifyContent: 'flex-end'}]}>
           <Pressable onPress={() => navigation.navigate('Meta')} style={[{borderWidth: 3}, {padding: 15}, {borderRadius: 30}, {paddingHorizontal: 25}, {borderColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-            <Text style={[{color: '#000'}]}>Cancel</Text>
+            <Text style={[{color: '#000'}]}>{t('cancel')}</Text>
           </Pressable>
 
           <Pressable onPress={sendRefund} style={[{backgroundColor: '#7538D4'}, {padding: 15}, {borderRadius: 30}, {paddingHorizontal: 40}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
@@ -161,7 +164,7 @@ const RefundPage = () => {
               refundLoading ? (
                 <ActivityIndicator color={'#fff'} />
               ) : (
-                <Text style={[{color: '#fff'}]}>Apply refund</Text>
+                <Text style={[{color: '#fff'}]}>{t('apply-refund')}</Text>
               )
             }
           </Pressable>

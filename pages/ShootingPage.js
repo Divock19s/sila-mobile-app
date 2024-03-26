@@ -7,10 +7,13 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 import { FontAwesome } from '@expo/vector-icons';
 import data from '../Context';
+import { useTranslation } from 'react-i18next';
 
 const ShootingPage = () => {
 
     const navigation = useNavigation();
+
+    const {t} = useTranslation();
 
     const { pressedCreativePack, setPressedCreativePack } = useContext(data);
 
@@ -464,7 +467,7 @@ const ShootingPage = () => {
 
             <Pressable onPress={moveToShooting} style={[{width: '50%'}, {padding: 30}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {gap: 20}]}>
                 <Entypo name="video-camera" size={24} color="#7538D4" />
-                <Text style={[{color: '#7538D4'}, {fontWeight: 500}, {fontSize: 15}]}>Shooting</Text>
+                <Text style={[{color: '#7538D4'}, {fontWeight: 500}, {fontSize: 15}]}>{t('shooting')}</Text>
             </Pressable>
 
             <Animated.View style={[{height: 5}, {width: '50%'}, {position: 'absolute'}, {bottom: 0}, {borderRadius: 50}, {backgroundColor: '#7538D4'}, {right: 0}, {transform: [{translateX: value}]}]} />
@@ -475,7 +478,7 @@ const ShootingPage = () => {
                 <ScrollView showsVerticalScrollIndicator={false} style={[{padding: 20}]}>
                     <Pressable onPress={() => navigation.navigate('ShootingDashboard')} style={[{marginBottom: 20}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                         <FontAwesome name="square" size={24} color="#fff" />
-                        <Text style={[{color: '#fff'}, {fontWeight: 500}, {fontSize: 15}]}>My Shooting Dashboard</Text>
+                        <Text style={[{color: '#fff'}, {fontWeight: 500}, {fontSize: 15}]}>{t('my-shooting-dashboard')}</Text>
                     </Pressable>
 
                     <Text style={[{fontSize: 20}, {color: '#7538D4'}, {textAlign: 'center'}, {marginBottom: 20}]}>Dèplacement Grand Produit + €25</Text>
@@ -493,7 +496,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Petit Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€39</Text>
                             <Pressable onPress={orderVid1} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -502,7 +505,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Personne</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€69</Text>
                             <Pressable onPress={orderVid2} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -511,7 +514,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Grand Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€79</Text>
                             <Pressable onPress={orderVid3} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -520,7 +523,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Magasin</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€199</Text>
                             <Pressable onPress={orderVid4} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -529,7 +532,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Sociètè/Hotel</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€299</Text>
                             <Pressable onPress={orderVid5} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
                     </View>
@@ -550,7 +553,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Petit Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€29</Text>
                             <Pressable onPress={orderPhoto1} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -559,7 +562,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Personne</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€59</Text>
                             <Pressable onPress={orderPhoto2} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -568,7 +571,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Grand Produit</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€69</Text>
                             <Pressable onPress={orderPhoto3} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -577,7 +580,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Magasin</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€99</Text>
                             <Pressable onPress={orderPhoto4} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
 
@@ -586,7 +589,7 @@ const ShootingPage = () => {
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>Shooting Sociètè/Hotel</Text>
                             <Text style={[{color: '#fff'}, {fontSize: 15}]}>€179</Text>
                             <Pressable onPress={orderPhoto5} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 10}]}>
-                                <Text>Order now</Text>
+                                <Text>{t('order-now')}</Text>
                             </Pressable>
                         </View>
                     </View>
@@ -619,7 +622,7 @@ const ShootingPage = () => {
 
                         <Pressable onPress={buyStarter} style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                             <Ionicons name="card-outline" size={24} color="black" />
-                            <Text>Buy now</Text>
+                            <Text>{t('buy-now')}</Text>
                             <Text>€29</Text>
                         </Pressable>
                     </View>
@@ -641,7 +644,7 @@ const ShootingPage = () => {
 
                         <Pressable onPress={buyMedium} style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                             <Ionicons name="card-outline" size={24} color="black" />
-                            <Text>Buy now</Text>
+                            <Text>{t('buy-now')}</Text>
                             <Text>€69</Text>
                         </Pressable>
                     </View>
@@ -668,7 +671,7 @@ const ShootingPage = () => {
 
                         <Pressable onPress={buyExpert} style={[{marginTop: 30}, {alignSelf: 'flex-end'}, {padding: 20}, {backgroundColor: '#fff'}, {borderRadius: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                             <Ionicons name="card-outline" size={24} color="black" />
-                            <Text>Buy now</Text>
+                            <Text>{t('buy-now')}</Text>
                             <Text>€129</Text>
                         </Pressable>
                     </View>

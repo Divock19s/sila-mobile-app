@@ -13,6 +13,7 @@ import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Foundation } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 const CreateVipAdPage = () => {
 
@@ -22,15 +23,7 @@ const CreateVipAdPage = () => {
 
   const [newLicenseName, setNewLicenseName] = useState(null);
 
-  const [pageNumber, setPageNumber] = useState(0);
-  const [pageURLs, setPageURLs] = useState([]);
-  const [phpRedLine, setPhpRedLine] = useState(false);
-  const [checked, setChecked] = useState(false);
-
-  const [domainNumber, setDomainNumber] = useState(0);
-  const [isAPP, setIsAPP] = useState(false);
-  const [appIDs, setAPPIDs] = useState([]);
-  const [domainName, setDomainName] = useState([]);
+  const [website, setWebsite] = useState('');
 
   const [shopifyShop, setShopifyShop] = useState(false);
   const [shopifyScreenshot, setShopifyScreenshot] = useState(null);
@@ -65,94 +58,6 @@ const CreateVipAdPage = () => {
 
     asyncStorage();
   }, []);
-
-  //rendering url inputs according to picker number
-  const renderPageURLInputs = () => {
-    const textInputs = [];
-    for (let i = 0; i < pageNumber; i++) {
-      textInputs.push(
-        <TextInput onChangeText={(text) => storeURLs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: phpRedLine ? 'red' : '#7538D4'}, {fontSize: 17}]} placeholder='URL...' />
-      );
-    }
-    return textInputs;
-  };
-  //
-
-
-  //getting the url input values and storing them in pageURL state, which is an array
-  const storeURLs = (i, text) => {
-    setPageURLs((prevInputValues) => {
-      const newInputValues = [...prevInputValues];
-      newInputValues[i] = text;
-      return newInputValues;
-    });
-
-    const regex = /\bphp\b/i;
-
-    if(regex.test(text)) {
-      setPhpRedLine(true);
-    } else {
-      setPhpRedLine(false);
-    }
-  };
-  //
-
-  //copying admin to clipboard
-  const copy = async () => {
-    try {
-      await Clipboard.setStringAsync('https://www.facebook.com/rina.magar.332/');
-      Alert.alert('Copied successfully!');
-    } catch (err) {
-      console.error(err);
-    };
-  };
-  //
-
-
-  //rendering app id inputs according to picker number
-  const renderAPPIDInput = () => {
-    const appIDInput = [];
-    for (let i = 0; i < domainNumber; i++) {
-      appIDInput.push(
-        <TextInput onChangeText={(text) => storeAPPIDs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='APP ID...' />
-      );
-    }
-    return appIDInput;
-  };
-  //
-
-
-  //getting the app id input values and storing them in APPID state, which is an array
-  const storeAPPIDs = (i, text) => {
-    setAPPIDs((prev) => {
-      const newValue = [...prev];
-      newValue[i] = text;
-      return newValue;
-    });
-  };
-  //
-
-  //rendering domain name inputs according to picker number
-  const renderDomainNameInput = () => {
-    const DomainInput = [];
-    for (let i = 0; i < domainNumber; i++) {
-      DomainInput.push(
-        <TextInput onChangeText={(text) => storeDomainName(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='Enter domain name...' />
-      );
-    }
-    return DomainInput;
-  };
-  //
-
-  //getting the domain input values and storing them in domainName state, which is an array
-  const storeDomainName = (i, text) => {
-    setDomainName((prev) => {
-      const newValue = [...prev];
-      newValue[i] = text;
-      return newValue;
-    });
-  };
-  //
 
   //picking shopify screenshot proof:
   const pickScreenshot = () => {
@@ -237,25 +142,32 @@ const CreateVipAdPage = () => {
   useEffect(() => {
     //counting total deposit of ads
     const sum = adAccountDeposits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const commision = sum * 6 / 100;
-    const totalDepositOfADs = sum + commision;
+    const commision1 = sum * 8 / 100;
+    const commision3 = sum * 7 / 100;
+    const commision5 = sum * 6 / 100;
     
-    setTotalDepositOfADs(totalDepositOfADs);
+    if (adAccountsNumber === 1) {
+      setTotalDepositOfADs(sum + commision1);
+    } else if (adAccountsNumber === 3) {
+      setTotalDepositOfADs(sum + commision3);
+    } else if (adAccountsNumber === 5) {
+      setTotalDepositOfADs(sum + commision5);
+    };
     //
 
 
     //counting total cost
     if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 179);
+      setTotalCost(totalDepositOfADs + 259);
     } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 299);
+      setTotalCost(totalDepositOfADs + 599);
     } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 499);
+      setTotalCost(totalDepositOfADs + 799);
     } else {
       setTotalCost(0);
     }
     //
-  }, [adAccountDeposits]);
+  }, [adAccountsNumber, totalDepositOfADs, adAccountDeposits]);
 
 
 
@@ -286,18 +198,8 @@ const CreateVipAdPage = () => {
     if (newLicenseName !== null) {
       formData.append('license', newLicenseName);
     };
-    formData.append('pageNumber', pageNumber);
-    pageURLs.map((x) => {
-      formData.append('pageURL', x);
-    });
-    formData.append('domainNumber', domainNumber);
-    formData.append('isApp', isAPP);
-    domainName.map((x) => {
-      formData.append('domainName', x);
-    });
-    appIDs.map((x) => {
-      formData.append('appID', x);
-    });
+    
+    formData.append('website', website);
 
     formData.append('shopifyShop', shopifyShop);
 
@@ -338,7 +240,7 @@ const CreateVipAdPage = () => {
 
     const adApi = async () => {
       try {
-        const response = await fetch('https://sila-b.onrender.com/ad', {
+        const response = await fetch('https://sila-b.onrender.com/adVip', {
           method: 'POST',
           body: formData
         });
@@ -371,29 +273,11 @@ const CreateVipAdPage = () => {
       }
     };
 
-    if (!checked) {
-      Alert.alert('Please make sure you have already shared page with this profile: "https://www.facebook.com/rina.magar.332/"');
-      setPayLoading(false);
-    } else if (newLicenseName === null) {
+    if (newLicenseName === null) {
       Alert.alert('Please write a license name');
       setPayLoading(false);
-    } else if (pageNumber === null || pageNumber === 0) {
-      Alert.alert('Please select Page number!');
-      setPayLoading(false);
-    } else if (pageURLs.length === 0) {
-      Alert.alert('Please provide at least one Page URL');
-      setPayLoading(false);
-    } else if (phpRedLine) {
-      Alert.alert('Please provide a valid Page URL!');
-      setPayLoading(false);
-    } else if (domainNumber === null || domainNumber === 0) {
-      Alert.alert('Please select Domain number!');
-      setPayLoading(false);
-    } else if (domainName.length === 0) {
-      Alert.alert('Please provide at least one Domain name');
-      setPayLoading(false);
-    } else if (isAPP && appIDs.length === 0) {
-      Alert.alert('Please provide App id(s)');
+    } else if (website === '') {
+      Alert.alert('Please write the website URL');
       setPayLoading(false);
     } else if (shopifyShop && shopifyScreenshot === null) {
       Alert.alert('Please provide the Shopify screenshot proof!');
@@ -466,11 +350,7 @@ const CreateVipAdPage = () => {
   useEffect(() => {
     if (firstApiDone && secondApiDone && thirdApiDone) {
       setPayLoading(false);
-
-      navigation.reset({
-        index: 0,
-        routes: [{ name: 'NewAdAccount' }]
-      });
+      navigation.navigate('SuccessVip');
     }
   }, [firstApiDone, secondApiDone, thirdApiDone]);
 
@@ -478,53 +358,28 @@ const CreateVipAdPage = () => {
     <View style={[{flex: 1}, {paddingHorizontal: 40}, {paddingTop: 40}]}>
       <View style={[{height: height / 1.6}]}>
         <ScrollView showsVerticalScrollIndicator={false}>
+          <View style={[{backgroundColor: '#7538D4'}, {marginBottom: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {borderRadius: 10}]}>
+            <Text style={[{color: '#fff'}]}>Unlimited Pages/Domains</Text>
+            <Ionicons name="checkmark-circle" size={24} color="#fff" />
+          </View>
+
           <View>
-          <Text style={[{fontSize: 20}]}>License:</Text>
-          <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
-        </View>
-
-        <View style={[{marginTop: 30}]}>
-          <Text style={[{fontSize: 20}]}>Page number:</Text>
-          <TouchableOpacity onPress={() => setPageNumber(pageNumber + 1)} style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 13}, {borderRadius: 10}, {alignSelf: 'flex-start'}, {marginTop: 10}]}>
-            <Text style={[{color: '#fff'}]}>Add pages</Text>
-            <AntDesign name="plus" size={24} color="#fff" />
-          </TouchableOpacity>
-
-          { renderPageURLInputs() }
-          
-          {
-            phpRedLine && (
-              <Text style={[{color: 'red'}]}>This URL type is unaccepted, please add a URL that has a username. eg: 'https://facebook.com/Amine'</Text>
-            )
-          }
-
-          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {marginTop: 20}]}>
-            <CheckBox checked={checked} onPress={() => setChecked(!checked)} checkedColor='#7538D4' />
-            <Text>Please make sure you have already shared your page with this profile:</Text>
+            <Text style={[{fontSize: 20}]}>License:</Text>
+            <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
           </View>
 
-          <View style={[{alignItems: 'center'}]}>
-            <Text style={[{backgroundColor: '#7538D4'}, {color: '#fff'}, {padding: 5}, {borderRadius: 10}]}>https://www.facebook.com/rina.magar.332/</Text>
-            <Pressable onPress={copy}>
-              <Feather name="copy" size={30} color="black" />
-            </Pressable>
+          <View style={[{marginTop: 30}]}>
+            <Text style={[{fontSize: 20}]}>Website:</Text>
+            <TextInput onChangeText={(text) => setWebsite(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='Enter website URL...' />
           </View>
-        </View>
 
-        <View style={[{marginTop: 30}]}>
-          <Text style={[{fontSize: 20}]}>Domain Number:</Text>
-          <TouchableOpacity onPress={() => setDomainNumber(domainNumber + 1)} style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 13}, {borderRadius: 10}, {alignSelf: 'flex-start'}, {marginTop: 10}]}>
-            <Text style={[{color: '#fff'}]}>Add domains</Text>
-            <AntDesign name="plus" size={24} color="#fff" />
-          </TouchableOpacity>
-
-          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {marginTop: 20}]}>
-            <Text style={[{fontSize: 16}]}>is APP?</Text>
-            <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}]}>
-              <Pressable onPress={() => setIsAPP(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+          <View style={[{marginTop: 30}]}>
+            <Text style={[{fontSize: 16}]}>Do you currently have a Shopify shop at the time of this application?</Text>
+            <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}, {marginTop: 20}]}>
+              <Pressable onPress={() => setShopifyShop(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                 <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                   {
-                    !isAPP && (
+                    !shopifyShop && (
                       <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
                     )
                   }
@@ -532,10 +387,10 @@ const CreateVipAdPage = () => {
                 <Text style={[{fontSize: 16}]}>No</Text>
               </Pressable>
 
-              <Pressable onPress={() => setIsAPP(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+              <Pressable onPress={() => setShopifyShop(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                 <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
                   {
-                    isAPP && (
+                    shopifyShop && (
                       <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
                     )
                   }
@@ -543,84 +398,46 @@ const CreateVipAdPage = () => {
                 <Text style={[{fontSize: 16}]}>Yes</Text>
               </Pressable>
             </View>
+
+            {
+              shopifyShop && (
+                <View style={[{marginTop: 20}, {flexDirection: 'row'}, {gap: 30}]}>
+                  <Pressable onPress={pickScreenshot} style={[{borderWidth: 1}, {height: 100}, {width: 100}, {borderRadius: 20}, {justifyContent: 'center'}, {alignItems: 'center'}, {overflow: 'hidden'}]}>
+                    {
+                      shopifyScreenshot !== null ? (
+                        <Image style={[{height: 100}, {width: 100}]} source={{uri: 'https://i.pinimg.com/originals/51/8c/fc/518cfc9e3de40195948e2a1f1108a0fe.gif'}} />
+                      ) : (
+                        <AntDesign name="plus" size={30} color="black" />
+                      )
+                    }
+                  </Pressable>
+
+                  <Pressable style={[{height: 100}, {width: 100}, {borderRadius: 20}, {overflow: 'hidden'}]}>
+                    <Image style={[{flex: 1}]} source={{uri: 'https://ads.hdedu.net/assets/shopify_example-33e120ba.jpg'}} />
+                  </Pressable>
+                </View>
+              )
+            }
           </View>
 
-          {
-            isAPP && renderAPPIDInput()
-          }
+          <View style={[{marginTop: 30}]}>
+            <Text style={[{fontSize: 20}]}>AD accounts number:</Text>
+            <RNPickerSelect
+              onValueChange={(value) => setAdAccountsNumber(value)}
+              items={[
+                { label: '1', value: 1 },
+                { label: '3', value: 3 },
+                { label: '5', value: 5 }
+              ]}
+            />
 
-          { renderDomainNameInput() }
-        </View>
+            { renderADAccountSections() }
+          </View>
 
-        {
-          !isAPP && (
-            <View style={[{marginTop: 30}]}>
-              <Text style={[{fontSize: 16}]}>Do you currently have a Shopify shop at the time of this application?</Text>
-              <View style={[{flexDirection: 'row'}, {gap: 30}, {alignItems: 'center'}, {marginTop: 20}]}>
-                <Pressable onPress={() => setShopifyShop(false)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                  <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                    {
-                      !shopifyShop && (
-                        <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
-                      )
-                    }
-                  </View>
-                  <Text style={[{fontSize: 16}]}>No</Text>
-                </Pressable>
-
-                <Pressable onPress={() => setShopifyShop(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                  <View style={[{height: 25}, {width: 25}, {borderRadius: 100 / 2}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                    {
-                      shopifyShop && (
-                        <View style={[{height: 10}, {width: 10}, {borderRadius: 100 / 2}, {backgroundColor: '#fff'}]}></View>
-                      )
-                    }
-                  </View>
-                  <Text style={[{fontSize: 16}]}>Yes</Text>
-                </Pressable>
-              </View>
-
-              {
-                shopifyShop && (
-                  <View style={[{marginTop: 20}, {flexDirection: 'row'}, {gap: 30}]}>
-                    <Pressable onPress={pickScreenshot} style={[{borderWidth: 1}, {height: 100}, {width: 100}, {borderRadius: 20}, {justifyContent: 'center'}, {alignItems: 'center'}, {overflow: 'hidden'}]}>
-                      {
-                        shopifyScreenshot !== null ? (
-                          <Image style={[{height: 100}, {width: 100}]} source={{uri: 'https://i.pinimg.com/originals/51/8c/fc/518cfc9e3de40195948e2a1f1108a0fe.gif'}} />
-                        ) : (
-                          <AntDesign name="plus" size={30} color="black" />
-                        )
-                      }
-                    </Pressable>
-
-                    <Pressable style={[{height: 100}, {width: 100}, {borderRadius: 20}, {overflow: 'hidden'}]}>
-                      <Image style={[{flex: 1}]} source={{uri: 'https://ads.hdedu.net/assets/shopify_example-33e120ba.jpg'}} />
-                    </Pressable>
-                  </View>
-                )
-              }
-            </View>
-          )
-        }
-
-        <View style={[{marginTop: 30}]}>
-          <Text style={[{fontSize: 20}]}>AD accounts number:</Text>
-          <RNPickerSelect
-            onValueChange={(value) => setAdAccountsNumber(value)}
-            items={[
-              { label: '1', value: 1 },
-              { label: '3', value: 3 },
-              { label: '5', value: 5 }
-            ]}
-          />
-
-          { renderADAccountSections() }
-        </View>
-
-        <View style={[{marginTop: 30}]}>
-          <Text style={[{fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
-          <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
-        </View>
+          <View style={[{marginTop: 30}]}>
+            <Text style={[{fontSize: 16}]}>if you have any special requirements, please feel free to add them here:</Text>
+            <TextInput onChangeText={(text) => setRemark(text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='Fill remarks here...' />
+          </View>
         </ScrollView>
       </View>
 
@@ -659,7 +476,7 @@ const CreateVipAdPage = () => {
         </View>
 
         <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}]}>
-          <Pressable onPress={() => navigation.navigate('NewAdAccount')} style={[{paddingHorizontal: 30}, {paddingVertical: 10}, {borderRadius: 50}, {borderWidth: 4}, {borderColor: '#fff'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+          <Pressable onPress={() => navigation.navigate('Ads')} style={[{paddingHorizontal: 30}, {paddingVertical: 10}, {borderRadius: 50}, {borderWidth: 4}, {borderColor: '#fff'}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
             <Text style={[{fontSize: 20}, {color: '#fff'}]}>Cancel</Text>
           </Pressable>
 

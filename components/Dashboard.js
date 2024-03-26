@@ -8,12 +8,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import CircularProgress from 'react-native-circular-progress-indicator';
 import { FontAwesome } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const Dashboard = () => {
 
   const navigation = useNavigation();
 
   const { width, height } = Dimensions.get('window');
+
+  const {t} = useTranslation();
 
   const [userID, setUserID] = useState(null);
   const [userWallet, setUserWallet] = useState(null);
@@ -99,8 +102,8 @@ const Dashboard = () => {
       {/* Wallet */}
       <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
         <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-          <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-          <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
+          <Text style={[{fontSize: 20}, {color: '#fff'}]}>{t('account-balance')}</Text>
+          <Pressable onPress={() => Alert.alert(t('usd-wallet-tooltip'))}>
             <Foundation name="info" size={35} color="#fff" />
           </Pressable>
         </View>  
@@ -117,7 +120,7 @@ const Dashboard = () => {
       {/* ////// */}
 
       <View style={[{marginTop: 60}, {gap: 30}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-        <Text style={[{fontSize: 20}]}>AD accounts:</Text>
+        <Text style={[{fontSize: 20}]}>{t('ad-accounts')}</Text>
         <CircularProgress
           value={adAccountsNumber}
           radius={120}

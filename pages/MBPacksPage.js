@@ -6,12 +6,15 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import data from '../Context';
 import { useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 const MBPacksPage = () => {
 
     const { width, height } = Dimensions.get('window');
 
     const navigation = useNavigation();
+
+    const {t} = useTranslation();
 
     const { pressedMediaPack, setPressedMediaPack } = useContext(data);
 
@@ -104,7 +107,7 @@ const MBPacksPage = () => {
             </Pressable>
             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                 <MaterialIcons name="movie-filter" size={30} color="#7538D4" />
-                <Text style={[{color: '#7538D4'}, {fontSize: 16}, {fontWeight: 500}]}>Our Packs</Text>
+                <Text style={[{color: '#7538D4'}, {fontSize: 16}, {fontWeight: 500}]}>{t('our-packs')}</Text>
             </View>
         </View>
 
@@ -145,7 +148,7 @@ const MBPacksPage = () => {
 
                 <Pressable onPress={buyStartup} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
-                    <Text style={[{fontWeight: 500}]}>Get Started</Text>
+                    <Text style={[{fontWeight: 500}]}>{t('get-started')}</Text>
                 </Pressable>
             </View>
 
@@ -185,7 +188,7 @@ const MBPacksPage = () => {
 
                 <Pressable onPress={buyMedium} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
-                    <Text style={[{fontWeight: 500}]}>Get Started</Text>
+                    <Text style={[{fontWeight: 500}]}>{t('get-started')}</Text>
                 </Pressable>
             </View>
 
@@ -225,7 +228,7 @@ const MBPacksPage = () => {
 
                 <Pressable onPress={buyExpert} style={[{alignSelf: 'flex-end'}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 40}, {marginTop: 20}, {paddingHorizontal: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
                     <MaterialCommunityIcons name="source-commit-start-next-local" size={24} color="black" />
-                    <Text style={[{fontWeight: 500}]}>Get Started</Text>
+                    <Text style={[{fontWeight: 500}]}>{t('get-started')}</Text>
                 </Pressable>
             </View>
         </ScrollView>

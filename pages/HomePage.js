@@ -11,8 +11,11 @@ import { Video, ResizeMode } from 'expo-av';
 import { FontAwesome } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const HomePage = () => {
+
+    const {t} = useTranslation();
 
     const navigation = useNavigation();
 
@@ -198,10 +201,10 @@ const HomePage = () => {
                 <View>
                     {
                         userInfo !== null && (
-                            <Text style={[{fontSize: 20}, {fontWeight: 300}]}>Hello {userInfo.userName}</Text>
+                            <Text style={[{fontSize: 20}, {fontWeight: 300}]}>{t('hello')} {userInfo.userName}</Text>
                         )
                     }
-                    <Text>Discover joy in every interaction!</Text>
+                    <Text>{t('home-page-sub-greet')}</Text>
                 </View>
                 {
                     userInfo !== null && (
@@ -212,36 +215,36 @@ const HomePage = () => {
 
             <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}]}>
                 <AntDesign name="plus" size={24} color="#fff" />
-                <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Re-charge your wallet</Text>
+                <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>{t('re-charge-your-wallet')}</Text>
             </Pressable>
 
-            <Text style={[{fontSize: 16}, {marginTop: 30}]}>Services</Text>
+            <Text style={[{fontSize: 16}, {marginTop: 30}]}>{t('services')}</Text>
 
             <View style={[{marginTop: 20}]}>
                 <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                     <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                         <Entypo name="code" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Development</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('development')}</Text>
                     </Pressable>
 
                     <Pressable onPress={() => navigation.navigate('MediaBuying')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                         <MaterialIcons name="movie-filter" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Media buying</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('media-buying')}</Text>
                     </Pressable>
 
                     <Pressable onPress={() => navigation.navigate('Shooting')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                         <Entypo name="video-camera" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Shooting</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('shooting')}</Text>
                     </Pressable>
 
                     <Pressable onPress={() => navigation.navigate('Formation')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
                         <SimpleLineIcons name="graduation" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Formation</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('formation')}</Text>
                     </Pressable>
                 </ScrollView>
             </View>
 
-            <Text style={[{fontSize: 16}, {marginTop: 30}]}>Account stats</Text>
+            <Text style={[{fontSize: 16}, {marginTop: 30}]}>{t('account-stats')}</Text>
 
             {
                 transactions !== null && successfulPayments !== null && licenses !== null && refunds !== null && (
@@ -292,8 +295,8 @@ const HomePage = () => {
             {/* Euro Wallet */}
             <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {marginTop: 30}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}]}>
                 <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                    <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-                    <Pressable onPress={() => Alert.alert('This is your Euro wallet credit!')}>
+                    <Text style={[{fontSize: 20}, {color: '#fff'}]}>{t('account-balance')}</Text>
+                    <Pressable onPress={() => Alert.alert(t('eur-wallet-tooltip'))}>
                         <Foundation name="info" size={35} color="#fff" />
                     </Pressable>
                 </View>  
@@ -312,8 +315,8 @@ const HomePage = () => {
             {/* Dollar Wallet */}
             <View style={[{borderRadius: 20}, {overflow: 'hidden'}, {backgroundColor: '#7538D4'}, {padding: 25}, {gap: 25}, {marginTop: 30}]}>
                 <View style={[{flexDirection: 'row'}, {justifyContent: 'space-between'}, {alignItems: 'center'}]}>
-                    <Text style={[{fontSize: 20}, {color: '#fff'}]}>Account Balance:</Text>
-                    <Pressable onPress={() => Alert.alert('This is your Dollar wallet credit!')}>
+                    <Text style={[{fontSize: 20}, {color: '#fff'}]}>{t('account-balance')}</Text>
+                    <Pressable onPress={() => Alert.alert(t('usd-wallet-tooltip'))}>
                     <Foundation name="info" size={35} color="#fff" />
                     </Pressable>
                 </View>  

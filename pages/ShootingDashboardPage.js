@@ -2,10 +2,13 @@ import { View, Text, Image, Dimensions, Pressable, ScrollView, Animated, FlatLis
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useTranslation } from 'react-i18next';
 
 const ShootingDashboardPage = () => {
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [apiData, setApiData] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
@@ -50,7 +53,7 @@ const ShootingDashboardPage = () => {
         </View>
 
         <View style={[{height: height / 2}, {position: 'absolute'}, {bottom: 0}, {left: 0}, {right: 0}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}]}>
-            <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>You can see all of your videos and photos here:</Text>
+            <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>{t('shooting-dashboard-edited-section-title')}</Text>
             {
                 userInfo !== null && (
                     <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {

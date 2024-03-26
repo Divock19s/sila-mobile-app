@@ -6,10 +6,13 @@ import { useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const MyMediaPage = () => {
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [apiData, setApiData] = useState([]);
     const [userInfo, setUserInfo] = useState(null);
@@ -63,7 +66,7 @@ const MyMediaPage = () => {
     <View style={[{flex: 1}, {backgroundColor: '#fff'}]}>
         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 30}, {backgroundColor: '#7538D4'}, {justifyContent: 'center'}, {borderBottomLeftRadius: 30}, {borderBottomRightRadius: 30}]}>
             <MaterialCommunityIcons name="movie-filter-outline" size={24} color="#fff" />
-            <Text style={[{color: '#fff'}]}>My media</Text>
+            <Text style={[{color: '#fff'}]}>{t('my-media')}</Text>
         </View>
 
         <View style={[{height: height / 2.3}, {padding: 10}]}>
@@ -86,7 +89,7 @@ const MyMediaPage = () => {
         </View>
 
         <View style={[{flex: 1}, {borderTopRightRadius: 50}, {borderTopLeftRadius: 50}, {backgroundColor: 'lightgray'}, {padding: 30}]}>
-            <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>You can see all of your (Edited) videos here:</Text>
+            <Text style={[{textAlign: 'center'}, {fontSize: 16}, {fontWeight: 300}, {textDecorationLine: 'underline'}]}>{t('edited-videos-title')}</Text>
 
             {
                 userInfo !== null && (
