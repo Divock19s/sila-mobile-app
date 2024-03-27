@@ -8,11 +8,13 @@ import { useEffect, useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
-import { FontAwesome } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 const Transactions = () => {
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -48,7 +50,7 @@ const Transactions = () => {
     <View style={[{paddingHorizontal: 30}]}>
         <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Entypo name="wallet" size={30} color="#fff" />
-            <Text style={[{color: '#fff'}, {fontSize: 17}]}>My transactions</Text>
+            <Text style={[{color: '#fff'}, {fontSize: 17}]}>{t('my-transactions')}</Text>
         </View>
 
         <View style={[{marginTop: 100}, {height: height / 1.4}]}>
@@ -68,7 +70,7 @@ const Transactions = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
                                 <FontAwesome5 name="money-bill" size={24} color="#fff" />
-                                <Text style={[{color: '#fff'}]}>Payment Method: {item.paymentMethod}</Text>
+                                <Text style={[{color: '#fff'}]}>{t('payment-method')} {item.paymentMethod}</Text>
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {justifyContent: 'center'}]}>
@@ -89,11 +91,11 @@ const Transactions = () => {
                             </View>
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}]}>
-                                <Text style={[{color: '#fff'}]}>Status:</Text>
+                                <Text style={[{color: '#fff'}]}>{t('status')}</Text>
                                 {
                                     item.status === 'Pending' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{color: '#fff'}]}>Pending</Text>
+                                            <Text style={[{color: '#fff'}]}>{t('pending')}</Text>
                                             <Ionicons name="time-sharp" size={24} color="#fff" />
                                         </View>
                                     )
@@ -102,7 +104,7 @@ const Transactions = () => {
                                 {
                                     item.status === 'Accepted' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{color: '#fff'}]}>Accepted</Text>
+                                            <Text style={[{color: '#fff'}]}>{t('accepted')}</Text>
                                             <Feather name="check" size={24} color="#fff" />
                                         </View>
                                     )
@@ -111,7 +113,7 @@ const Transactions = () => {
                                 {
                                     item.status === 'Rejected' && (
                                         <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 5}]}>
-                                            <Text style={[{color: '#fff'}]}>Rejected</Text>
+                                            <Text style={[{color: '#fff'}]}>{t('rejected')}</Text>
                                             <AntDesign name="close" size={24} color="#fff" />
                                         </View>
                                     )

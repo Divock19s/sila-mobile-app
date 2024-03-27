@@ -8,12 +8,15 @@ import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as DocumentPicker from 'expo-document-picker';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const AccountSettingsPage = () => {
 
     const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [changePhoneNumber, setChangePhoneNumber] = useState(false);
     const [changeUserName, setChangeUserName] = useState(false);
@@ -300,7 +303,7 @@ const AccountSettingsPage = () => {
                 )
             }
             <Pressable onPress={changePhoto} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 15}, {backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 20}]}>
-                <Text style={[]}>Change profile photo</Text>
+                <Text style={[]}>{t('change-profile-photo')}</Text>
                 <Feather name="edit" size={24} color="black" />
             </Pressable>
         </View>
@@ -308,7 +311,7 @@ const AccountSettingsPage = () => {
         <View style={[{padding: 30}, {gap: 40}, {height: height / 2}]}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
-                    <Text style={[{fontSize: 17}]}>Email:</Text>
+                    <Text style={[{fontSize: 17}]}>{t('email')}</Text>
                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {backgroundColor: 'lightgray'}, {padding: 10}, {borderRadius: 30}]}>
                         {
                             userInfo !== null && (
@@ -320,7 +323,7 @@ const AccountSettingsPage = () => {
                 </View>
 
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
-                    <Text style={[{fontSize: 17}]}>Phone number:</Text>
+                    <Text style={[{fontSize: 17}]}>{t('phone-number')}</Text>
                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {backgroundColor: 'lightgray'}, {padding: 10}, {borderRadius: 30}]}>
                         {
                             userInfo !== null && (
@@ -331,23 +334,23 @@ const AccountSettingsPage = () => {
                     </View>
 
                     <Pressable onPress={() => setChangePhoneNumber(true)} style={[{backgroundColor: '#7538D4'}, {alignSelf: 'flex-start'}, {padding: 10}, {borderRadius: 20}]}>
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Change phone number</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('change-phone-number')}</Text>
                     </Pressable>
 
                     {
                         changePhoneNumber && (
                             <>
-                                <TextInput onChangeText={(text) => setNumberInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} keyboardType='numeric' placeholder='New phone number...' />
+                                <TextInput onChangeText={(text) => setNumberInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} keyboardType='numeric' placeholder={t('phone-number-placeholder')} />
                                 <View style={[{flexDirection: 'row'}, {gap: 20}, {justifyContent: 'flex-end'}]}>
                                     <Pressable onPress={() => setChangePhoneNumber(false)} style={[{borderWidth: 2}, {borderColor: '#7538D4'}, {borderRadius: 30}, {padding: 10}]}>
-                                        <Text style={[, {fontSize: 16}]}>Cancel</Text>
+                                        <Text style={[, {fontSize: 16}]}>{t('cancel')}</Text>
                                     </Pressable>
                                     <Pressable onPress={changeNumber} style={[{borderRadius: 30}, {padding: 10}, {backgroundColor: '#7538D4'}]}>
                                         {
                                             phoneLoading ? (
                                                 <ActivityIndicator color={'#fff'} />
                                             ) : (
-                                                <Text style={[, {fontSize: 16}, {color: '#fff'}]}>Apply changes</Text>
+                                                <Text style={[, {fontSize: 16}, {color: '#fff'}]}>{t('apply-changes')}</Text>
                                             )
                                         }
                                     </Pressable>
@@ -358,7 +361,7 @@ const AccountSettingsPage = () => {
                 </View>
 
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
-                    <Text style={[{fontSize: 17}]}>User name:</Text>
+                    <Text style={[{fontSize: 17}]}>{t('user-name')}</Text>
                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {backgroundColor: 'lightgray'}, {padding: 10}, {borderRadius: 30}]}>
                         {
                             userInfo !== null && (
@@ -369,23 +372,23 @@ const AccountSettingsPage = () => {
                     </View>
 
                     <Pressable onPress={() => setChangeUserName(true)} style={[{backgroundColor: '#7538D4'}, {alignSelf: 'flex-start'}, {padding: 10}, {borderRadius: 20}]}>
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Change user name</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('change-user-name')}</Text>
                     </Pressable>
 
                     {
                         changeUserName && (
                             <>
-                                <TextInput onChangeText={(text) => setUserNameInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} placeholder='New user name...' />
+                                <TextInput onChangeText={(text) => setUserNameInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} placeholder={t('user-name-placeholder')} />
                                 <View style={[{flexDirection: 'row'}, {gap: 20}, {justifyContent: 'flex-end'}]}>
                                     <Pressable onPress={() => setChangeUserName(false)} style={[{borderWidth: 2}, {borderColor: '#7538D4'}, {borderRadius: 30}, {padding: 10}]}>
-                                        <Text style={[, {fontSize: 16}]}>Cancel</Text>
+                                        <Text style={[, {fontSize: 16}]}>{t('cancel')}</Text>
                                     </Pressable>
                                     <Pressable onPress={changeName} style={[{borderRadius: 30}, {padding: 10}, {backgroundColor: '#7538D4'}]}>
                                         {
                                             userNameLoading ? (
                                                 <ActivityIndicator color={'#fff'} />
                                             ) : (
-                                                <Text style={[, {fontSize: 16}, {color: '#fff'}]}>Apply changes</Text>
+                                                <Text style={[, {fontSize: 16}, {color: '#fff'}]}>{t('apply-changes')}</Text>
                                             )
                                         }
                                     </Pressable>
@@ -396,31 +399,31 @@ const AccountSettingsPage = () => {
                 </View>
 
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
-                    <Text style={[{fontSize: 17}]}>Password:</Text>
+                    <Text style={[{fontSize: 17}]}>{t('password')}</Text>
                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {backgroundColor: 'lightgray'}, {padding: 10}, {borderRadius: 30}]}>
                         <Text style={[]}>*****************</Text>
                         <AntDesign name="key" size={24} color="black" />
                     </View>
 
                     <Pressable onPress={() => setChangePassword(true)} style={[{backgroundColor: '#7538D4'}, {alignSelf: 'flex-start'}, {padding: 10}, {borderRadius: 20}]}>
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>Change password</Text>
+                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('change-password')}</Text>
                     </Pressable>
 
                     {
                         changePassword && (
                             <>
-                                <TextInput onChangeText={(text) => setCurrentPasswordInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} placeholder='Current password...' />
-                                <TextInput onChangeText={(text) => setNewPasswordInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} placeholder='New password...' />
+                                <TextInput onChangeText={(text) => setCurrentPasswordInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} placeholder={t('current-password')} />
+                                <TextInput onChangeText={(text) => setNewPasswordInput(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, , {fontSize: 16}]} placeholder={t('new-password')} />
                                 <View style={[{flexDirection: 'row'}, {gap: 20}, {justifyContent: 'flex-end'}]}>
                                     <Pressable onPress={() => setChangePassword(false)} style={[{borderWidth: 2}, {borderColor: '#7538D4'}, {borderRadius: 30}, {padding: 10}]}>
-                                        <Text style={[, {fontSize: 16}]}>Cancel</Text>
+                                        <Text style={[, {fontSize: 16}]}>{t('cancel')}</Text>
                                     </Pressable>
                                     <Pressable onPress={handleChangePassword} style={[{borderRadius: 30}, {padding: 10}, {backgroundColor: '#7538D4'}]}>
                                         {
                                             passwordLoading ? (
                                                 <ActivityIndicator color={'#fff'} />
                                             ) : (
-                                                <Text style={[, {fontSize: 16}, {color: '#fff'}]}>Apply changes</Text>
+                                                <Text style={[, {fontSize: 16}, {color: '#fff'}]}>{t('apply-changes')}</Text>
                                             )
                                         }
                                     </Pressable>
@@ -432,24 +435,24 @@ const AccountSettingsPage = () => {
                 
                 <Pressable onPress={() => setDeleteAccount(true)} style={[{alignItems: 'center'}, {gap: 10}, {backgroundColor: 'red'}, {padding: 10}, {borderRadius: 20}, {justifyContent: 'center'}]}>
                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
-                        <Text style={[, {color: '#fff'}, {fontSize: 16}]}>Delete account</Text>
+                        <Text style={[, {color: '#fff'}, {fontSize: 16}]}>{t('delete-account')}</Text>
                         <Feather name="trash" size={24} color="#fff" />
                     </View>
 
                     {
                         deleteAccount && (
                             <>
-                                <Text style={[{fontSize: 16}, {color: '#fff'}]}>This is danger zone (do you really want to remove your account?)</Text>
+                                <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('delete-account-warning')}</Text>
                                 <View style={[{flexDirection: 'row'}, {gap: 20}, {justifyContent: 'flex-end'}, {marginTop: 10}]}>
                                     <Pressable onPress={() => setDeleteAccount(false)} style={[{backgroundColor: '#fff'}, {borderRadius: 30}, {padding: 10}]}>
-                                        <Text style={[, {fontSize: 16}]}>No</Text>
+                                        <Text style={[, {fontSize: 16}]}>{t('no')}</Text>
                                     </Pressable>
                                     <Pressable onPress={handleDeleteAccount} style={[{borderRadius: 30}, {padding: 10}, {backgroundColor: '#fff'}]}>
                                         {
                                             deleteAccountLoading ? (
                                                 <ActivityIndicator color={'#000'} />
                                             ) : (
-                                                <Text style={[, {fontSize: 16}]}>Yes delete!</Text>
+                                                <Text style={[, {fontSize: 16}]}>{t('yes')}</Text>
                                             )
                                         }
                                     </Pressable>

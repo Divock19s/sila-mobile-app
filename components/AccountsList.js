@@ -5,12 +5,15 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 const AccountsList = () => {
 
     const navigation = useNavigation();
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [openBMInput, setOpenBMInput] = useState(false);
     const [bmShareID, setBmShareID] = useState(null);
@@ -114,7 +117,7 @@ const AccountsList = () => {
 
                                 <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                     <MaterialIcons name="drive-file-rename-outline" size={24} color="#fff" />
-                                    <Text style={[{color: '#fff'}]}>Ad name:</Text>
+                                    <Text style={[{color: '#fff'}]}>{t('ad-name')}</Text>
                                     <Text style={[{color: '#fff'}]}>{ad.adName}</Text>
                                 </View>
 
@@ -131,7 +134,7 @@ const AccountsList = () => {
                                             <TextInput onChangeText={(text) => setBmShareID(text)} style={[{borderBottomWidth: 3}, {borderColor: '#fff'}, {color: '#fff'}, {fontSize: 16}]} placeholder='BM share ID...' placeholderTextColor={'gray'} />
                                             <View style={[{flexDirection: 'row'}, {justifyContent: 'flex-end'}, {gap: 30}]}>
                                                 <Pressable onPress={() => setOpenBMInput(false)} style={[{borderWidth: 2}, {borderColor: '#fff'}, {padding: 10}, {borderRadius: 20}]}>
-                                                    <Text style={[{color: '#fff'}]}>Cancel</Text>
+                                                    <Text style={[{color: '#fff'}]}>{t('cancel')}</Text>
                                                 </Pressable>
 
                                                 <Pressable onPress={() => share(ad._id)} style={[{backgroundColor: '#fff'}, {padding: 10}, {borderRadius: 20}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
@@ -139,7 +142,7 @@ const AccountsList = () => {
                                                         shareLoading ? (
                                                             <ActivityIndicator color={'#000'} />
                                                         ) : (
-                                                            <Text style={[{color: '#000'}]}>Share</Text>
+                                                            <Text style={[{color: '#000'}]}>{t('share')}</Text>
                                                         )
                                                     }
                                                 </Pressable>

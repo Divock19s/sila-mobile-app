@@ -5,10 +5,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const BMShareLogs = () => {
 
     const { width, height } = Dimensions.get('window');
+
+    const {t} = useTranslation();
 
     const [userID, setUserID] = useState(null);
     const [apiData, setApiData] = useState([]);
@@ -56,7 +59,7 @@ const BMShareLogs = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <MaterialIcons name="drive-file-rename-outline" size={24} color="#fff" />
-                                <Text style={[{color: '#fff'}]}>Ad name:</Text>
+                                <Text style={[{color: '#fff'}]}>{t('ad-name')}</Text>
                                 <Text style={[{color: '#fff'}]}>{item.adName}</Text>
                             </View>
 
@@ -69,8 +72,8 @@ const BMShareLogs = () => {
                             {
                                 item.status === 'Pending' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{color: '#fff'}]}>Pending</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('status')}</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('pending')}</Text>
                                         <Ionicons name="time" size={24} color="#fff" />
                                     </View>
                                 )
@@ -79,8 +82,8 @@ const BMShareLogs = () => {
                             {
                                 item.status === 'Accepted' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{color: '#fff'}]}>Accepted</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('status')}</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('accepted')}</Text>
                                         <Ionicons name="checkmark-done" size={24} color="#fff" />
                                     </View>
                                 )
@@ -89,8 +92,8 @@ const BMShareLogs = () => {
                             {
                                 item.status === 'Rejected' && (
                                     <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
-                                        <Text style={[{color: '#fff'}]}>Status:</Text>
-                                        <Text style={[{color: '#fff'}]}>Rejected</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('status')}</Text>
+                                        <Text style={[{color: '#fff'}]}>{t('rejected')}</Text>
                                         <AntDesign name="close" size={24} color="#fff" />
                                     </View>
                                 )
@@ -98,7 +101,7 @@ const BMShareLogs = () => {
 
                             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
                                 <AntDesign name="calendar" size={24} color="#fff" />
-                                <Text style={[{color: '#fff'}]}>Date:</Text>
+                                <Text style={[{color: '#fff'}]}>{t('date')}</Text>
                                 <Text style={[{color: '#fff'}]}>{`${item.date.slice(0, 4)} . ${item.date.slice(5, 7)} . ${item.date.slice(8, 10)}`}</Text>
                             </View>
                         </View>

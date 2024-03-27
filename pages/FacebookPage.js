@@ -139,6 +139,15 @@ const FacebookPage = () => {
               </ImageBackground>
             </Animated.View>
           </Pressable>
+
+          <Pressable onPress={() => navigation.navigate('VipLogs')}>
+            <Animated.View style={[{height: 150}, {width: 150}, {overflow: 'hidden'}, {borderRadius: 30}, {transform: [{translateY: eighth}]}]}>
+              <ImageBackground source={require('../assets/images&logos/3.jpg')} style={[{flex: 1}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 20}]}>
+                <FontAwesome5 name="crown" size={24} color="black" />
+                <Text style={[]}>VIP logs</Text>
+              </ImageBackground>
+            </Animated.View>
+          </Pressable>
         </View>
       </ScrollView>
     </View>

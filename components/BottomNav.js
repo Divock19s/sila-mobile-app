@@ -6,6 +6,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRef } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useTranslation } from 'react-i18next';
 
 //Screens
 import HomePage from '../pages/HomePage';
@@ -22,6 +23,8 @@ const BottomNav = () => {
 
   const indicator = useRef(new Animated.Value(0)).current;
 
+  const {t} = useTranslation();
+
   return (
     <>
       <Tab.Navigator sceneContainerStyle={{ backgroundColor: "white" }} 
@@ -37,12 +40,12 @@ const BottomNav = () => {
             focused ? (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <Ionicons name="home" size={24} color="#7538D4" />
-                <Text style={[{color: '#7538D4'}]}>Home</Text>
+                <Text style={[{color: '#7538D4'}]}>{t('home')}</Text>
               </View>
             ) : (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <Ionicons name="home-outline" size={24} color="black" />
-                <Text>Home</Text>
+                <Text>{t('home')}</Text>
               </View>
             )
           ),
@@ -61,12 +64,12 @@ const BottomNav = () => {
             focused ? (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <Ionicons name="share" size={24} color="#7538D4" />
-                <Text style={[{color: '#7538D4'}]}>Ads</Text>
+                <Text style={[{color: '#7538D4'}]}>{t('ads')}</Text>
               </View>
             ) : (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <Ionicons name="share-outline" size={24} color="black" />
-                <Text>Ads</Text>
+                <Text>{t('ads')}</Text>
               </View>
             )
           )}}
@@ -84,12 +87,12 @@ const BottomNav = () => {
             focused ? (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <FontAwesome name="user" size={24} color="#7538D4" />
-                <Text style={[{color: '#7538D4'}]}>Profile</Text>
+                <Text style={[{color: '#7538D4'}]}>{t('profile')}</Text>
               </View>
             ) : (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <FontAwesome name="user-o" size={24} color="black" />
-                <Text>Profile</Text>
+                <Text>{t('profile')}</Text>
               </View>
             )
           )}}
@@ -107,12 +110,12 @@ const BottomNav = () => {
             focused ? (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <MaterialCommunityIcons name="storefront" size={24} color="#7538D4" />
-                <Text style={[{color: '#7538D4'}]}>Services</Text>
+                <Text style={[{color: '#7538D4'}]}>{t('services')}</Text>
               </View>
             ) : (
               <View style={[{alignItems: 'center'}, {gap: 5}]}>
                 <MaterialCommunityIcons name="storefront-outline" size={24} color="black" />
-                <Text>Services</Text>
+                <Text>{t('services')}</Text>
               </View>
             )
           )}}

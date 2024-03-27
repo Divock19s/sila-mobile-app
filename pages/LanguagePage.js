@@ -44,7 +44,7 @@ const LanguagePage = () => {
     <View style={[{flex: 1}, {padding: 40}]}>
         <View style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'center'}, {padding: 30}, {borderRadius: 20}, {gap: 30}]}>
             <Ionicons name="language-outline" size={24} color="#fff" />
-            <Text style={[{color: '#fff'}]}>Language Settings</Text>
+            <Text style={[{color: '#fff'}]}>{t('language-settings')}</Text>
         </View>
 
         <View style={[{gap: 40}, {marginTop: 50}]}>

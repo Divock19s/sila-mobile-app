@@ -2,10 +2,13 @@ import { View, Image, Text, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ProfileTopSection = () => {
 
   const { width, height } = Dimensions.get('window');
+
+  const {t} = useTranslation();
 
   const [userInfo, setUserInfo] = useState(null);
 
@@ -28,7 +31,7 @@ const ProfileTopSection = () => {
         <Ionicons name="time-sharp" size={24} color="#fff" />
         {
           userInfo !== null && (
-            <Text style={[{color: '#fff'}]}>Joined in: {`${userInfo.date.slice(0, 4)} . ${userInfo.date.slice(5, 7)} . ${userInfo.date.slice(8, 10)}`}</Text>
+            <Text style={[{color: '#fff'}]}>{t('joined-in')} {`${userInfo.date.slice(0, 4)} . ${userInfo.date.slice(5, 7)} . ${userInfo.date.slice(8, 10)}`}</Text>
           )
         }
       </View>

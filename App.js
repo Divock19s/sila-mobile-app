@@ -39,6 +39,8 @@ import PresentialFormationPage from './pages/PresentialFormationPage';
 import CreateVipAdPage from './pages/CreateVipAdPage';
 import LanguagePage from './pages/LanguagePage';
 import SuccessVipPage from './pages/SuccessVipPage';
+import RedirectPage from './pages/RedirectPage';
+import VipLogsPage from './pages/VipLogsPage';
 //
 
 
@@ -75,7 +77,7 @@ export default function App() {
     setPressedCreativePack }}>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='StartUp' screenOptions={{headerShown: false,
+        <Stack.Navigator initialRouteName='Redirect' screenOptions={{headerShown: false,
         contentStyle: {backgroundColor: '#fff'}}}>
           <Stack.Screen name='BottomNav' component={BottomNav} />
           <Stack.Screen name='Sign' component={SignPage} />
@@ -109,6 +111,8 @@ export default function App() {
           <Stack.Screen name='VipAd' component={CreateVipAdPage} />
           <Stack.Screen name='Language' component={LanguagePage} />
           <Stack.Screen name='SuccessVip' component={SuccessVipPage} />
+          <Stack.Screen name='Redirect' component={RedirectPage} />
+          <Stack.Screen name='VipLogs' component={VipLogsPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>
