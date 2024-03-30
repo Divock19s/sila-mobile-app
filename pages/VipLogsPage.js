@@ -119,6 +119,16 @@ const VipLogsPage = () => {
                                         <Text style={[{color: '#fff'}]}>Website:</Text>
                                         <Text style={[{color: '#fff'}]}>{item.website}</Text>
                                     </View>
+
+                                    {
+                                        item.adID !== '' && (
+                                            <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
+                                                <AntDesign name="user" size={24} color="#fff" />
+                                                <Text style={[{color: '#fff'}]}>Ad ID:</Text>
+                                                <Text style={[{color: '#fff'}]}>{item.adID}</Text>
+                                            </View>
+                                        )
+                                    }
                                 </View>
                             )
                         }

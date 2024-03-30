@@ -105,6 +105,16 @@ const NewAdAccount = () => {
                                 <Text style={[{color: '#fff'}]}>{t('total-cost')}</Text>
                                 <Text style={[{color: '#fff'}]}>{`${item.totalCost} USD`}</Text>
                             </View>
+
+                            {
+                                item.adID !== '' && (
+                                    <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 13}]}>
+                                        <AntDesign name="user" size={24} color="#fff" />
+                                        <Text style={[{color: '#fff'}]}>Ad ID:</Text>
+                                        <Text style={[{color: '#fff'}]}>{item.adID}</Text>
+                                    </View>
+                                )
+                            }
                         </View>
                     )
                 }

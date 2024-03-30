@@ -214,11 +214,6 @@ const HomePage = () => {
             </View>
 
             <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 30}]}>
-                <Pressable onPress={() => navigation.navigate('Support')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}, {flex: 1}]}>
-                    <MaterialIcons name="support-agent" size={24} color="#fff" />
-                    <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Contact support</Text>
-                </Pressable>
-
                 <Pressable onPress={() => navigation.navigate('TopUp')} style={[{gap: 5}, {alignItems: 'center'}, {marginTop: 30}, {borderRadius: 16}, {backgroundColor: '#7538D4'}, {padding: 15}, {flex: 1}]}>
                     <AntDesign name="plus" size={24} color="#fff" />
                     <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>{t('re-charge-your-wallet')}</Text>

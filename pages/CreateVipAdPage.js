@@ -387,7 +387,7 @@ const CreateVipAdPage = () => {
                     )
                   }
                 </View>
-                <Text style={[{fontSize: 16}]}>{t('yes')}</Text>
+                <Text style={[{fontSize: 16}]}>{t('no')}</Text>
               </Pressable>
 
               <Pressable onPress={() => setShopifyShop(true)} style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
@@ -398,7 +398,7 @@ const CreateVipAdPage = () => {
                     )
                   }
                 </View>
-                <Text style={[{fontSize: 16}]}>{t('no')}</Text>
+                <Text style={[{fontSize: 16}]}>{t('yes')}</Text>
               </Pressable>
             </View>
 

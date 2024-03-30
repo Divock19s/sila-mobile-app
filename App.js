@@ -41,7 +41,6 @@ import LanguagePage from './pages/LanguagePage';
 import SuccessVipPage from './pages/SuccessVipPage';
 import RedirectPage from './pages/RedirectPage';
 import VipLogsPage from './pages/VipLogsPage';
-import SupportPage from './pages/SupportPage';
 //
 
 
@@ -114,7 +113,6 @@ export default function App() {
           <Stack.Screen name='SuccessVip' component={SuccessVipPage} />
           <Stack.Screen name='Redirect' component={RedirectPage} />
           <Stack.Screen name='VipLogs' component={VipLogsPage} />
-          <Stack.Screen name='Support' component={SupportPage} />
         </Stack.Navigator>
       </NavigationContainer>
     </data.Provider>
