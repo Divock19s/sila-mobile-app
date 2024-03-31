@@ -153,7 +153,7 @@ const Sign = () => {
 
                 navigation.reset({
                     index: 0,
-                    routes: [{ name: 'Choice' }]
+                    routes: [{ name: 'AccountSuccess' }]
                 });
             } catch (err) {
                 console.error(err);

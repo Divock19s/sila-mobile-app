@@ -2,7 +2,7 @@
   "expo": {
     "name": "Sila",
     "slug": "sila",
-    "version": "1.0.7",
+    "version": "1.0.8",
     "orientation": "portrait",
     "icon": "./assets/sila-icon-new.png",
     "userInterfaceStyle": "light",
@@ -22,7 +22,7 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.silaagency.sila",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {},
     "extra": {

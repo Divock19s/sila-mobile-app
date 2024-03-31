@@ -1,7 +1,5 @@
-import { View, Dimensions, Animated, Alert, Text } from 'react-native';
+import { View, Dimensions, Animated, Alert, Text, ImageBackground } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign } from '@expo/vector-icons';
-import { Entypo } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { useRef } from 'react';
@@ -13,6 +11,7 @@ import HomePage from '../pages/HomePage';
 import AdsPage from '../pages/DashboardPage';
 import ProfilePage from '../pages/ProfilePage';
 import ServicesPage from '../pages/ServicesPage';
+import SupportChatPage from '../pages/SupportChatPage';
 //
 
 const Tab = createBottomTabNavigator();
@@ -32,7 +31,8 @@ const BottomNav = () => {
           tabBarStyle: {
             height: height / 9,
             borderRadius: 10,
-            marginHorizontal: 20
+            marginHorizontal: 20,
+            overflow: 'hidden'
           },
           tabBarShowLabel: false}}>
         <Tab.Screen name='Home' component={HomePage}
@@ -76,7 +76,7 @@ const BottomNav = () => {
           listeners={() => ({
             tabPress: e => {
               Animated.spring(indicator, {
-                toValue: (width - 40) / 4,
+                toValue: (width - 40) / 5,
                 duration: 300,
                 useNativeDriver: true
               }).start();
@@ -99,7 +99,7 @@ const BottomNav = () => {
           listeners={() => ({
             tabPress: e => {
               Animated.spring(indicator, {
-                toValue: ((width - 40) / 4) * 2,
+                toValue: ((width - 40) / 5) * 2,
                 duration: 300,
                 useNativeDriver: true
               }).start();
@@ -122,16 +122,31 @@ const BottomNav = () => {
           listeners={() => ({
             tabPress: e => {
               Animated.spring(indicator, {
-                toValue: ((width - 40) / 4) * 3,
+                toValue: ((width - 40) / 5) * 3,
                 duration: 300,
                 useNativeDriver: true
               }).start();
             }
           })}/>
+          <Tab.Screen name='Chat' component={SupportChatPage}
+          options={{tabBarIcon: () => (
+            <ImageBackground style={[{height: '100%'}, {width: '100%'}, {justifyContent: 'center'}, {alignItems: 'center'}]} source={require('../assets/images&logos/Glow.gif')}>
+              <Ionicons name="chatbox-ellipses-outline" size={20} color="#fff" />
+            </ImageBackground>
+          )}}
+          listeners={() => ({
+            tabPress: e => {
+              Animated.spring(indicator, {
+                toValue: ((width - 40) / 5) * 4,
+                duration: 300,
+                useNativeDriver: true
+              }).start();
+            }
+          })} />
       </Tab.Navigator>
 
       {/* Indicator */}
-      <Animated.View style={[{height: 7}, {width: (width - 240) / 4}, {backgroundColor: '#7538D4'}, {position: 'absolute'}, {bottom: height / 11}, {left: 44}, {borderRadius: 30}, {zIndex: 1}, {transform: [{translateX: indicator}]}]} />
+      <Animated.View style={[{height: 7}, {width: (width - 240) / 5}, {backgroundColor: '#7538D4'}, {position: 'absolute'}, {bottom: height / 11}, {left: 40}, {borderRadius: 30}, {zIndex: 1}, {transform: [{translateX: indicator}]}]} />
     </>
   )
 };
