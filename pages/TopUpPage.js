@@ -27,6 +27,8 @@ const TopUpPage = () => {
     const [chargeAmount, setChargeAmount] = useState(null);
     const [transactionID, setTransactionID] = useState(null);
 
+    const [amountError, setAmountError] = useState(false);
+
     const [photoProof, setPhotoProof] = useState(null);
 
     const [userInfo, setUserInfo] = useState(null);
@@ -57,6 +59,16 @@ const TopUpPage = () => {
 
         asyncStorage();
     }, []);
+
+    const saveChargeAmount = (text) => {
+        setChargeAmount(text);
+
+        if (parseInt(text) <= 200) {
+            setAmountError(true);
+        } else {
+            setAmountError(false);
+        };
+    };
 
     const pickProof = () => {
         const pick = async () => {
@@ -148,6 +160,9 @@ const TopUpPage = () => {
         } else if (photoProof === null) {
             Alert.alert('Please provide the photo proof!');
             setConfirmLoading(false);
+        } else if (chargeAmount <= 200) {
+            Alert.alert('Please change the amount, 200 or less is not available!');
+            setConfirmLoading(false);
         } else {
             transactionApi();
 
@@ -185,7 +200,7 @@ const TopUpPage = () => {
             <Text style={[{color: '#fff'}, {fontSize: 17}]}>{t('top-up')}</Text>
         </View>
 
-        <View style={[{marginTop: 100}, {height: height / 1.4}]}>
+        <View style={[{marginTop: 100}, {flex: 1}]}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Pressable onPress={() => setCurrencyPicker(!currencyPicker)} style={[{height: height / 12}, {flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {paddingHorizontal: 30}, {borderRadius: 20}, {backgroundColor: '#7538D4'}]}>
                     {
@@ -241,26 +256,37 @@ const TopUpPage = () => {
                 {
                     paymentMethodPicker && (
                         <View style={[{borderWidth: 3}, {borderRadius: 20}, {borderColor: '#7538D4'}]}>
-                            <Pressable onPress={() => setPaymentMethod('Paysera')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>Paysera</Text>
-                            </Pressable>
+                            {
+                                currency === 'EUR' && (
+                                    <>
+                                        <Pressable onPress={() => setPaymentMethod('Paysera')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                            <Text style={[{fontSize: 17}]}>Paysera</Text>
+                                        </Pressable>
 
-                            <Pressable onPress={() => setPaymentMethod('Binance')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>Binance</Text>
-                            </Pressable>
+                                        <Pressable onPress={() => setPaymentMethod('Cash')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                            <Text style={[{fontSize: 17}]}>Cash</Text>
+                                        </Pressable>
+                                    </>
+                                )
+                            }
 
-                            <Pressable onPress={() => setPaymentMethod('Redotpay')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>Redotpay</Text>
-                            </Pressable>
-
-                            <Pressable onPress={() => setPaymentMethod('Cash')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
-                                <Text style={[{fontSize: 17}]}>Cash</Text>
-                            </Pressable>
+                            {
+                                currency === 'USD' && (
+                                    <Pressable onPress={() => setPaymentMethod('Binance')} style={[{justifyContent: 'center'}, {alignItems: 'center'}, {padding: 20}]}>
+                                        <Text style={[{fontSize: 17}]}>Binance</Text>
+                                    </Pressable>
+                                )
+                            }
                         </View>
                     )
                 }
 
-                <TextInput onChangeText={(text) => setChargeAmount(text)} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: '#7538D4'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
+                <TextInput onChangeText={(text) => saveChargeAmount(text)} value={chargeAmount} style={[{borderBottomWidth: 3}, {marginTop: 30}, {fontSize: 17}, {borderColor: amountError ? 'red' : '#7538D4'}]} placeholder='Charge Amount, eg: 500' keyboardType='numeric' />
+                {
+                    amountError && (
+                        <Text style={[{color: 'red'}]}>200 or less is not available!</Text>
+                    )
+                }
 
                 {
                     paymentMethod !== 'Cash' && (
@@ -321,21 +347,6 @@ const TopUpPage = () => {
                                         <Text style={[{color: 'gray'}]}>Usdt adresse TRC20  : TMNDfXxomc9AqdkMvMDBrqKy4q8JPMBpY5</Text>
                                         <Text style={[{color: 'gray'}]}>Username: sila_marketing</Text>
                                         <Text style={[{color: 'gray'}]}>Email: adomerou@gmail.com</Text>
-                                    </View>
-                                )
-                            }
-
-                            {
-                                paymentMethod === 'Redotpay' && (
-                                    <View style={[{marginTop: 20}]}>
-                                        <Text style={[{fontSize: 17}, {marginBottom: 10}]}>Payment info:</Text>
-                                        <Text style={[{color: 'gray'}]}>Redotpay :</Text>
-                                        <Text style={[{color: 'gray'}]}>ID : 1613123172</Text>
-                                        <Text style={[{color: 'gray'}]}>Email : adomerou@gmail.com</Text>
-                                        <Text style={[{color: 'gray'}]}>Tron (TRC20) :</Text>
-                                        <Text style={[{color: 'gray'}]}>TJPSmjyqbrpKUZqRBUUwSUWtkgVaMDYeL7</Text>
-                                        <Text style={[{color: 'gray'}]}>BNB Smart chain (BEP20):</Text>
-                                        <Text style={[{color: 'gray'}]}>0xA1A2205a7934103770D5739CcAceA850725cb896</Text>
                                     </View>
                                 )
                             }

@@ -76,7 +76,6 @@
         "create-new-ad-account": "انشاء حساب اعلاني جديد",
         "page-number": "عدد الصفحات:",
         "page-url-error": "نوع عنوان URL هذا غير مقبول، يرجى إضافة عنوان URL يحتوي على اسم مستخدم، على سبيل المثال:'https://facebook.com/Amine'",
-        "page-share-check": "يرجى التأكد من أنك قمت بالفعل بمشاركة الصفحة مع هذا الملف الشخصي:",
         "domain-number": "عدد Domain:",
         "domain-placeholder": "Enter domain name...",
         "is-app": "هل هو تطبيق?",
@@ -134,6 +133,7 @@
         "home": "الرئيسية",
         "profile": "الحساب",
         "register-new-account": "انشاء حساب جديد!",
-        "create-new-vip-account": "انشاء حساب VIP جديد"
+        "create-new-vip-account": "انشاء حساب VIP جديد",
+        "admin-add-message": "بعد الانتهاء من ملء المعلومات و شراء الحساب, سنرسل لك رابط حساب الAdmin وعليك اضافته كاAdmin"
     }
 }

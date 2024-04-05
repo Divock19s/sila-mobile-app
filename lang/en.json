@@ -76,7 +76,6 @@
         "create-new-ad-account": "Create new Ad Account",
         "page-number": "Page number:",
         "page-url-error": "This URL type is unaccepted, please add a URL that has a username, eg:'https://facebook.com/Amine'",
-        "page-share-check": "Please make sure you have already shared page with this profile:",
         "domain-number": "Domain number:",
         "domain-placeholder": "Enter domain name...",
         "is-app": "is App?",
@@ -134,6 +133,7 @@
         "home": "Home",
         "profile": "Profile",
         "register-new-account": "Register new account!",
-        "create-new-vip-account": "Create new VIP account"
+        "create-new-vip-account": "Create new VIP account",
+        "admin-add-message": "After this purchase, we will send you a profile link and you need to add it as Admin"
     }
 }

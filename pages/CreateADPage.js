@@ -1,19 +1,14 @@
 import { View, Text, Pressable, TextInput, ScrollView, Alert, Image, Dimensions, ActivityIndicator } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-import { useEffect, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-import { Button, CheckBox } from 'react-native-elements';
-import { Feather } from '@expo/vector-icons';
-import * as Clipboard from 'expo-clipboard';
 import { AntDesign } from '@expo/vector-icons';
-import data from '../Context';
 import * as DocumentPicker from 'expo-document-picker';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Foundation } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const CreateADPage = () => {
 
@@ -28,7 +23,6 @@ const CreateADPage = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const [pageURLs, setPageURLs] = useState([]);
   const [phpRedLine, setPhpRedLine] = useState(false);
-  const [checked, setChecked] = useState(false);
 
   const [domainNumber, setDomainNumber] = useState(0);
   const [isAPP, setIsAPP] = useState(false);
@@ -105,17 +99,6 @@ const CreateADPage = () => {
   useEffect(() => {
     setPageURLs((prev) => prev.slice(0, pageNumber));
   }, [pageNumber]);
-  //
-
-  //copying admin to clipboard
-  const copy = async () => {
-    try {
-      await Clipboard.setStringAsync('https://www.facebook.com/rina.magar.332/');
-      Alert.alert('Copied successfully!');
-    } catch (err) {
-      console.error(err);
-    };
-  };
   //
 
 
@@ -390,10 +373,7 @@ const CreateADPage = () => {
       }
     };
 
-    if (!checked) {
-      Alert.alert('Please make sure you have already shared page with this profile: "https://www.facebook.com/rina.magar.332/"');
-      setPayLoading(false);
-    } else if (newLicenseName === null) {
+    if (newLicenseName === null) {
       Alert.alert('Please write a license name');
       setPayLoading(false);
     } else if (pageNumber === null || pageNumber === 0) {
@@ -523,16 +503,9 @@ const CreateADPage = () => {
             )
           }
 
-          <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {marginTop: 20}]}>
-            <CheckBox checked={checked} onPress={() => setChecked(!checked)} checkedColor='#7538D4' />
-            <Text style={[{width: width / 1.6}]}>{t('page-share-check')}</Text>
-          </View>
-
-          <View style={[{alignItems: 'center'}]}>
-            <Text style={[{backgroundColor: '#7538D4'}, {color: '#fff'}, {padding: 5}, {borderRadius: 10}]}>https://www.facebook.com/rina.magar.332/</Text>
-            <Pressable onPress={copy}>
-              <Feather name="copy" size={30} color="black" />
-            </Pressable>
+          <View style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 15}, {borderRadius: 20}]}>
+            <MaterialIcons name="admin-panel-settings" size={30} color="#fff" />
+            <Text style={[{color: '#fff'}, {width: width / 1.6}]}>{t('admin-add-message')}</Text>
           </View>
         </View>
 
