@@ -35,7 +35,6 @@ import AddCreativePage from './pages/AddCreativePage';
 import CreativeDashboardPage from './pages/CreativeDashboardPage';
 import ChoicePage from './pages/ChoicePage';
 import FormationPage from './pages/FormationPage';
-import EcommercePage from './pages/EcommercePage';
 import PresentialFormationPage from './pages/PresentialFormationPage';
 import CreateVipAdPage from './pages/CreateVipAdPage';
 import LanguagePage from './pages/LanguagePage';
@@ -43,6 +42,7 @@ import SuccessVipPage from './pages/SuccessVipPage';
 import RedirectPage from './pages/RedirectPage';
 import VipLogsPage from './pages/VipLogsPage';
 import AccountSuccessPage from './pages/AccountSuccessPage';
+import FormationVideosPage from './pages/FormationVideosPage';
 //
 
 
@@ -56,6 +56,7 @@ export default function App() {
   //states for the context
   const [pressedMediaPack, setPressedMediaPack] = useState(null);
   const [pressedCreativePack, setPressedCreativePack] = useState(null);
+  const [pressedFormation, setPressedFormation] = useState('');
   //
 
   
@@ -77,7 +78,7 @@ export default function App() {
   return (
     <GestureHandlerRootView style={[{flex: 1}]}>
       <data.Provider value={{ pressedMediaPack, setPressedMediaPack, pressedCreativePack,
-      setPressedCreativePack }}>
+      setPressedCreativePack, pressedFormation, setPressedFormation }}>
         <StatusBar style="light" />
         <NavigationContainer>
           <Stack.Navigator initialRouteName='Redirect' screenOptions={{headerShown: false,
@@ -109,7 +110,6 @@ export default function App() {
             <Stack.Screen name='CreativeDashboard' component={CreativeDashboardPage} />
             <Stack.Screen name='Choice' component={ChoicePage} />
             <Stack.Screen name='Formation' component={FormationPage} />
-            <Stack.Screen name='Ecommerce' component={EcommercePage} />
             <Stack.Screen name='PresentialFormation' component={PresentialFormationPage} />
             <Stack.Screen name='VipAd' component={CreateVipAdPage} />
             <Stack.Screen name='Language' component={LanguagePage} />
@@ -117,6 +117,7 @@ export default function App() {
             <Stack.Screen name='Redirect' component={RedirectPage} />
             <Stack.Screen name='VipLogs' component={VipLogsPage} />
             <Stack.Screen name='AccountSuccess' component={AccountSuccessPage} />
+            <Stack.Screen name='FormationVideos' component={FormationVideosPage} />
           </Stack.Navigator>
         </NavigationContainer>
       </data.Provider>

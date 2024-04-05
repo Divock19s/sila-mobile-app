@@ -1,16 +1,17 @@
-import { View, Text, Alert, Pressable, Image, ScrollView, Dimensions } from 'react-native';
+import { View, Text, Alert, Pressable, Image, ScrollView, Dimensions, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Video, ResizeMode } from 'expo-av';
 import { FontAwesome } from '@expo/vector-icons';
 import { Foundation } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AntDesign } from '@expo/vector-icons';
 import FormationTab from '../components/FormationTab';
-import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
+import data from '../Context';
 
 const FormationPage = () => {
+
+    const { setPressedFormation } = useContext(data);
 
     const navigation = useNavigation();
 
@@ -20,7 +21,8 @@ const FormationPage = () => {
 
     const [userInfo, setUserInfo] = useState(null);
     const [userEurWallet, setUserEurWallet] = useState(null);
-    const [boughtEcommerce, setBoughtEcommerce] = useState(false);
+
+    const [apiData, setApiData] = useState([]);
 
     useEffect(() => {
         const asyncStorage = async () => {
@@ -52,41 +54,27 @@ const FormationPage = () => {
     }, [userInfo]);
 
     useEffect(() => {
-        if (userInfo !== null) {
-            const userApi = async () => {
-                try {
-                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
-                    const data = await response.json();
+        const getFormations = async () => {
+            try {
+                const response = await fetch('https://sila-b.onrender.com/formation/getFormations');
+                const data = await response.json();
 
-                    setBoughtEcommerce(data.user.eCommerceFormation);
-                } catch (err) {
-                    console.error(err);
-                }
-            };
-    
-            userApi();
-        }
-    }, [userInfo]);
+                if (response.ok) {
+                    setApiData(data.formations);
+                };
+            } catch (err) {
+                console.error(err);
+            }
+        };
 
-    const goToEcommerce = () => {
-        if (userInfo !== null) {
-            const userApi = async () => {
-                try {
-                    const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
-                    const data = await response.json();
-                    
-                    if (data.user.eurWallet < 99) {
-                        Alert.alert('Oops, your credit is not sufficient!');
-                    } else {
-                        navigation.navigate('Ecommerce');
-                    };
-                } catch (err) {
-                    console.error(err);
-                }
-            };
-    
-            userApi();
-        }
+        getFormations();
+    }, []);
+
+    const goToVideos = (_id) => {
+        const target = apiData.find((x) => x._id === _id);
+        setPressedFormation(target);
+
+        navigation.navigate('FormationVideos');
     };
 
   return (
@@ -136,138 +124,22 @@ const FormationPage = () => {
                 </View>
                 {/* //////// */}
 
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/e-commerce-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Expert Class</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>99</Text>
+                <FlatList data={apiData} keyExtractor={item => item._id} renderItem={({item}) => (
+                    <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
+                        <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
+                            <Image style={[{height: 70}, {width: 70}]} source={{uri: item.photo}} />
+                            <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>{item.name}</Text>
+                            <View style={[{flexDirection: 'row'}, {gap: 5}]}>
+                                <FontAwesome name="euro" size={20} color="#fff" />
+                                <Text style={[{color: '#fff'}, {fontSize: 40}]}>{item.price}</Text>
+                            </View>
                         </View>
+
+                        <Pressable onPress={() => goToVideos(item._id)} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
+                            <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{item.status}</Text>
+                        </Pressable>
                     </View>
-
-                    <Pressable onPress={goToEcommerce} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}]}>
-                        {
-                            boughtEcommerce ? (
-                                <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('open')}</Text>
-                            ) : (
-                                <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('buy-now')}</Text>
-                            )
-                        }
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/ads-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Facebook Ads cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>69</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/design-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Design cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>49</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/video-edit-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Video editing cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>79</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/Infographie.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Infographie cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>79</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/shooting-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Shooting cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>69</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/AI-3d.png')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Intelligent Artificiel cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>99</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
-
-                <View style={[{backgroundColor: '#7538D4'}, {marginTop: 30}, {padding: 20}, {borderRadius: 30}, {gap: 30}]}>
-                    <View style={[{flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexWrap: 'wrap'}, {gap: 20}]}>
-                        <Image style={[{height: 70}, {width: 70}]} source={require('../assets/images&logos/digital-marketing-3d.webp')} />
-                        <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>Digital marketing cours</Text>
-                        <View style={[{flexDirection: 'row'}, {gap: 5}]}>
-                            <FontAwesome name="euro" size={20} color="#fff" />
-                            <Text style={[{color: '#fff'}, {fontSize: 40}]}>89</Text>
-                        </View>
-                    </View>
-
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{backgroundColor: '#fff'}, {padding: 20}, {borderRadius: 50}, {justifyContent: 'center'}, {alignItems: 'center'}, {flexDirection: 'row'}, {gap: 20}]}>
-                        <Text style={[{fontWeight: 500}, {color: '#7538D4'}]}>{t('coming-soon')}</Text>
-                        <Ionicons name="time" size={24} color="#7538D4" />
-                    </Pressable>
-                </View>
+                )} />
             </ScrollView>
         </View>
 
