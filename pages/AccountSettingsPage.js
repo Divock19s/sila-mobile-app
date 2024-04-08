@@ -308,7 +308,7 @@ const AccountSettingsPage = () => {
             </Pressable>
         </View>
 
-        <View style={[{padding: 30}, {gap: 40}, {height: height / 2}]}>
+        <View style={[{padding: 30}, {gap: 40}, {flex: 1}]}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={[{gap: 10}, {marginBottom: 40}]}>
                     <Text style={[{fontSize: 17}]}>{t('email')}</Text>

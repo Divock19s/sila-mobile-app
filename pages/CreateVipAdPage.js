@@ -26,6 +26,9 @@ const CreateVipAdPage = () => {
 
   const [newLicenseName, setNewLicenseName] = useState(null);
 
+  const [pagesNumber, setPagesNumber] = useState(0);
+  const [pageURLs, setPageURLs] = useState([]);
+
   const [website, setWebsite] = useState('');
 
   const [shopifyShop, setShopifyShop] = useState(false);
@@ -43,7 +46,7 @@ const CreateVipAdPage = () => {
 
   const [payLoading, setPayLoading] = useState(false);
 
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState('');
 
   const [firstApiDone, setFirstApiDone] = useState(false);
   const [secondApiDone, setSecondApiDone] = useState(false);
@@ -82,6 +85,34 @@ const CreateVipAdPage = () => {
 
     pick();
   };
+  //
+
+  //rendering url inputs according to picker number
+  const renderPageURLInputs = () => {
+    const textInputs = [];
+    for (let i = 0; i < pagesNumber; i++) {
+      textInputs.push(
+        <TextInput onChangeText={(text) => storeURLs(i, text)} style={[{borderBottomWidth: 3}, {marginTop: 10}, {borderColor: '#7538D4'}, {fontSize: 17}]} placeholder='URL...' />
+      );
+    }
+    return textInputs;
+  };
+  //
+
+  //getting the url input values and storing them in pageURL state, which is an array
+  const storeURLs = (i, text) => {
+    setPageURLs((prevInputValues) => {
+      const newInputValues = [...prevInputValues];
+      newInputValues[i] = text;
+      return newInputValues;
+    });
+  };
+  //
+
+  // deleting values from the array, after picker number changes
+  useEffect(() => {
+    setPageURLs((prev) => prev.slice(0, pagesNumber));
+  }, [pagesNumber]);
   //
 
 
@@ -143,34 +174,49 @@ const CreateVipAdPage = () => {
   //
 
   useEffect(() => {
-    //counting total deposit of ads
-    const sum = adAccountDeposits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const commision1 = sum * 8 / 100;
-    const commision3 = sum * 7 / 100;
-    const commision5 = sum * 6 / 100;
-    
-    if (adAccountsNumber === 1) {
-      setTotalDepositOfADs(sum + commision1);
-    } else if (adAccountsNumber === 3) {
-      setTotalDepositOfADs(sum + commision3);
-    } else if (adAccountsNumber === 5) {
-      setTotalDepositOfADs(sum + commision5);
+    //getUserData
+    const getUserData = async () => {
+      try {
+        const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          //counting total deposit of ads
+          const sum = adAccountDeposits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          const commision1 = sum * data.user.adCommisionVip1 / 100;
+          const commision3 = sum * data.user.adCommisionVip3 / 100;
+          const commision5 = sum * data.user.adCommisionVip5 / 100;
+          
+          if (adAccountsNumber === 1) {
+            setTotalDepositOfADs(sum + commision1);
+          } else if (adAccountsNumber === 3) {
+            setTotalDepositOfADs(sum + commision3);
+          } else if (adAccountsNumber === 5) {
+            setTotalDepositOfADs(sum + commision5);
+          };
+          //
+
+
+          //counting total cost
+          if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
+            setTotalCost(totalDepositOfADs + data.user.vipAd1Price);
+          } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
+            setTotalCost(totalDepositOfADs + data.user.vipAd3Price);
+          } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
+            setTotalCost(totalDepositOfADs + data.user.vipAd5Price);
+          } else {
+            setTotalCost(0);
+          }
+          //
+        };
+      } catch (err) {
+        console.error(err);
+      }
     };
-    //
 
-
-    //counting total cost
-    if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 259);
-    } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 599);
-    } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 799);
-    } else {
-      setTotalCost(0);
-    }
+    getUserData();
     //
-  }, [adAccountsNumber, totalDepositOfADs, adAccountDeposits]);
+  }, [adAccountDeposits, adAccountsNumber, totalDepositOfADs]);
 
 
 
@@ -201,6 +247,10 @@ const CreateVipAdPage = () => {
     if (newLicenseName !== null) {
       formData.append('license', newLicenseName);
     };
+
+    pageURLs.map((x) => {
+      formData.append('pageURL', x);
+    });
     
     formData.append('website', website);
 
@@ -278,6 +328,9 @@ const CreateVipAdPage = () => {
 
     if (newLicenseName === null) {
       Alert.alert('Please write a license name');
+      setPayLoading(false);
+    } else if (pageURLs.length === 0) {
+      Alert.alert('Provide at least one page!');
       setPayLoading(false);
     } else if (website === '') {
       Alert.alert('Please write the website URL');
@@ -362,13 +415,34 @@ const CreateVipAdPage = () => {
       <View style={[{height: height / 1.6}]}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={[{backgroundColor: '#7538D4'}, {marginBottom: 20}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 20}, {padding: 20}, {borderRadius: 10}]}>
-            <Text style={[{color: '#fff'}]}>{t('unlimited-pages-domains')}</Text>
+            <Text style={[{color: '#fff'}]}>{t('10-pages-unlimited-domains')}</Text>
             <Ionicons name="checkmark-circle" size={24} color="#fff" />
           </View>
 
           <View>
             <Text style={[{fontSize: 20}]}>License:</Text>
             <TextInput onChangeText={(text) => setNewLicenseName(text)} style={[{borderBottomWidth: 3}, {borderColor: '#7538D4'}, {fontSize: 17}, {marginTop: 20}]} placeholder='Choose a name for this license' />
+          </View>
+
+          <View style={[{marginTop: 30}]}>
+            <Text style={[{fontSize: 20}]}>Pages:</Text>
+            <RNPickerSelect
+              onValueChange={(value) => setPagesNumber(value)}
+              items={[
+                { label: '1', value: 1 },
+                { label: '2', value: 2 },
+                { label: '3', value: 3 },
+                { label: '4', value: 4 },
+                { label: '5', value: 5 },
+                { label: '6', value: 6 },
+                { label: '7', value: 7 },
+                { label: '8', value: 8 },
+                { label: '9', value: 9 },
+                { label: '10', value: 10 }
+              ]}
+            />
+
+            { renderPageURLInputs() }
           </View>
 
           <View style={[{marginTop: 30}]}>

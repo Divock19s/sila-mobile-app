@@ -44,7 +44,7 @@ const CreateADPage = () => {
 
   const [payLoading, setPayLoading] = useState(false);
 
-  const [userInfo, setUserInfo] = useState(null);
+  const [userInfo, setUserInfo] = useState('');
 
   const [firstApiDone, setFirstApiDone] = useState(false);
   const [secondApiDone, setSecondApiDone] = useState(false);
@@ -237,27 +237,49 @@ const CreateADPage = () => {
   //
 
   useEffect(() => {
-    //counting total deposit of ads
-    const sum = adAccountDeposits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
-    const commision = sum * 6 / 100;
-    const totalDepositOfADs = sum + commision;
-    
-    setTotalDepositOfADs(totalDepositOfADs);
-    //
+    //getUserData
+    const getUserData = async () => {
+      try {
+        const response = await fetch(`https://sila-b.onrender.com/users/${userInfo._id}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          //counting total deposit of ads
+          const sum = adAccountDeposits.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+          const commision1 = sum * data.user.adCommision1 / 100;
+          const commision3 = sum * data.user.adCommision3 / 100;
+          const commision5 = sum * data.user.adCommision5 / 100;
+          
+          if (adAccountsNumber === 1) {
+            setTotalDepositOfADs(sum + commision1);
+          } else if (adAccountsNumber === 3) {
+            setTotalDepositOfADs(sum + commision3);
+          } else if (adAccountsNumber === 5) {
+            setTotalDepositOfADs(sum + commision5);
+          };
+          //
 
 
-    //counting total cost
-    if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 179);
-    } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 299);
-    } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
-      setTotalCost(totalDepositOfADs + 499);
-    } else {
-      setTotalCost(0);
-    }
+          //counting total cost
+          if (adAccountsNumber === 1 && totalDepositOfADs > 0) {
+            setTotalCost(totalDepositOfADs + data.user.ad1Price);
+          } else if (adAccountsNumber === 3 && totalDepositOfADs > 0) {
+            setTotalCost(totalDepositOfADs + data.user.ad3Price);
+          } else if (adAccountsNumber === 5 && totalDepositOfADs > 0) {
+            setTotalCost(totalDepositOfADs + data.user.ad5Price);
+          } else {
+            setTotalCost(0);
+          }
+          //
+        };
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getUserData();
     //
-  }, [adAccountDeposits]);
+  }, [adAccountDeposits, adAccountsNumber, totalDepositOfADs]);
 
 
 
@@ -503,7 +525,7 @@ const CreateADPage = () => {
             )
           }
 
-          <View style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 15}, {borderRadius: 20}]}>
+          <View style={[{backgroundColor: '#7538D4'}, {flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}, {padding: 15}, {borderRadius: 20}, {marginTop: 30}]}>
             <MaterialIcons name="admin-panel-settings" size={30} color="#fff" />
             <Text style={[{color: '#fff'}, {width: width / 1.6}]}>{t('admin-add-message')}</Text>
           </View>

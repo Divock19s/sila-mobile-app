@@ -47,13 +47,13 @@ const Transactions = () => {
     }, []);
 
   return (
-    <View style={[{paddingHorizontal: 30}]}>
+    <View style={[{paddingHorizontal: 30}, {flex: 1}]}>
         <View style={[{height: height / 12}, {backgroundColor: '#7538D4'}, {borderBottomLeftRadius: 50}, {borderBottomRightRadius: 50}, {flexDirection: 'row'}, {justifyContent: 'center'}, {alignItems: 'center'}, {gap: 30}, {position: 'absolute'}, {left: 0}, {right: 0}]}>
             <Entypo name="wallet" size={30} color="#fff" />
             <Text style={[{color: '#fff'}, {fontSize: 17}]}>{t('my-transactions')}</Text>
         </View>
 
-        <View style={[{marginTop: 100}, {height: height / 1.4}]}>
+        <View style={[{flex: 1}, {marginTop: 100}]}>
             <FlatList showsVerticalScrollIndicator={false} data={apiData} keyExtractor={item => item._id} renderItem={({item}) => {
                 if (item.userID === userID) {
                     return(

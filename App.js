@@ -23,15 +23,6 @@ import RefundRecordPage from './pages/RefundRecordPage';
 import RefundPage from './pages/RefundPage';
 import AccountSettingsPage from './pages/AccountSettingsPage';
 import ComingSoonPage from './pages/ComingSoonPage';
-import MediaBuyingPage from './pages/MediaBuyingPage';
-import MBPacksPage from './pages/MBPacksPage';
-import MBInterface from './pages/MBInterface';
-import AddMediaPage from './pages/AddMediaPage';
-import MyMediaPage from './pages/MyMediaPage';
-import ShootingPage from './pages/ShootingPage';
-import ShootingSuccessPage from './pages/ShootingSuccessPage';
-import ShootingDashboardPage from './pages/ShootingDashboardPage';
-import AddCreativePage from './pages/AddCreativePage';
 import CreativeDashboardPage from './pages/CreativeDashboardPage';
 import ChoicePage from './pages/ChoicePage';
 import FormationPage from './pages/FormationPage';
@@ -98,15 +89,6 @@ export default function App() {
             <Stack.Screen name='Refund' component={RefundPage} />
             <Stack.Screen name='Account' component={AccountSettingsPage} />
             <Stack.Screen name='ComingSoon' component={ComingSoonPage} />
-            <Stack.Screen name='MediaBuying' component={MediaBuyingPage} />
-            <Stack.Screen name='MBPacks' component={MBPacksPage} />
-            <Stack.Screen name='MBInterface' component={MBInterface} />
-            <Stack.Screen name='AddMedia' component={AddMediaPage} />
-            <Stack.Screen name='MyMedia' component={MyMediaPage} />
-            <Stack.Screen name='Shooting' component={ShootingPage} />
-            <Stack.Screen name='ShootingSuccess' component={ShootingSuccessPage} />
-            <Stack.Screen name='ShootingDashboard' component={ShootingDashboardPage} />
-            <Stack.Screen name='AddCreative' component={AddCreativePage} />
             <Stack.Screen name='CreativeDashboard' component={CreativeDashboardPage} />
             <Stack.Screen name='Choice' component={ChoicePage} />
             <Stack.Screen name='Formation' component={FormationPage} />

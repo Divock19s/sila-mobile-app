@@ -1,8 +1,11 @@
-import { View, Image, Text, Dimensions } from 'react-native';
+import { View, Image, Text, Dimensions, TouchableOpacity, Alert } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { AntDesign } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
+import * as Clipboard from 'expo-clipboard';
 
 const ProfileTopSection = () => {
 
@@ -24,6 +27,13 @@ const ProfileTopSection = () => {
 
     asyncStorage();
   }, []);
+
+  const copyToClipboard = async () => {
+    if (userInfo !== null) {
+      await Clipboard.setStringAsync(String(userInfo._id));
+      Alert.alert('Copied! ✅');
+    };
+  };
 
   return (
     <View style={[{borderRadius: 50}, {backgroundColor: '#7538D4'}, {gap: 30}, {padding: 20}, {elevation: 50}]}>
@@ -48,6 +58,23 @@ const ProfileTopSection = () => {
             <Text style={[{color: '#fff'}, {fontSize: 20}]}>{userInfo.userName}</Text>
           )
         }
+      </View>
+
+      <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {justifyContent: 'space-between'}, {padding: 10}, {borderRadius: 50}, {backgroundColor: '#fff'}]}>
+        <View style={[{flexDirection: 'row'}, {alignItems: 'center'}, {gap: 10}]}>
+          <AntDesign name="idcard" size={24} color="#7538D4" />
+          <Text style={[{color: '#7538D4'}]}>ID:</Text>
+        </View>
+
+        {
+          userInfo !== null && (
+            <Text style={[{color: '#7538D4'}]}>{userInfo._id}</Text>
+          )
+        }
+
+        <TouchableOpacity onPress={copyToClipboard}>
+          <Feather name="copy" size={24} color="#7538D4" />
+        </TouchableOpacity>
       </View>
     </View>
   )

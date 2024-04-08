@@ -219,32 +219,11 @@ const HomePage = () => {
                     <Text style={[{color: '#fff'}, {fontSize: 16}, {fontWeight: 300}]}>{t('re-charge-your-wallet')}</Text>
                 </Pressable>
             </View>
-
-            <Text style={[{fontSize: 16}, {marginTop: 30}]}>{t('services')}</Text>
-
-            <View style={[{marginTop: 20}]}>
-                <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                    <Pressable onPress={() => navigation.navigate('ComingSoon')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                        <Entypo name="code" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('development')}</Text>
-                    </Pressable>
-
-                    <Pressable onPress={() => navigation.navigate('MediaBuying')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                        <MaterialIcons name="movie-filter" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('media-buying')}</Text>
-                    </Pressable>
-
-                    <Pressable onPress={() => navigation.navigate('Shooting')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                        <Entypo name="video-camera" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('shooting')}</Text>
-                    </Pressable>
-
-                    <Pressable onPress={() => navigation.navigate('Formation')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {height: 130}, {width: 130}, {justifyContent: 'center'}, {gap: 10}, {marginRight: 10}]}>
-                        <SimpleLineIcons name="graduation" size={30} color="#fff" />
-                        <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('formation')}</Text>
-                    </Pressable>
-                </ScrollView>
-            </View>
+            
+            <Pressable onPress={() => navigation.navigate('Formation')} style={[{alignItems: 'center'}, {backgroundColor: '#7538D4'}, {borderRadius: 20}, {justifyContent: 'center'}, {gap: 10}, {padding: 20}, {marginTop: 30}]}>
+                <SimpleLineIcons name="graduation" size={30} color="#fff" />
+                <Text style={[{fontSize: 16}, {color: '#fff'}]}>{t('formation')}</Text>
+            </Pressable>
 
             <Text style={[{fontSize: 16}, {marginTop: 30}]}>{t('account-stats')}</Text>
 
